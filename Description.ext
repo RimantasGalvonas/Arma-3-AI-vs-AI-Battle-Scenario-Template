@@ -1,0 +1,14 @@
+class CfgFunctions
+{
+    class Rimsiakas
+    {
+        class allFunctions
+        {
+            file = "functions";
+            class placeSquadInRandomPosition {};
+            class recursiveSADWaypoint {};
+            class squadSpawner {};
+            class validator {};
+        };
+    };
+};
