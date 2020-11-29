@@ -1,5 +1,8 @@
+#include "CHVD\dialog.hpp"
+
 class CfgFunctions
 {
+    #include "CHVD\CfgFunctions.hpp"
     class Rimsiakas
     {
         class allFunctions
