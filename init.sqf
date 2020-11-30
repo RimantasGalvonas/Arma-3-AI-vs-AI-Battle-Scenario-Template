@@ -14,8 +14,6 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
     _patrolRadius = patrolCenter getVariable "patrolRadius";
     _friendlySpawnMinRadius = patrolCenter getVariable "friendlySpawnMinRadius";
     _friendlySpawnMaxRadius = patrolCenter getVariable "friendlySpawnMaxRadius";
-    _friendlyGroupIcon = "b_inf";
-    _friendlyGroupIconParams = [(configfile >> "CfgMarkerColors" >> "colorWEST" >> "color") call BIS_fnc_colorConfigToRGBA, "", 1, true];
     _enemySpawnMinRadius = patrolCenter getVariable "enemySpawnMinRadius";
     _enemySpawnMaxRadius = patrolCenter getVariable "enemySpawnMaxRadius";
 
@@ -28,7 +26,7 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
     /* Spawn friendly squads */
     {
         _side = (getNumber (_x >> "side")) call BIS_fnc_sideType;
-        [1, _side, _x, _friendlySpawnMinRadius, _friendlySpawnMaxRadius, _friendlyGroupIcon, _friendlyGroupIconParams] call Rimsiakas_fnc_squadSpawner;
+        [1, _side, _x, _friendlySpawnMinRadius, _friendlySpawnMaxRadius] call Rimsiakas_fnc_squadSpawner;
     } foreach (friendlySpawner getVariable "groups");
 
     /* Teleport player group */
