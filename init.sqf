@@ -23,10 +23,11 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
         [1, _side, _x, _enemySpawnMinRadius, _enemySpawnMaxRadius] call Rimsiakas_fnc_squadSpawner;
     } foreach (enemySpawner getVariable "groups");
 
+    _isHighCommand = (count (hcAllGroups player) > 0);
     /* Spawn friendly squads */
     {
         _side = (getNumber (_x >> "side")) call BIS_fnc_sideType;
-        [1, _side, _x, _friendlySpawnMinRadius, _friendlySpawnMaxRadius] call Rimsiakas_fnc_squadSpawner;
+        [1, _side, _x, _friendlySpawnMinRadius, _friendlySpawnMaxRadius, _isHighCommand] call Rimsiakas_fnc_squadSpawner;
     } foreach (friendlySpawner getVariable "groups");
 
     /* Teleport player group */
