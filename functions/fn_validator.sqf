@@ -34,44 +34,16 @@ if (isNil "patrolCenter") then {
 _spawnerInitInstruction = parseText "In its init box you should put a variable with an array of group config paths for friendly groups to be spawned. For example:<br/><t align=""left"" color=""#ff0000"">this setVariable [""groups"", [<br/>&#160;&#160;&#160;&#160;(GROUP_CONFIG_PATH),<br/>&#160;&#160;&#160;&#160;(GROUP_CONFIG_PATH),<br/>&#160;&#160;&#160;&#160;(GROUP_CONFIG_PATH)<br/>]];</t><br/>Replace <t color=""#ff0000"">GROUP_CONFIG_PATH</t> with a group config path which can be found in the Eden editor <t font=""PuristaBold"" color=""#ff0000"">Tools -> Config Viewer</t>. Find <t font=""PuristaBold"" color=""#ff0000"">cfgGroups</t> on the left. Select the one you want and copy it from <t font=""PuristaBold"" color=""#ff0000"">Config Path</t> in the bottom of the screen. It should look something like this:<br/><t color=""#ff0000"">configfile >>""CfgGroups"" >> ""Indep"" >> ""IND_E_F"" >> ""Infantry"" >> ""I_E_InfTeam""</t><br/>You may add as many as you want. Add duplicates if you want more of the same group.";
 
 
-
-_friendlySpawnerValid = true;
 _friendlySpawnerHints = [];
-if (isNil "friendlySpawner") then {
-    _friendlySpawnerValid = false;
-} else {
-    if (isNil {friendlySpawner getVariable "groups"}) then {
-        _friendlySpawnerValid = false;
-    } else {
-        if (count(friendlySpawner getVariable "groups") == 0) then {
-            _friendlySpawnerValid = false;
-        };
-    };
-}; // Must be done this way because it doesn't seem to skip remaining OR statements after the first one fails so it starts complaining about nonexistant variables.
-
-if (!_friendlySpawnerValid) then {
+if (isNil "friendlySpawner" || {isNil {friendlySpawner getVariable "groups"} || {count(friendlySpawner getVariable "groups") == 0}}) then {
     _friendlySpawnerHints append [parseText "You must place a <t font=""PuristaBold"" color=""#ff0000"">Game Logic</t> entity with the variable name <t font=""PuristaBold"" color=""#ff0000"">friendlySpawner</t>."];
 
     _friendlySpawnerHints append [_spawnerInitInstruction];
 };
 
 
-
-_enemySpawnerValid = true;
 _enemySpawnerHints = [];
-if (isNil "enemySpawner") then {
-    _enemySpawnerValid = false;
-} else {
-    if (isNil {enemySpawner getVariable "groups"}) then {
-        _enemySpawnerValid = false;
-    } else {
-        if (count(enemySpawner getVariable "groups") == 0) then {
-            _enemySpawnerValid = false;
-        };
-    };
-}; // Must be done this way because it doesn't seem to skip remaining OR statements after the first one fails so it starts complaining about nonexistant variables.
-
-if (!_enemySpawnerValid) then {
+if (isNil "enemySpawner" || {isNil {enemySpawner getVariable "groups"} || {count(enemySpawner getVariable "groups") == 0}}) then {
     _enemySpawnerHints append [parseText "You must place a <t font=""PuristaBold"" color=""#ff0000"">Game Logic</t> entity with the variable name <t font=""PuristaBold"" color=""#ff0000"">enemySpawner</t>."];
 
     _enemySpawnerHints append [_spawnerInitInstruction];
