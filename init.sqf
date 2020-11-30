@@ -1,11 +1,15 @@
 setGroupIconsVisible [true, false];
-_validationResult = ([] call Rimsiakas_fnc_validator);
+Rimsiakas_missionValidationResult = ([] call Rimsiakas_fnc_validator);
 
-if ((count _validationResult) > 0) then {
-    {
-        waitUntil {isNull findDisplay 72 && isNull findDisplay 57};
-        (_x select 0) hintC (_x select 1);  // TODO: doesn't always work. Find out why.
-    } foreach _validationResult;
+if ((count Rimsiakas_missionValidationResult) > 0) then {
+        [] spawn {
+            sleep 0.1; // Small delay required to make sure hintC happens after the mission is initialized. Couldn't find any proper event handler for that.
+            waitUntil {!isNull player};
+            {
+                waitUntil {isNull findDisplay 72 && isNull findDisplay 57};
+                (_x select 0) hintC (_x select 1);
+            } foreach Rimsiakas_missionValidationResult;
+        };
 } else {
     _patrolRadius = patrolCenter getVariable "patrolRadius";
     _friendlySpawnMinRadius = patrolCenter getVariable "friendlySpawnMinRadius";
