@@ -12,6 +12,7 @@ class CfgFunctions
             class recursiveSADWaypoint {};
             class squadSpawner {};
             class validator {};
+            class calculateRequiredAreaForGroup {};
         };
     };
 };
