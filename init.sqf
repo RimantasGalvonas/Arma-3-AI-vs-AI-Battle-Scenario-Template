@@ -17,22 +17,20 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
     _enemySpawnMinRadius = patrolCenter getVariable "enemySpawnMinRadius";
     _enemySpawnMaxRadius = patrolCenter getVariable "enemySpawnMaxRadius";
 
+    /* Teleport player group */
+    [group player, _friendlySpawnMinRadius, _friendlySpawnMaxRadius, 0, 0, 0.6, 0] call Rimsiakas_fnc_placeSquadInRandomPosition;
+    [group player] call Rimsiakas_fnc_recursiveSADWaypoint;
+
     /* Spawn enemy squads */
     {
-        _side = (getNumber (_x >> "side")) call BIS_fnc_sideType;
-        [1, _side, _x, _enemySpawnMinRadius, _enemySpawnMaxRadius] call Rimsiakas_fnc_squadSpawner;
+        [_x, _enemySpawnMinRadius, _enemySpawnMaxRadius] call Rimsiakas_fnc_squadSpawner;
     } foreach (enemySpawner getVariable "groups");
 
     _isHighCommand = (count (hcAllGroups player) > 0);
     /* Spawn friendly squads */
     {
-        _side = (getNumber (_x >> "side")) call BIS_fnc_sideType;
-        [1, _side, _x, _friendlySpawnMinRadius, _friendlySpawnMaxRadius, _isHighCommand] call Rimsiakas_fnc_squadSpawner;
+        [_x, _friendlySpawnMinRadius, _friendlySpawnMaxRadius, _isHighCommand] call Rimsiakas_fnc_squadSpawner;
     } foreach (friendlySpawner getVariable "groups");
-
-    /* Teleport player group */
-    [group player, _friendlySpawnMinRadius, _friendlySpawnMaxRadius, 0, 0, 0.6, 0] call Rimsiakas_fnc_placeSquadInRandomPosition;
-    [group player] call Rimsiakas_fnc_recursiveSADWaypoint;
 
     [] execVM "createGrid.sqf";
 };

@@ -31,14 +31,20 @@ if (isNil "patrolCenter") then {
 
 
 
-_spawnerInitInstruction = parseText "In its init box you should put a variable with an array of group config paths for friendly groups to be spawned. For example:<br/><t align=""left"" color=""#ff0000"">this setVariable [""groups"", [<br/>&#160;&#160;&#160;&#160;(GROUP_CONFIG_PATH),<br/>&#160;&#160;&#160;&#160;(GROUP_CONFIG_PATH),<br/>&#160;&#160;&#160;&#160;(GROUP_CONFIG_PATH)<br/>]];</t><br/>Replace <t color=""#ff0000"">GROUP_CONFIG_PATH</t> with a group config path which can be found in the Eden editor <t font=""PuristaBold"" color=""#ff0000"">Tools -> Config Viewer</t>. Find <t font=""PuristaBold"" color=""#ff0000"">cfgGroups</t> on the left. Select the one you want and copy it from <t font=""PuristaBold"" color=""#ff0000"">Config Path</t> in the bottom of the screen. It should look something like this:<br/><t color=""#ff0000"">configfile >>""CfgGroups"" >> ""Indep"" >> ""IND_E_F"" >> ""Infantry"" >> ""I_E_InfTeam""</t><br/>You may add as many as you want. Add duplicates if you want more of the same group.";
+_spawnerInitInstructions = [
+    parseText "In its init box you should put a variable with an array of group config paths for friendly groups to be spawned. For example:<br/><t align=""left"" color=""#ff0000"">this setVariable [""groups"", [<br/>&#160;&#160;&#160;&#160;(</t><t color=""#6666ff"">GROUP_CONFIG_PATH</t><t color=""#ff0000"">),<br/>&#160;&#160;&#160;&#160;(</t><t color=""#6666ff"">GROUP_CONFIG_PATH</t><t color=""#ff0000"">),<br/>&#160;&#160;&#160;&#160;(<t color=""#6666ff"">GROUP_CONFIG_PATH</t>)<br/>]];</t>",
+
+    parseText "Replace <t color=""#ff0000""></t><t color=""#6666ff"">GROUP_CONFIG_PATH</t><t color=""#ff0000""></t> with a group config path which can be found in the Eden editor <t font=""PuristaBold"" color=""#ff0000"">Tools -> Config Viewer</t>. Find <t font=""PuristaBold"" color=""#ff0000"">cfgGroups</t> on the left. Select the one you want and copy it from <t font=""PuristaBold"" color=""#ff0000"">Config Path</t> in the bottom of the screen. It should look something like this:<br/><t color=""#6666ff"">configFile >>""CfgGroups"" >> ""Indep"" >> ""IND_E_F"" >> ""Infantry"" >> ""I_E_InfTeam""</t><br/>You may add as many as you want. Add duplicates if you want more of the same group.",
+
+    parseText "You may also create custom groups out of individual units by replacing <t color=""#ff0000"">(</t><t color=""#6666ff"">GROUP_CONFIG_PATH</t><t color=""#ff0000"">)</t> with for example:<br/><t color=""#ff0000"">[""</t><t color=""#6666ff"">B_Truck_01_ammo_F</t><t color=""#ff0000"">"", ""</t><t color=""#6666ff"">B_Truck_01_Repair_F</t><t color=""#ff0000"">""]</t><br/>These <t color=""#6666ff"">names in blue</t> can be found by hovering over a unit placed in the Eden editor or in <t font=""PuristaBold"" color=""#ff0000"">configFile >> ""CfgVehicles""</t>"
+];
 
 
 _friendlySpawnerHints = [];
 if (isNil "friendlySpawner" || {isNil {friendlySpawner getVariable "groups"} || {count(friendlySpawner getVariable "groups") == 0}}) then {
     _friendlySpawnerHints append [parseText "You must place a <t font=""PuristaBold"" color=""#ff0000"">Game Logic</t> entity with the variable name <t font=""PuristaBold"" color=""#ff0000"">friendlySpawner</t>."];
 
-    _friendlySpawnerHints append [_spawnerInitInstruction];
+    _friendlySpawnerHints = _friendlySpawnerHints + _spawnerInitInstructions;
 };
 
 
@@ -46,7 +52,7 @@ _enemySpawnerHints = [];
 if (isNil "enemySpawner" || {isNil {enemySpawner getVariable "groups"} || {count(enemySpawner getVariable "groups") == 0}}) then {
     _enemySpawnerHints append [parseText "You must place a <t font=""PuristaBold"" color=""#ff0000"">Game Logic</t> entity with the variable name <t font=""PuristaBold"" color=""#ff0000"">enemySpawner</t>."];
 
-    _enemySpawnerHints append [_spawnerInitInstruction];
+    _enemySpawnerHints = _enemySpawnerHints + _spawnerInitInstructions;
 };
 
 
