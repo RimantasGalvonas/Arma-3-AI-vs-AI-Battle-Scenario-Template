@@ -21,12 +21,18 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
     [group player, _friendlySpawnMinRadius, _friendlySpawnMaxRadius, 0, 0, 0.6, 0] call Rimsiakas_fnc_placeSquadInRandomPosition;
     [group player] call Rimsiakas_fnc_recursiveSADWaypoint;
 
+    /* Enable team switch */
+    {
+        addSwitchableUnit _x;
+    } foreach units group player;
+
     /* Spawn enemy squads */
     {
         [_x, _enemySpawnMinRadius, _enemySpawnMaxRadius] call Rimsiakas_fnc_squadSpawner;
     } foreach (enemySpawner getVariable "groups");
 
     _isHighCommand = (count (hcAllGroups player) > 0);
+
     /* Spawn friendly squads */
     {
         [_x, _friendlySpawnMinRadius, _friendlySpawnMaxRadius, _isHighCommand] call Rimsiakas_fnc_squadSpawner;
