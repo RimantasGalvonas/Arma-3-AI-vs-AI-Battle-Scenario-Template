@@ -18,7 +18,7 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
     _enemySpawnMaxRadius = patrolCenter getVariable "enemySpawnMaxRadius";
 
     /* Teleport player group */
-    [group player, _friendlySpawnMinRadius, _friendlySpawnMaxRadius, 0, 0, 0.6, 0] call Rimsiakas_fnc_placeSquadInRandomPosition;
+    [group player, _friendlySpawnMinRadius, _friendlySpawnMaxRadius, 0, 0.6, 0] call Rimsiakas_fnc_placeSquadInRandomPosition;
     [group player] call Rimsiakas_fnc_recursiveSADWaypoint;
 
     /* Enable team switch */

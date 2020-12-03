@@ -1,5 +1,9 @@
 params ["_groupConfig"];
 
+if (typeName _groupConfig != "CONFIG") then {
+    throw "You may only pass group configuration paths to calculateRequiredAreaForGroup function";
+};
+
 _groupVehicles = [];
 _actuallyVehicleClasses = ["Car", "Armored", "Air", "Support"];
 
