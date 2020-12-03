@@ -1,4 +1,7 @@
-params ["_groupConfig", "_minRadius", "_maxRadius", ["_isHighCommand", false]];
+params ["_spawner", "_groupConfig", ["_isHighCommand", false]];
+
+_minRadius = _spawner getVariable "minSpawnRadius";
+_maxRadius = _spawner getVariable "maxSpawnRadius";
 
 _newGroup = false;
 
@@ -6,13 +9,13 @@ if (typeName _groupConfig == "CONFIG") then {
     _side = (getNumber (_x >> "side")) call BIS_fnc_sideType;
     _safetyMargin = [_groupConfig] call Rimsiakas_fnc_calculateRequiredAreaForGroup;
 
-    _randomPosition = [patrolCenter, _minRadius, _maxRadius, _safetyMargin, 0, 0.6, 0] call BIS_fnc_findSafePos;
+    _randomPosition = [_spawner, _minRadius, _maxRadius, _safetyMargin, 0, 0.6, 0] call BIS_fnc_findSafePos;
 
     _azimuth = 0;
     if (_side == playerSide) then {
-        _azimuth = _randomPosition getDir patrolCenter;
+        _azimuth = _randomPosition getDir _spawner;
     } else {
-        _azimuth = patrolCenter getDir _randomPosition;
+        _azimuth = _spawner getDir _randomPosition;
     };
 
     _newGroup = [_randomPosition, _side, _groupConfig, nil, nil, nil, nil, nil, _azimuth] call BIS_fnc_spawnGroup;
@@ -25,13 +28,13 @@ if (typeName _groupConfig == "ARRAY") then {
 
     _newGroup = createGroup _side;
 
-    _randomPosition = [patrolCenter, _minRadius, _maxRadius, 10, 0, 0.6, 0] call BIS_fnc_findSafePos;
+    _randomPosition = [_spawner, _minRadius, _maxRadius, 10, 0, 0.6, 0] call BIS_fnc_findSafePos;
 
     _azimuth = 0;
     if (_side == playerSide) then {
-        _azimuth = _randomPosition getDir patrolCenter;
+        _azimuth = _randomPosition getDir _spawner;
     } else {
-        _azimuth = patrolCenter getDir _randomPosition;
+        _azimuth = _spawner getDir _randomPosition;
     };
 
     {

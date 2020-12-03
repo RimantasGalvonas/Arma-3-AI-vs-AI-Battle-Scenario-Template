@@ -1,4 +1,4 @@
-params ["_group", "_minimumDistance", "_maximumDistance", "_maxGradient", "_waterMode", "_shoreMode"];
+params ["_group", "_centerPos", "_minimumDistance", "_maximumDistance", "_maxGradient", "_waterMode", "_shoreMode"];
 
 _groupLeader = leader _group;
 
@@ -25,7 +25,7 @@ if (_groupHasVehicles == false) then {
     _maxDistanceFromLeader = 5;
 };
 
-_randomPosition = [_groupLeader, _minimumDistance, _maximumDistance, _maxDistanceFromLeader, _waterMode, _maxGradient, _shoreMode] call BIS_fnc_findSafePos;
+_randomPosition = [_centerPos, _minimumDistance, _maximumDistance, _maxDistanceFromLeader, _waterMode, _maxGradient, _shoreMode] call BIS_fnc_findSafePos;
 
 _alreadyTeleportedVehicles = [];
 
