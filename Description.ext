@@ -8,7 +8,7 @@ class CfgFunctions
         class allFunctions
         {
             file = "functions";
-            class placeSquadInRandomPosition {};
+            class teleportSquadToRandomPosition {};
             class recursiveSADWaypoint {};
             class squadSpawner {};
             class validator {};

@@ -2,8 +2,6 @@ params ["_group", "_centerPos", "_minimumDistance", "_maximumDistance", "_maxGra
 
 _groupLeader = leader _group;
 
-_actuallyVehicleClasses = ["Car", "Armored", "Air", "Support"];
-
 _groupHasVehicles = false;
 _maxDistanceFromLeader = 0;
 {
@@ -13,10 +11,7 @@ _maxDistanceFromLeader = 0;
         _maxDistanceFromLeader = _relDis;
     };
 
-    _vehicleConfig = configFile >> "cfgVehicles" >> (typeOf vehicle _x); // Keep in mind that if a unit is not in a vehicle, {vehicle unit} returns the unit itself
-    _vehicleClass = getText (_vehicleConfig >> "vehicleClass");
-
-    if (_vehicleClass in _actuallyVehicleClasses) then {
+    if ((vehicle _x) isKindOf "landVehicle") then {
         _groupHasVehicles = true;
     };
 } forEach units _group; // TODO: this max distance calculation is kind of similar to fn_calculateRequiredAreForGroup. Might need refactoring

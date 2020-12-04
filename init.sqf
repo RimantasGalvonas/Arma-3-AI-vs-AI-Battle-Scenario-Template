@@ -8,29 +8,61 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
             {
                 waitUntil {isNull findDisplay 72 && isNull findDisplay 57};
                 (_x select 0) hintC (_x select 1);
-            } foreach Rimsiakas_missionValidationResult;
+            } forEach Rimsiakas_missionValidationResult;
         };
 } else {
-    /* Teleport player group */
-    [group player, getPos friendlySpawner, friendlySpawner getVariable "minSpawnRadius", friendlySpawner getVariable "maxSpawnRadius", 0, 0.6, 0] call Rimsiakas_fnc_placeSquadInRandomPosition;
-    [group player] call Rimsiakas_fnc_recursiveSADWaypoint;
+    [] spawn {
+        titleCut ["Initializing...", "BLACK FADED", 999];
+        sleep 0.1; // Small delay required to make sure the mission is initialized, otherwise _isPlayerHighCommander is always false. Couldn't find any proper event handler for that.
 
-    /* Enable team switch */
-    {
-        addSwitchableUnit _x;
-    } foreach units group player;
+        _isPlayerHighCommander = (count (hcAllGroups player) > 0);
 
-    /* Spawn enemy squads */
-    {
-        [enemySpawner, _x] call Rimsiakas_fnc_squadSpawner;
-    } foreach (enemySpawner getVariable "groups");
+        {
+            if (_x getVariable "logicType" == "placer") then {
+                _placer = _x;
 
-    _isHighCommand = (count (hcAllGroups player) > 0);
+                {
+                    if (typeOf _x == "LOGIC") then {
 
-    /* Spawn friendly squads */
-    {
-        [friendlySpawner, _x, _isHighCommand] call Rimsiakas_fnc_squadSpawner;
-    } foreach (friendlySpawner getVariable "groups");
+                    } else {
+                        _syncedUnit = _x;
+                        _syncedGroup = nil;
 
-    [] execVM "createGrid.sqf";
+                        if (_syncedUnit isKindOf "landVehicle") then {
+                            _syncedUnit = (crew _x) select 0;
+                        };
+                        if (_syncedUnit isKindOf "man") then {
+                            _syncedGroup = group _syncedUnit;
+                        };
+
+                        if (!isNil {_syncedGroup}) then {
+                            [_syncedGroup, getPos _placer, _placer getVariable "minSpawnRadius", _placer getVariable "maxSpawnRadius", 0, 0.6, 0] call Rimsiakas_fnc_teleportSquadToRandomPosition;
+                            if (_placer getVariable ["highCommandSubordinates", false] == false) then {
+                                player hcRemoveGroup _syncedGroup;
+                                _syncedGroup call Rimsiakas_fnc_recursiveSADWaypoint;
+                            };
+                        };
+                    };
+                } foreach synchronizedObjects _placer;
+
+                {
+                    [_placer, _x, _isPlayerHighCommander] call Rimsiakas_fnc_squadSpawner;
+                } forEach (_placer getVariable "groups");
+            };
+        } forEach synchronizedObjects patrolCenter;
+
+
+        if (_isPlayerHighCommander == false) then {
+            [group player] call Rimsiakas_fnc_recursiveSADWaypoint;
+        };
+
+        /* Enable team switch */
+        {
+            addSwitchableUnit _x;
+        } forEach units group player;
+
+        [] execVM "createGrid.sqf";
+
+        titleCut ["", "BLACK IN", 1];
+    };
 };
