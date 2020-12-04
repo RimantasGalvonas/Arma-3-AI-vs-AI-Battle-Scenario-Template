@@ -10,6 +10,7 @@ class CfgFunctions
             file = "functions";
             class teleportSquadToRandomPosition {};
             class recursiveSADWaypoint {};
+            class placer {};
             class squadSpawner {};
             class validator {};
             class calculateRequiredAreaForGroup {};
