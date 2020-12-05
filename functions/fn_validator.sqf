@@ -2,6 +2,7 @@ _patrolCenterHints = [];
 _placerHints1 = [];
 _placerHints2 = [];
 _placerHints3 = [];
+_placerHints4 = [];
 _highCommandHints = [];
 
 _placers = [];
@@ -40,6 +41,10 @@ if (isNil "patrolCenter" || {isNil {patrolCenter getVariable "patrolRadius"} || 
                 _hasProperlyConfiguredPlacers = true;
             };
 
+            if (!isNil {_placer getVariable "camps"} && {count(_placer getVariable "camps") > 0}) exitWith {
+                _hasProperlyConfiguredPlacers = true;
+            };
+
             {
                 _syncedUnit = _x;
                 _syncedGroup = nil;
@@ -67,6 +72,9 @@ if (isNil "patrolCenter" || {isNil {patrolCenter getVariable "patrolRadius"} || 
             _placerHints3 append [parseText "Create another <t font=""PuristaBold"" color=""#ff0000"">placer</t> as usual but DON'T sync it to anything. You must give this <t font=""PuristaBold"" color=""#ff0000"">placer</t> a <t color=""#6666ff"">name</t>"];
             _placerHints3 append [parseText "Add this to the first <t font=""PuristaBold"" color=""#ff0000"">placer's</t> init box:<br/><t align=""left"" color=""#ff0000"">this setVariable [""childPlacers"", [<t color=""#6666ff"">that_name_from_before</t><t color=""#ff0000"">]];</t>"];
             _placerHints3 append [parseText "You can use more than one:<br/><t align=""left"" color=""#ff0000"">this setVariable [""childPlacers"", [<t color=""#6666ff"">unitPlacer1</t><t color=""#ff0000"">, </t><t color=""#6666ff"">unitPlacer2</t><t color=""#ff0000"">]];</t>"];
+            _placerHints4 append [parseText "You can spawn camps by adding this to a spawner's init box:<br/><t align=""left"" color=""#ff0000"">this setVariable [""camps"", [<t color=""#6666ff"">side1</t><t color=""#ff0000"">, </t><t color=""#6666ff"">side2</t><t color=""#ff0000"">]];</t>"];
+            _placerHints4 append [parseText "Valid values for <t color=""#6666ff"">sides</t> are <t color=""#6666ff"">blufor</t>, <t color=""#6666ff"">opfor</t>, <t color=""#6666ff"">independent</t>. You may use as many as you want, duplicates are allowed."];
+            _placerHints4 append [parseText "The camps will be populated with units from the chosen side."];
             _highCommandHints append [parseText "It is recommended to place a <t font=""PuristaBold"" color=""#ff0000"">Military Symbols</t> module in the editor (found in: <t font=""PuristaBold"" color=""#ff0000"">Systems > Modules > Other</t>). It allows you to see the position of friendly groups on the map"];
             _highCommandHints append [parseText "You may sync the player character with a <t font=""PuristaBold"" color=""#ff0000"">High Coommand - Commander</t> module (found in the same place as above). This will allow you to manually assign waypoints to AI groups instead of having them roam the mission area randomly."];
             _highCommandHints append [parseText "Add this to the init box of some <t font=""PuristaBold"" color=""#ff0000"">placers</t>. It will allow you to command the units from that placer:<br/><t align=""left"" color=""#ff0000"">this setVariable [""highCommandSubordinates"", true];</t>"];
@@ -95,80 +103,12 @@ if ((count _placerHints3) > 0) then {
     _allHints append [["Configuring Placers To Place Other Placers", _placerHints3]];
 };
 
+if ((count _placerHints4) > 0) then {
+    _allHints append [["Configuring Placers To Place Camps", _placerHints4]];
+};
+
 if ((count _highCommandHints) > 0) then {
     _allHints append [["High Command", _highCommandHints]];
 };
 
 _allHints;
-/*
-_placerInitInstructions = [
-    parseText "In its init box enter this:<br/><t align=""left"" color=""#ff0000"">this setVariable [""minSpawnRadius"", </t><t color=""#6666ff"">0</t><t align=""left"" color=""#ff0000"">];<br/>this setVariable [""maxSpawnRadius"", </t><t color=""#6666ff"">600</t><t color=""#ff0000"">];</t><br/><t align=""left"" color=""#ff0000"">this setVariable [""groups"", [<br/>&#160;&#160;&#160;&#160;(</t><t color=""#6666ff"">GROUP_CONFIG_PATH</t><t color=""#ff0000"">),<br/>&#160;&#160;&#160;&#160;(</t><t color=""#6666ff"">GROUP_CONFIG_PATH</t><t color=""#ff0000"">),<br/>&#160;&#160;&#160;&#160;(<t color=""#6666ff"">GROUP_CONFIG_PATH</t>)<br/>]];</t>",
-
-    parseText "You may adjust the <t color=""#6666ff"">numbers</t> for <t color=""#ff0000"">minSpawnRadius</t> and <t color=""#ff0000"">maxSpawnRadius</t>",
-
-    parseText "Replace <t color=""#ff0000""></t><t color=""#6666ff"">GROUP_CONFIG_PATH</t><t color=""#ff0000""></t> with a group config path which can be found in the Eden editor <t font=""PuristaBold"" color=""#ff0000"">Tools -> Config Viewer</t>. Find <t font=""PuristaBold"" color=""#ff0000"">cfgGroups</t> on the left. Select the one you want and copy it from <t font=""PuristaBold"" color=""#ff0000"">Config Path</t> in the bottom of the screen. It should look something like this:<br/><t color=""#6666ff"">configFile >>""CfgGroups"" >> ""Indep"" >> ""IND_E_F"" >> ""Infantry"" >> ""I_E_InfTeam""</t><br/>You may add as many as you want. Add duplicates if you want more of the same group.",
-
-    parseText "You may also create custom groups out of individual units by replacing <t color=""#ff0000"">(</t><t color=""#6666ff"">GROUP_CONFIG_PATH</t><t color=""#ff0000"">)</t> with for example:<br/><t color=""#ff0000"">[""</t><t color=""#6666ff"">B_Truck_01_ammo_F</t><t color=""#ff0000"">"", ""</t><t color=""#6666ff"">B_Truck_01_Repair_F</t><t color=""#ff0000"">""]</t><br/>These <t color=""#6666ff"">names in blue</t> can be found by hovering over a unit placed in the Eden editor or in <t font=""PuristaBold"" color=""#ff0000"">configFile >> ""CfgVehicles""</t>"
-];
-
-_enemyplacerHints = [];
-if (
-    isNil "enemyplacer" ||
-    {
-        isNil {enemyplacer getVariable "minSpawnRadius"} ||
-        {
-            isNil {enemyplacer getVariable "maxSpawnRadius"} ||
-            {
-                isNil {enemyplacer getVariable "groups"} ||
-                {
-                    count(enemyplacer getVariable "groups") == 0
-                }
-            }
-        }
-    }
-) then {
-    _enemyplacerHints append [parseText "You must place a <t font=""PuristaBold"" color=""#ff0000"">Game Logic</t> entity with the variable name <t font=""PuristaBold"" color=""#ff0000"">enemyplacer</t>. Enemy groups will be spawned around it."];
-
-    _enemyplacerHints = _enemyplacerHints + _placerInitInstructions;
-};
-
-
-_friendlyplacerHints = [];
-if (
-    isNil "friendlyplacer" ||
-    {
-        isNil {friendlyplacer getVariable "minSpawnRadius"} ||
-        {
-            isNil {friendlyplacer getVariable "maxSpawnRadius"} ||
-            {
-                isNil {friendlyplacer getVariable "groups"} ||
-                {
-                    count(friendlyplacer getVariable "groups") == 0
-                }
-            }
-        }
-    }
-) then {
-    _friendlyplacerHints append [parseText "You must place a <t font=""PuristaBold"" color=""#ff0000"">Game Logic</t> entity with the variable name <t font=""PuristaBold"" color=""#ff0000"">friendlyplacer</t>. friendly groups will be spawned around it."];
-
-    _friendlyplacerHints = _friendlyplacerHints + _placerInitInstructions;
-};
-
-
-
-_allHints = [];
-
-if ((count _patrolCenterHints) > 0) then {
-    _allHints append [["Mission Area Setup", _patrolCenterHints]];
-};
-
-if ((count _friendlyplacerHints) > 0) then {
-    _allHints append [["Friendly Groups placer Setup", _friendlyplacerHints]];
-};
-
-if ((count _enemyplacerHints) > 0) then {
-    _allHints append [["Enemy Groups placer Setup", _enemyplacerHints]];
-};
-
-_allHints;
-*/

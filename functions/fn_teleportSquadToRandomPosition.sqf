@@ -29,7 +29,7 @@ _alreadyTeleportedVehicles = [];
         _vehicle = vehicle _x;
 
         if (_vehicle != vehicle _groupLeader && {!(_vehicle in _alreadyTeleportedVehicles)}) then {
-            _relDis = _vehicle distance _groupLeader;
+            _relDis = _vehicle distance2D _groupLeader;
             _relDir = [_groupLeader, _vehicle] call BIS_fnc_relativeDirTo;
             _vehicle setPos ([_randomPosition, _relDis, _relDir] call BIS_fnc_relPos);
             _alreadyTeleportedVehicles append [_vehicle];
