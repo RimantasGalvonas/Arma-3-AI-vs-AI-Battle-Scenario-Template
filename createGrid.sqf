@@ -22,7 +22,14 @@ for "_i" from _leftmostGrid to _rightmostGrid step _gridSize do {
         _trg = createTrigger ["EmptyDetector", [_i, _j]];
         _trg setVariable ["attachedMarker", _marker];
         _trg setTriggerArea [_gridSize, _gridSize, 0, true];
-        _trg setTriggerActivation ["GUER", "PRESENT", true];
-        _trg setTriggerStatements ["this", "(thisTrigger getVariable ""attachedMarker"") setMarkerColor ""colorIndependent""", "(thisTrigger getVariable ""attachedMarker"") setMarkerColor ""ColorBLACK"""];
+        _trg setTriggerActivation ["ANY", "PRESENT", true];
+        _triggerActivation = "{
+            _isEnemy = [side player, side _x] call BIS_fnc_sideIsEnemy;
+            if (_isEnemy == true) exitWith {
+                _color = [side _x, true] call BIS_fnc_sideColor;
+                (thisTrigger getVariable ""attachedMarker"") setMarkerColor _color;
+            };
+        } forEach thisList;";
+        _trg setTriggerStatements ["this", _triggerActivation, "(thisTrigger getVariable ""attachedMarker"") setMarkerColor ""ColorBLACK"""];
     }
 };

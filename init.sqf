@@ -17,23 +17,34 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
 
         isPlayerHighCommander = (count (hcAllGroups player) > 0);
 
+        // Spawn/place units
         {
             if (_x getVariable "logicType" == "placer") then {
                 [_x] call Rimsiakas_fnc_placer
             };
         } forEach synchronizedObjects patrolCenter;
 
-
+        // set waypoint for player group
         if (isPlayerHighCommander == false) then {
             [group player] call Rimsiakas_fnc_recursiveSADWaypoint;
         };
 
-        /* Enable team switch */
+        // Enable team switch
         {
             addSwitchableUnit _x;
         } forEach units group player;
 
+        // Create intel grid
         [] execVM "createGrid.sqf";
+
+        // Set visible group icons (otherwise allied faction icons are not shown)
+        _friendlyGroups = [];
+        {
+            if ([side player, side _x] call BIS_fnc_sideIsFriendly) then {
+                _friendlyGroups append [_x];
+            };
+        } forEach allGroups;
+        player setVariable ["MARTA_reveal", _friendlyGroups];
 
         titleCut ["", "BLACK IN", 1];
     };
