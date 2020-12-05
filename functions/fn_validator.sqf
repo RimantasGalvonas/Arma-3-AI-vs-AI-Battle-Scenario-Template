@@ -6,11 +6,13 @@ _highCommandHints = [];
 
 _placers = [];
 _hasProperlyConfiguredPlacers = false;
-if (isNil "patrolCenter" || {isNil {patrolCenter getVariable "patrolRadius"}}) then {
+if (isNil "patrolCenter" || {isNil {patrolCenter getVariable "patrolRadius"} || isNil {patrolCenter getVariable "intelGridSize"}}) then {
     _patrolCenterHints append [parseText "You must place a <t font=""PuristaBold"" color=""#ff0000"">Game Logic</t> entity (Found in Systems > Logic Entities) where you want the mission to take place. You must name that entity <t font=""PuristaBold"" color=""#ff0000"">patrolCenter</t>."];
-    _patrolCenterHints append [parseText "Enter these into said entity's init box:<br/><t align=""left"" color=""#ff0000"">this setVariable [""patrolRadius"", </t><t color=""#6666ff"">150</t><t color=""#ff0000"">];</t>"];
-    _patrolCenterHints append [parseText "<t color=""#6666ff"">150</t> is radius of the mission area. You may adjust it."];
+    _patrolCenterHints append [parseText "Enter these into said entity's init box:<br/><t align=""left"" color=""#ff0000"">this setVariable [""patrolRadius"", </t><t color=""#6666ff"">600</t><t align=""left"" color=""#ff0000"">];<br/>this setVariable [""intelGridSize"", </t><t color=""#6666ff"">100</t><t color=""#ff0000"">];</t>"];
+    _patrolCenterHints append [parseText "<t color=""#6666ff"">600</t> is radius of the mission area. Units will roam around it looking for enemies. You may adjust the number."];
+    _patrolCenterHints append [parseText "<t color=""#6666ff"">100</t> is the size of a colored square on the map showing you the approximate location of enemies in the mission area. You may adjust this number or set it to <t color=""#6666ff"">0</t> to disable it. Setting the value to something very low will give you very precise positions but may negatively impact performance."];
     _patrolCenterHints append [parseText "Once you've done that, start the mission again. If successful, you will be shown a different text here, explaining how to set up unit placers."];
+
 } else {
     {
         if (

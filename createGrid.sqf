@@ -1,4 +1,6 @@
-_gridSize = 100;
+_gridSize = patrolCenter getVariable "intelGridSize";
+if (_gridSize == 0) exitWith {};
+
 _middlePos = getPos patrolCenter;
 _patrolRadius = (patrolCenter getVariable "patrolRadius") * 1.5;
 _centerGridStartX = floor ((_middlePos select 0) / _gridSize) * _gridSize + _gridSize / 2;
