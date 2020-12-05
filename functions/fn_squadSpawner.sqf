@@ -31,7 +31,7 @@ if (typeName _groupConfig == "ARRAY") then {
     _randomPosition = [_placer, _minRadius, _maxRadius, 10, 0, 0.6, 0] call BIS_fnc_findSafePos;
 
     _azimuth = 0;
-    if (_side == playerSide) then {
+    if (_side == playerSide) then { // TODO: this should be independent of player side.
         _azimuth = _randomPosition getDir _placer;
     } else {
         _azimuth = _placer getDir _randomPosition;

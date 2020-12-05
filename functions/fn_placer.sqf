@@ -44,3 +44,8 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 {
     [_placer, _x, isPlayerHighCommander] call Rimsiakas_fnc_squadSpawner;
 } forEach (_placer getVariable "groups");
+
+{
+    [_x, _placer] call Rimsiakas_fnc_spawnCamp;
+    sleep 0.01;
+} forEach (_placer getVariable "camps");
