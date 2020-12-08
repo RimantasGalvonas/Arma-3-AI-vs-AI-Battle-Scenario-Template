@@ -2,28 +2,47 @@
 
 This is a customizeable single player (for now) mission template to be used in the Eden editor.
 
-It allows you to spawn units and camps in randomized position and makes the units roam the mission area randomly. It also allows you to control selected groups with High Command.
+It allows you to spawn units and camps in randomized position and makes the units roam the mission area randomly.<br>
+It draws a configurable grid on the map showing the approximate location of enemies.<br>
+It also allows you to control selected groups with High Command.
+
+# Installation
+
+1. Open up Arma, open up the editor, select a map and open it.
+2. Save the blank mission.
+3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/RandomizedArma3Mission/releases/download/current/RandomizedMission.zip)
+5. Extract its contents to your mission's folder.
+6. Go back to Arma, press PLAY SCENARIO.
+7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
+8. Follow the **Mission Setup** instructions below or in-game.
 
 # Mission Setup
 
 ## Mission Area Setup
 
-You must place a **Game Logic** entity (Found in Systems > Logic Entities) where you want the mission to take place. You must name that entity **patrolCenter**.
+<ol>
+<li>You must place a <b>Game Logic</b> entity (Found in Systems > Logic Entities) where you want the mission to take place.</li>
+<li>You must name that entity <b>patrolCenter</b>.</li>
+<li>
 Enter these into said entity's init box:
 <pre>
 this setVariable ["patrolRadius", <b>600</b>];
 this setVariable ["intelGridSize", <b>100</b>];
 </pre>
-**600** is the radius of the mission area. Units will roam around it looking for enemies. You may adjust the number.
+<b>600</b> is the radius of the mission area. Units will roam around it looking for enemies. You may adjust the number.
 
-**100** is the size of a colored square on the map showing you the approximate location of enemies in the mission area. You may adjust this number or set it to **0** to disable it. Setting the value to something very low will give you very precise positions but may negatively impact performance.
+<b>100</b> is the size of a colored square on the map showing you the approximate location of enemies in the mission area. You may adjust this number or set it to <b>0</b> to disable it. Setting the value to something very low will give you very precise positions but may negatively impact performance.
+</li>
+</ol>
 
 ## Unit Placer Setup
+<b>Placers</b> are used to place AI units randomly within a certain area.
 
-You must create some **placers** and sync them to the **Patrol Center** entity. **Placers** are used to place AI units randomly within a certain area.
-
-To create a **placer**, place a **Game Logic** entity somewhere.
-
+You must create some <b>placers</b> and sync them to the <b>Patrol Center</b> entity.
+<ol>
+<li>Place a <b>Game Logic</b> entity somewhere.
+<li>
 In its init box enter this:<br>
 <pre>
 this setVariable ["logicType", "placer"];
@@ -32,8 +51,10 @@ this setVariable ["maxSpawnRadius", <b>600</b>];
 </pre>
 
 You may adjust the **numbers** for minSpawnRadius and maxSpawnRadius. These values determine the min/max distance from the placer where units can be spawned.
+</li>
 
-Sync the **placer** to the **Patrol Center**.
+<li>Sync the <b>placer</b> to the <b>Patrol Center</b>.</li>
+</ol>
 
 You may repeat these steps to make as many placers as you want. At least two are recommended - one for each side.
 
@@ -67,27 +88,30 @@ These <b>names in bold</b> can be found by hovering over a unit placed in the Ed
 
 ## Configuring Placers To Place Other Placers
 
-You can also make **placers** place other **placers**. For example to randomize the position of a smaller area where certain units spawn somewhere within a larger area.
+You can also make **placers** place other **placers**. This could be used, for example, to make all the enemies spawn together in some spot but that spot's location would be randomized across a large area.
 
-Due to technical reasons syncing can't be used and it has to be done this way:
-
-Create a **placer** as usual, sync it to the **patrolCenter**
-
-Create another **placer** as usual. Sync units to it (or use the **groups** variable, see above) but DON'T sync the placer itself to anything. You must give this **placer** a name. For example **randomized_position_spawner**
-
-Add this to the first **placer's** init box:
+Due to technical reasons, you can't just sync the two placers together. It has to be done this way:
+<ol>
+<li>Create a <b>placer</b> as usual, sync it to the <b>patrolCenter</b>.
+<li>Create another <b>placer</b> as usual. Sync units to it (or use the **groups** variable, see above) but DON'T sync the placer itself to anything. You must give this <b>placer</b> a name. For example <b>randomized_position_placer</b></li>
+<li>
+Add this to the init box of the <b>placer created in step 1</b>:
 <pre>
-this setVariable ["childPlacers", [<b>randomized_position_spawner</b>]];
+this setVariable ["childPlacers", [<b>randomized_position_placer</b>]];
 </pre>
 
 You can use more than one:<br>
 <pre>
 this setVariable ["childPlacers", [<b>unitPlacer1</b>, <b>unitPlacer2</b>]];
 </pre>
+</li>
+</ol>
+
+The **placer created in step 1** will randomize the position of the **placer created in step 2**. The latter one will in turn randomize the position of units assigned to it.
 
 ## Configuring Placers To Place Camps
 
-You can spawn camps by adding this to a spawner's init box:
+You can spawn camps by adding this to a placer's init box:
 <pre>
 this setVariable ["camps", [<b>side1</b>, <b>side2</b>]];
 </pre>
@@ -107,3 +131,11 @@ Add this to the init box of some **placers**. It will allow you to command the u
 this setVariable ["highCommandSubordinates", true];
 </pre>
 To enter high command mode, press **Left Ctrl+Space**.
+
+# Credits
+
+So far this mission uses these scripts from other developers:
+
+- [CH View Distance Script by Champ-1](https://www.armaholic.com/page.php?id=27390)
+
+Thanks!
