@@ -12,6 +12,8 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
         };
 } else {
     [] spawn {
+        {_x disableAI "all"} forEach allUnits; // Temporarily disabled to avoid firefights breaking out while mission is initializing
+
         titleCut ["Initializing...", "BLACK FADED", 999];
         sleep 0.1; // Small delay required to make sure the mission is initialized, otherwise isPlayerHighCommander is always false. Couldn't find any proper event handler for that.
 
@@ -45,6 +47,8 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
             };
         } forEach allGroups;
         player setVariable ["MARTA_reveal", _friendlyGroups];
+
+        {_x enableAI "all"} forEach allUnits;
 
         titleCut ["", "BLACK IN", 1];
     };
