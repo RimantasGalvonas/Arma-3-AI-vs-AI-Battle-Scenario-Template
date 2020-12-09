@@ -32,7 +32,7 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
     if (!isNil {_syncedGroup}) then {
         [_syncedGroup, _placerPos, _minSpawnRadius, _maxSpawnRadius, 0, 0.6, 0] call Rimsiakas_fnc_teleportSquadToRandomPosition;
-        if (_placer getVariable ["highCommandSubordinates", false] == false) then {
+        if (isPlayerHighCommander == false || (_placer getVariable ["highCommandSubordinates", false]) == false) then {
             player hcRemoveGroup _syncedGroup;
             _syncedGroup call Rimsiakas_fnc_recursiveSADWaypoint;
         };
