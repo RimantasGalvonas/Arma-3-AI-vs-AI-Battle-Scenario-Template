@@ -2,9 +2,12 @@
 
 This is a customizeable single player (for now) mission template to be used in the Eden editor.
 
-It allows you to spawn units and camps in randomized position and makes the units roam the mission area randomly.<br>
-It draws a configurable grid on the map showing the approximate location of enemies.<br>
-It also allows you to control selected groups with High Command.
+#### Features
+- It allows you to spawn units and camps in randomized position and makes the units roam the mission area randomly.
+- It draws a configurable grid on the map showing the approximate location of enemies.
+- It also allows you to control selected groups with High Command.
+- Waypoints for infantry units are placed in a way that prefers moving between areas with cover.
+- Extra care is being taken to make units spawn in positions that do not make them explode on mission start or become stuck. This is still being improved.
 
 # Installation
 
