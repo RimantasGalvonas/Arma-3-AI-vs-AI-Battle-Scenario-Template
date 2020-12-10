@@ -28,7 +28,6 @@ if (count (_vehicles) == 0) exitWith {
 
         vehicle _x setPos _unitPosition; // Set on vehicle because it might be a turret
         vehicle _x setDir _azimuth;
-        sleep 0.01; // A small delay prevents the units spawning on the same position and exploding to shit.
     } foreach units _group;
 };
 
@@ -77,8 +76,6 @@ if (isNil "_startingRoadSection" == true) exitWith {
 
         vehicle _x setPos _unitPosition;
         vehicle _x setDir _azimuth;
-
-        sleep 0.01;
     } forEach _vehicles;
 
     {
@@ -87,7 +84,6 @@ if (isNil "_startingRoadSection" == true) exitWith {
 
         vehicle _x setPos _unitPosition;
         vehicle _x setDir _azimuth;
-        sleep 0.01; // A small delay prevents the units spawning on the same position and exploding to shit.
     } forEach _dismounts;
 };
 
@@ -124,7 +120,6 @@ if (isNil "_startingRoadSection" == false) exitWith {
 
             _vehicle setPos _positionForVehicle;
         };
-        sleep 0.01;
     } forEach _vehicles;
 
 
@@ -136,6 +131,5 @@ if (isNil "_startingRoadSection" == false) exitWith {
 
         vehicle _x setPos _unitPosition;
         vehicle _x setDir _azimuth;
-        sleep 0.01;
     } forEach _dismounts;
 };

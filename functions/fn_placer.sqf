@@ -37,7 +37,6 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
             _syncedGroup call Rimsiakas_fnc_recursiveSADWaypoint;
         };
     };
-    sleep 0.01;
 } foreach synchronizedObjects _placer;
 
 
@@ -45,11 +44,9 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 {
     [_placer, _x, isPlayerHighCommander] call Rimsiakas_fnc_squadSpawner;
     {_x disableAI "all"} forEach allUnits; // Temporarily disabled to avoid firefights breaking out while mission is initializing
-    sleep 0.2;
 } forEach (_placer getVariable "groups");
 
 {
     [_x, _placer] call Rimsiakas_fnc_spawnCamp;
     {_x disableAI "all"} forEach allUnits; // Temporarily disabled to avoid firefights breaking out while mission is initializing
-    sleep 0.01;
 } forEach (_placer getVariable "camps");

@@ -30,7 +30,6 @@ if (typeName _groupConfig == "ARRAY") then {
     {
         _unitPosition = [getPos _placer, 0, 1000, 3, 0, 0.6, 0] call BIS_fnc_findSafePos; // Very basic temporary position search. The real repositioning is done in Rimsiakas_fnc_teleportSquadToRandomPosition
         [_unitPosition, 0, _x, _newGroup] call BIS_fnc_spawnVehicle;
-        sleep 0.1; // A small delay prevents the units spawning on the same position and exploding to shit.
     } foreach _groupConfig;
 };
 
