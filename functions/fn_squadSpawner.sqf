@@ -1,24 +1,23 @@
 params ["_placer", "_groupConfig", ["_isHighCommand", false]];
 
-_minRadius = _placer getVariable "minSpawnRadius";
-_maxRadius = _placer getVariable "maxSpawnRadius";
+_placerPos = getPos _placer;
+_minSpawnRadius = _placer getVariable "minSpawnRadius";
+_maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
-_newGroup = false;
+_actuallyVehicleClasses = ["Car", "Armored", "Air", "Support"];
+_newGroup = nil;
 
 if (typeName _groupConfig == "CONFIG") then {
-    _side = (getNumber (_x >> "side")) call BIS_fnc_sideType;
-    _safetyMargin = [_groupConfig] call Rimsiakas_fnc_calculateRequiredAreaForGroup;
+    _newGroupArray = [];
+    _units = [_groupConfig] call Bis_fnc_getCfgSubClasses;
+    {
+        _unitConfig = _groupConfig >> _x;
+        _vehicle = getText (_unitConfig >> "vehicle");
+        _unitClassName = configName (configFile >> "cfgVehicles" >> _vehicle);
+        _newGroupArray append [_unitClassName];
+    } foreach _units;
 
-    _randomPosition = [_placer, _minRadius, _maxRadius, _safetyMargin, 0, 0.6, 0] call BIS_fnc_findSafePos;
-
-    _azimuth = 0;
-    if (_side == playerSide) then {
-        _azimuth = _randomPosition getDir _placer;
-    } else {
-        _azimuth = _placer getDir _randomPosition;
-    };
-
-    _newGroup = [_randomPosition, _side, _groupConfig, nil, nil, nil, nil, nil, _azimuth] call BIS_fnc_spawnGroup;
+    _groupConfig = _newGroupArray;
 };
 
 if (typeName _groupConfig == "ARRAY") then {
@@ -28,21 +27,14 @@ if (typeName _groupConfig == "ARRAY") then {
 
     _newGroup = createGroup _side;
 
-    _randomPosition = [_placer, _minRadius, _maxRadius, 10, 0, 0.6, 0] call BIS_fnc_findSafePos;
-
-    _azimuth = 0;
-    if (_side == playerSide) then { // TODO: this should be independent of player side.
-        _azimuth = _randomPosition getDir _placer;
-    } else {
-        _azimuth = _placer getDir _randomPosition;
-    };
-
     {
-        _unitPosition = _randomPosition findEmptyPosition [0, 100, _x];
-        [_unitPosition, _azimuth, _x, _newGroup] call BIS_fnc_spawnVehicle;
-        sleep 0.01; // A small delay prevents the units spawning on the same position and exploding to shit.
+        _unitPosition = [getPos _placer, 0, 1000, 3, 0, 0.6, 0] call BIS_fnc_findSafePos; // Very basic position find. The real repositioning is done in Rimsiakas_fnc_teleportSquadToRandomPosition
+        [_unitPosition, 0, _x, _newGroup] call BIS_fnc_spawnVehicle;
+        sleep 0.1; // A small delay prevents the units spawning on the same position and exploding to shit.
     } foreach _groupConfig;
 };
+
+[_newGroup, _placerPos, _minSpawnRadius, _maxSpawnRadius, 0, 0.6, 0] call Rimsiakas_fnc_teleportSquadToRandomPosition;
 
 if (!_isHighCommand || {_placer getVariable ["highCommandSubordinates", false] == false}) then {
     _newGroup call Rimsiakas_fnc_recursiveSADWaypoint;
