@@ -26,7 +26,7 @@ _compositionSize = 30; // TODO: calculate
 _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, _compositionSize, 0, 0.3, 0, campAreas, [[0,0],[0,0]]] call BIS_fnc_findSafePos;
 if ((_randomPosition select 0) == 0) then {
     _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 5, 0, 0.3, 0, campAreas] call BIS_fnc_findSafePos;
-    _terrainObjects = nearestTerrainObjects [_randomPosition,[], _compositionSize, false];
+    _terrainObjects = nearestTerrainObjects [_randomPosition, [], _compositionSize, false];
 
     {
         _x hideObjectGlobal true;
@@ -56,6 +56,7 @@ _activeSideFactions = [];
     if (_side == side _x) then {
         _unit = (units _x) select 0;
         _unitConfig = configFile >> "cfgVehicles" >> typeOf _unit;
+
         _activeSideFactions append [getText (_unitConfig >> "faction")];
     };
 } forEach allGroups;
@@ -73,15 +74,21 @@ if (count _activeSideFactions > 0) then {
 };
 
 
-
 // Assign soldiers with matching roles from the selected faction to the units in the composition
 {
     _unitClass = _x select 0;
     _unitConfig = configFile >> "cfgVehicles" >> _unitClass;
+
     _role = getText (_unitConfig >> "role");
 
     _configSearchString = format ["getText (_x >> 'role') == '%1' && getText (_x >> 'faction') == '%2'", _role, _factionToUse];
     _matchingSoldiers = _configSearchString configClasses (configFile >> "CfgVehicles");
+
+    if ((count _matchingSoldiers) == 0) then {
+        _configSearchString = format ["getText (_x >> 'role') == 'Rifleman' && getText (_x >> 'faction') == '%1'", _factionToUse];
+        _matchingSoldiers = _configSearchString configClasses (configFile >> "CfgVehicles");
+    };
+
     _x append [_matchingSoldiers]; // Must compile them into an array and not just replace the class because there is no guarantee that the first selected config can actually spawn a soldier, so might have to try a few different ones. No idea why.
     _compositionUnits set [_forEachIndex, _x];
 } foreach _compositionUnits;
@@ -110,9 +117,7 @@ _group = createGroup _side;
         if (typeOf _soldier != "") exitWith {}; // This needs to be done because some classes do not spawn a soldier. No idea why.
     } forEach _matchingRoleSoldiers;
 
-    if (isNil "_soldier") then {
-        hint _unitClass;
-    } else {
+    if (isNil "_soldier" == false) then {
         doStop _soldier;
         commandStop _soldier;
 

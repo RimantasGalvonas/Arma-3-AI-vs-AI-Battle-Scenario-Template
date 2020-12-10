@@ -7,14 +7,14 @@ This is a customizeable single player (for now) mission template to be used in t
 - It draws a configurable grid on the map showing the approximate location of enemies.
 - Ability to play either as a simple soldier in a unit, a team leader or a battlefield commander.
 - Waypoints for infantry units are placed in a way that prefers moving between areas with cover.
-- Extra care is being taken to make units spawn in positions that do not make them explode on mission start or become stuck. This is still being improved.
+- Extra care is being taken to make units spawn in positions that do not make them explode on mission start or become stuck. It still sometimes happens but quite rarely.
 
 # Installation
 
 1. Open up Arma, open up the editor, select a map and open it.
 2. Save the blank mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/RandomizedArma3Mission/releases/download/current/RandomizedMission.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/RandomizedArma3Mission/releases)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, press PLAY SCENARIO.
 7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
