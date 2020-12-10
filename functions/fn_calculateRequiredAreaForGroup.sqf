@@ -1,5 +1,7 @@
 params ["_groupConfig"];
 
+// TODO: delete, no longer used. For now I'm keeping this for reference if I need the code for something else.
+
 if (typeName _groupConfig != "CONFIG") then {
     throw "You may only pass group configuration paths to calculateRequiredAreaForGroup function";
 };

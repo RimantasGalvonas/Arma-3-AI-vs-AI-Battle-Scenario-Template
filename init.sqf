@@ -19,12 +19,24 @@ if ((count Rimsiakas_missionValidationResult) > 0) then {
 
         isPlayerHighCommander = (count (hcAllGroups player) > 0);
 
+        _placersToProcessLast = [];
+
         // Spawn/place units
         {
             if (_x getVariable "logicType" == "placer") then {
-                [_x] call Rimsiakas_fnc_placer
+                if (count(_x getVariable ["camps", []]) > 0) then {
+                    [_x] call Rimsiakas_fnc_placer;
+                    sleep 0.01;
+                } else {
+                    _placersToProcessLast append [_x]; // placers with camps need to be processed last so it can select the camp garrison from one of the already active factions
+                };
             };
         } forEach synchronizedObjects patrolCenter;
+
+        {
+            [_x] call Rimsiakas_fnc_placer;
+            sleep 0.01;
+        } forEach _placersToProcessLast;
 
         // set waypoint for player group
         if (isPlayerHighCommander == false) then {
