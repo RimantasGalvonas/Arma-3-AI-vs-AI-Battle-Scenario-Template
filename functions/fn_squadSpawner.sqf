@@ -37,6 +37,7 @@ if (typeName _groupConfig == "ARRAY") then {
 
 if (!_isHighCommand || {_placer getVariable ["highCommandSubordinates", false] == false}) then {
     _newGroup call Rimsiakas_fnc_recursiveSADWaypoint;
+    _newGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
 } else {
     player hcSetGroup [_newGroup];
 };

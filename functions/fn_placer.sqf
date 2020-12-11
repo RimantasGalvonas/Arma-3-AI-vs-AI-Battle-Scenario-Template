@@ -35,6 +35,7 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
         if (isPlayerHighCommander == false || (_placer getVariable ["highCommandSubordinates", false]) == false) then {
             player hcRemoveGroup _syncedGroup;
             _syncedGroup call Rimsiakas_fnc_recursiveSADWaypoint;
+            _syncedGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
         };
     };
 } foreach synchronizedObjects _placer;
