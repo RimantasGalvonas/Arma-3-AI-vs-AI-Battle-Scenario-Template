@@ -141,5 +141,6 @@ To enter high command mode, press **Left Ctrl+Space**.
 So far this mission uses these scripts from other developers:
 
 - [CH View Distance Script by Champ-1](https://www.armaholic.com/page.php?id=27390)
+- [Grimes Simple Revive](https://github.com/kcgrimes/grimes-simple-revive)
 
 Thanks!

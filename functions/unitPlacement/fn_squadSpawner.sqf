@@ -35,6 +35,8 @@ if (typeName _groupConfig == "ARRAY") then {
 
 [_newGroup, _placerPos, _minSpawnRadius, _maxSpawnRadius, 0, 0.6, 0] call Rimsiakas_fnc_teleportSquadToRandomPosition;
 
+(units _newGroup) spawn G_fnc_initNewAI;
+
 if (!_isHighCommand || {_placer getVariable ["highCommandSubordinates", false] == false}) then {
     _newGroup call Rimsiakas_fnc_recursiveSADWaypoint;
     _newGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
