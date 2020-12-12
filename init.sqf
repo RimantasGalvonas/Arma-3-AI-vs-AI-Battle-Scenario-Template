@@ -1,4 +1,7 @@
 setGroupIconsVisible [true, false];
+
+[] execVM "G_Revive_init.sqf";
+
 Rimsiakas_missionValidationResult = ([] call Rimsiakas_fnc_validator);
 
 if ((count Rimsiakas_missionValidationResult) > 0) exitWith {

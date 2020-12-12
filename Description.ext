@@ -1,5 +1,7 @@
 #include "CHVD\dialog.hpp"
 
+#include "G_Revive\G_Desc_Include.hpp"
+
 class CfgFunctions
 {
     #include "CHVD\CfgFunctions.hpp"
