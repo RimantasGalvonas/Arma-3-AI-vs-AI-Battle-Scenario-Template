@@ -5,8 +5,9 @@ This is a customizeable single player (for now) mission template to be used in t
 #### Features
 - It allows you to spawn units and camps in randomized position and makes the units roam the mission area randomly.
 - It draws a configurable grid on the map showing the approximate location of enemies.
-- Ability to play either as a simple soldier in a unit, a team leader or a battlefield commander.
+- Works in all levels of command: you can play as a simple soldier, a squad leader or a battlefield commander.
 - Waypoints for infantry units are placed in a way that prefers moving between areas with cover.
+- Groups inform each other of known enemy locations and respond if they are able (unless set as subordinates to a high commander).
 - Extra care is being taken to make units spawn in positions that do not make them explode on mission start or become stuck. It still sometimes happens but quite rarely.
 
 # Installation

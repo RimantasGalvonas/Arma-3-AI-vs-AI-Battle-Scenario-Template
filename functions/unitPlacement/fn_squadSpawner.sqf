@@ -25,7 +25,7 @@ if (typeName _groupConfig == "ARRAY") then {
     _sideId = getNumber (_vehicleConfig >> "side");
     _side = _sideId call BIS_fnc_sideType;
 
-    _newGroup = createGroup _side;
+    _newGroup = createGroup [_side, true];
 
     {
         _unitPosition = [getPos _placer, 0, 1000, 3, 0, 0.6, 0] call BIS_fnc_findSafePos; // Very basic temporary position search. The real repositioning is done in Rimsiakas_fnc_teleportSquadToRandomPosition

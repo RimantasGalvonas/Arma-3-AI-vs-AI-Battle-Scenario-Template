@@ -1,26 +1,35 @@
-params ["_group"];
+params ["_group", ["_finalWaypointPos", nil], ["_additionalWaypointStatements", ""]];
 
 // delete all waypoints
 for "_i" from count (waypoints _group) - 1 to 0 step -1 do {
     deleteWaypoint [_group, _i];
 };
 
+_waypointStatements = format ["%1 (group this) call Rimsiakas_fnc_recursiveSADWaypoint;", _additionalWaypointStatements];
+
 _groupHasVehicles = false;
 {
     if ((vehicle _x) != _x) exitWith {_groupHasVehicles = true};
 } forEach units _group;
 
+
 if (_groupHasVehicles == true) exitWith {
-    _waypoint = _group addWayPoint [patrolCenter, patrolCenter getVariable "patrolRadius"];
+    if (isNil "_finalWaypointPos") then {
+        _finalWaypointPos = [[[getPos patrolCenter, (patrolCenter getVariable "patrolRadius") / 2]], ["water"]] call BIS_fnc_randomPos;
+    };
+    _waypoint = _group addWayPoint [_finalWaypointPos, 20];
     _waypoint setWaypointType "SAD";
-    _waypoint setWaypointStatements ["true", "(group this) call Rimsiakas_fnc_recursiveSADWaypoint"];
+    _waypoint setWaypointStatements ["true", _waypointStatements];
 };
+
 
 _waypointStepDistance = 100;
 
 _startingPos = getPos (leader _group);
 
-_finalWaypointPos = [[[getPos patrolCenter, (patrolCenter getVariable "patrolRadius") / 2]], ["water"]] call BIS_fnc_randomPos;
+if (isNil "_finalWaypointPos") then {
+    _finalWaypointPos = [[[getPos patrolCenter, (patrolCenter getVariable "patrolRadius") / 2]], ["water"]] call BIS_fnc_randomPos;
+};
 _preferablePosition = selectBestPlaces[_finalWaypointPos, (_waypointStepDistance / 2), "houses + trees + hills - (100 * waterDepth)", 5, 1];
 _preferablePosition = (_preferablePosition select 0) select 0;
 _preferablePosition = [_preferablePosition, 0, 10, 1] call BIS_fnc_findSafePos; // To avoid placing waypoints inside houses. Makes the units get stuck
@@ -48,4 +57,5 @@ while {_distance > (_waypointStepDistance * 1.5)} do {
 
 _finalWaypoint = _group addWayPoint [_finalWaypointPos, 5];
 _finalWaypoint setWaypointType "SAD";
-_finalWaypoint setWaypointStatements ["true", "(group this) call Rimsiakas_fnc_recursiveSADWaypoint"];
+_waypointStatements = format ["%1 (group this) call Rimsiakas_fnc_recursiveSADWaypoint;", _additionalWaypointStatements];
+_finalWaypoint setWaypointStatements ["true", _waypointStatements];

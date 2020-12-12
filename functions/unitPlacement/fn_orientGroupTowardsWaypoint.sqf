@@ -1,4 +1,4 @@
-params["_group"];
+params ["_group"];
 
 _waypointPosition = waypointPosition [_group, currentWaypoint _group];
 if ((_waypointPosition isEqualTo [0,0,0]) == false) then {
