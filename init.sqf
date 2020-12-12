@@ -65,8 +65,6 @@ player setVariable ["MARTA_reveal", _friendlyGroups];
 
 titleCut ["", "BLACK IN", 1];
 
-intelSharedBy = [];
-
 {
     [_x] spawn { // This makes it run parallel for all groups
         params["_group"];
