@@ -5,14 +5,26 @@ class CfgFunctions
     #include "CHVD\CfgFunctions.hpp"
     class Rimsiakas
     {
-        class allFunctions
+        class general
         {
             file = "functions";
-            class teleportSquadToRandomPosition {};
+            class validator {};
             class recursiveSADWaypoint {};
+        };
+
+        class intelSharing
+        {
+            file = "functions\intelSharing";
+            class shareIntel{};
+            class receiveIntel{};
+        }
+
+        class unitPlacement
+        {
+            file = "functions\unitPlacement";
+            class teleportSquadToRandomPosition {};
             class placer {};
             class squadSpawner {};
-            class validator {};
             class calculateRequiredAreaForGroup {};
             class spawnCamp {};
             class orientGroupTowardsWaypoint {};

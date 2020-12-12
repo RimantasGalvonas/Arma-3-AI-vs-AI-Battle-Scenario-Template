@@ -96,7 +96,7 @@ if (count _activeSideFactions > 0) then {
 
 
 // Create a group for the composition units
-_group = createGroup _side;
+_group = createGroup [_side, true];
 
 
 

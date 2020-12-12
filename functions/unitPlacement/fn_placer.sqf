@@ -37,6 +37,7 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
             _syncedGroup call Rimsiakas_fnc_recursiveSADWaypoint;
             _syncedGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
         };
+        _syncedGroup deleteGroupWhenEmpty true;
     };
 } foreach synchronizedObjects _placer;
 
