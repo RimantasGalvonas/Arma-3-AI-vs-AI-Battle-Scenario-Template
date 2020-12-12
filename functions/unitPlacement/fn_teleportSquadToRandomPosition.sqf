@@ -101,8 +101,8 @@ if (isNil "_startingRoadSection" == false) exitWith {
         _availableRoadSection = nil;
 
         {
-            _nearbyVehicles = nearestObjects [getPos _x, _actuallyVehicleClasses, 5];
-            if ((count _nearbyVehicles) == 0) exitWith
+            _nearbyEntities = (getPos _x) nearEntities 5;
+            if ((count _nearbyEntities) == 0) exitWith
                 {_availableRoadSection = _x;
                 _nearbyRoadSections deleteAt _forEachIndex;
             }
