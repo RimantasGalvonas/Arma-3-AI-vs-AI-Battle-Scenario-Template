@@ -1,17 +1,15 @@
 # Arma 3 Randomized Scenario Template
-
 This is a customizeable single player (for now) mission template to be used in the Eden editor.
 
 #### Features
 - It allows you to spawn units and camps in randomized position and makes the units roam the mission area randomly.
-- It draws a configurable grid on the map showing the approximate location of enemies.
+- It draws a colored grid on the map showing the approximate location of enemies.
 - Works in all levels of command: you can play as a simple soldier, a squad leader or a battlefield commander.
 - Waypoints for infantry units are placed in a way that prefers moving between areas with cover.
 - Groups inform each other of known enemy locations and respond if they are able (unless set as subordinates to a high commander).
 - Extra care is being taken to make units spawn in positions that do not make them explode on mission start or become stuck. It still sometimes happens but quite rarely.
 
 # Installation
-
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
@@ -22,9 +20,10 @@ This is a customizeable single player (for now) mission template to be used in t
 8. Follow the **Mission Setup** instructions below or in-game.
 
 # Mission Setup
+<details>
+<summary>Mission Area Setup</summary>
 
 ## Mission Area Setup
-
 <ol>
 <li>You must place a <b>Game Logic</b> entity (Found in Systems > Logic Entities) where you want the mission to take place.</li>
 <li>You must name that entity <b>patrolCenter</b>.</li>
@@ -38,7 +37,12 @@ this setVariable ["intelGridSize", <b>100</b>];
 
 <b>100</b> is the size of a colored square on the map showing you the approximate location of enemies in the mission area. You may adjust this number or set it to <b>0</b> to disable it. Setting the value to something very low will give you very precise positions but may negatively impact performance.
 </li>
+<li>It is recommended to place a <b>Military Symbols</b> module in the editor (found in: <b>Systems > Modules > Other</b>). It allows you to see the position of friendly groups on the map.</li>
 </ol>
+</details>
+
+<details>
+<summary>Unit Placer Setup</summary>
 
 ## Unit Placer Setup
 <b>Placers</b> are used to place AI units randomly within a certain area.
@@ -63,15 +67,29 @@ You may adjust the **numbers** for minSpawnRadius and maxSpawnRadius. These valu
 You may repeat these steps to make as many placers as you want. At least two are recommended - one for each side.
 
 You may also sync the player group with one of the placers to randomize the starting position.
+</details>
+
+<details>
+<summary>Configuring Placers To Place Units</summary>
 
 ## Configuring Placers To Place Units
+This randomizes the location of units within the radius defined in the placer and continuously creates waypoints to make the units patrol the mission area.
 
-### Method 1: Syncing units
+There are two ways of doing this:
+<ol>
+<li>
+<b>Syncing units</b>
 
-The simplest way to make a placer spawn units is to place a unit or a group in the editor and sync it to the placer (sync only one unit from the group, not all of them). This will randomize that unit's position according to the placer and make them roam the mission area.
+The simplest way to make a placer spawn units is to place a unit or a group in the editor and sync it to the placer.<br>
+Sync from the character, not the group icon.<br>
+Sync only one unit from the group, not all of them. Doing otherwise should still work but it forces redundant calculations and makes initialization slower.
+</li>
+<li>
+<b>Group variable</b>
 
-### Method 2: Group variable
-Another way to make it spawn units is to add this to the placer's init box:
+This method is a bit more complex but it is useful if you want to easily copy and paste placer configurations into different missions.
+
+Add this to the placer's init box:
 <pre>
 this setVariable ["groups", [
     (<b>GROUP_CONFIG</b>),
@@ -79,16 +97,32 @@ this setVariable ["groups", [
     (<b>GROUP_CONFIG</b>)
 ]];
 </pre>
-#### Method 2.1.: Using group config paths
-Replace **GROUP_CONFIG** with a group config path which can be found in the Eden editor **Tools -> Config Viewer**. Find **cfgGroups** on the left. Select the one you want and copy it from **Config Path** in the bottom of the screen. It should look something like this:<br>
-**configFile >>"CfgGroups" >> "Indep" >> "IND_E_F" >> "Infantry" >> "I_E_InfTeam"**<br>
+
+Then do one or both of the following:
+<ol>
+<li>
+<b>Use predefined group configs</b>
+
+Replace <b>GROUP_CONFIG</b> with a group config path which can be found in the Eden editor <b>Tools -> Config Viewer</b>. Find <b>cfgGroups</b> on the left. Select the one you want and copy it from <b>Config Path</b> in the bottom of the screen. It should look something like this:<br>
+<b>configFile >>"CfgGroups" >> "Indep" >> "IND_E_F" >> "Infantry" >> "I_E_InfTeam"</b><br>
 You may add as many as you want. Add duplicates if you want more of the same group.
-#### Method 2.2.: Creating custom groups
+</li>
+<li>
+<b>Create custom groups</b>
+
 You may also create custom groups out of individual units by replacing **(GROUP_CONFIG)** with for example:
 <pre>
 ["<b>B_Truck_01_ammo_F</b>", "<b>B_Truck_01_Repair_F</b>"]
 </pre>
 These <b>names in bold</b> can be found by hovering over a unit placed in the Eden editor or in **configFile >> "CfgVehicles"**
+</li>
+</ol>
+</li>
+</ol>
+</details>
+
+<details>
+<summary>Configuring Placers To Place Other Placers (Optional)</summary>
 
 ## Configuring Placers To Place Other Placers
 
@@ -113,6 +147,11 @@ this setVariable ["childPlacers", [<b>unitPlacer1</b>, <b>unitPlacer2</b>]];
 
 The **placer created in step 1** will randomize the position of the **placer created in step 2**. The latter one will in turn randomize the position of units assigned to it.
 
+</details>
+
+<details>
+<summary>Configuring Placers To Place Camps (Optional)</summary>
+
 ## Configuring Placers To Place Camps
 
 You can spawn camps by adding this to a placer's init box:
@@ -123,10 +162,12 @@ this setVariable ["camps", [<b>side1</b>, <b>side2</b>]];
 Valid values for **sides** are **blufor**, **opfor**, **independent**. You may use as many as you want, duplicates are allowed.
 
 The camps will be populated with units from the chosen side.
+</details>
+
+<details>
+<summary>High Command (Optional)</summary>
 
 ## High Command
-
-It is recommended to place a **Military Symbols** module in the editor (found in: **Systems > Modules > Other**). It allows you to see the position of friendly groups on the map.
 
 You may sync the player character with a **High Command - Commander** module (found in the same place as above). This will allow you to manually assign waypoints to AI groups instead of having them roam the mission area randomly.
 
@@ -135,6 +176,7 @@ Add this to the init box of some **placers**. It will allow you to command the u
 this setVariable ["highCommandSubordinates", true];
 </pre>
 To enter high command mode, press **Left Ctrl+Space**.
+</details>
 
 # Credits
 
