@@ -5,10 +5,10 @@ Version: V0.92
 */
 ////Editable parameters, sorted by category and relevance - Please adjust values to suit your application.
 //Generic
-G_Briefing = true; //true = information, how to, and credits will be displayed on ingame briefing screen. Can be used in conjunction with your own briefing. false = disabled.
+G_Briefing = false; //true = information, how to, and credits will be displayed on ingame briefing screen. Can be used in conjunction with your own briefing. false = disabled.
 
 //Revive
-G_Revive_System = true; //Whether the revive system will be used or not. true = enabled, false = disabled.
+G_Revive_System = false; //Whether the revive system will be used or not. true = enabled, false = disabled.
 G_Revive_AI_Incapacitated = [WEST, EAST, RESISTANCE, CIVILIAN]; //Array of sides of AI that will utilize revive system
 G_Revive_Unit_Exclusion = []; //Array of variable names of units to exclude from the revive system
 G_Revive_bleedoutTime = 300; //Amount of time (in seconds) unit is available to be revived, before being forced to respawn. If -1, no time limit.
@@ -34,8 +34,8 @@ G_Respawn_Button = true; //true = Respawn Button enabled, false = Respawn button
 G_Respawn_Time = 10; //Amount of time (in seconds) dead unit must wait before being able to respawn (overrides description.ext setting)
 G_Num_Respawns = 0; //Number of lives/respawns available to players (must be integer). -1 = unlimited, 0 and up are actual values.
 G_Spectator = true; //Upon expending all lives, the player will be put into a spectator camera. If false, mission ends only for that specific player.
-G_Squad_Leader_Spawn = true; //Allows spawning on squad leader. Spawn in squad leader's stance. true = enabled, false = disabled.
-G_Squad_Leader_Marker = true; //Displays marker on map indicating squad leader's position. true = enabled, false = disabled.
+G_Squad_Leader_Spawn = false; //Allows spawning on squad leader. Spawn in squad leader's stance. true = enabled, false = disabled.
+G_Squad_Leader_Marker = false; //Displays marker on map indicating squad leader's position. true = enabled, false = disabled.
 	G_Squad_Leader_Mkr_Type = "respawn_inf"; //Shape of marker
 	G_Squad_Leader_Mkr_Color = "ColorBlack"; //Color of marker
 	G_Squad_Leader_Mkr_Text = "Squad Leader"; //Text beside marker
