@@ -1,4 +1,4 @@
-# Arma 3 Randomized Scenario Template
+# Semi-Randomized Arma 3 Mission Template
 This is a customizeable single player (for now) mission template to be used in the Eden editor.
 
 #### Features
@@ -13,7 +13,7 @@ This is a customizeable single player (for now) mission template to be used in t
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/RandomizedArma3Mission/releases)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/RandomizedArma3Mission/releases) The file called SemiRandomizedBattleTemplate-[version].zip
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
@@ -125,7 +125,6 @@ These <b>names in bold</b> can be found by hovering over a unit placed in the Ed
 <summary>Configuring Placers To Place Other Placers (Optional)</summary>
 
 ## Configuring Placers To Place Other Placers
-
 You can also make **placers** place other **placers**. This could be used, for example, to make all the enemies spawn together in some spot but that spot's location would be randomized across a large area.
 
 Due to technical reasons, you can't just sync the two placers together. It has to be done this way:
@@ -153,7 +152,6 @@ The **placer created in step 1** will randomize the position of the **placer cre
 <summary>Configuring Placers To Place Camps (Optional)</summary>
 
 ## Configuring Placers To Place Camps
-
 You can spawn camps by adding this to a placer's init box:
 <pre>
 this setVariable ["camps", [<b>side1</b>, <b>side2</b>]];
@@ -168,7 +166,6 @@ The camps will be populated with units from the chosen side.
 <summary>High Command (Optional)</summary>
 
 ## High Command
-
 You may sync the player character with a **High Command - Commander** module (found in the same place as above). This will allow you to manually assign waypoints to AI groups instead of having them roam the mission area randomly.
 
 Add this to the init box of some **placers**. It will allow you to command the units from that placer:
@@ -178,11 +175,25 @@ this setVariable ["highCommandSubordinates", true];
 To enter high command mode, press **Left Ctrl+Space**.
 </details>
 
-# Credits
 
+<details>
+<summary>AI Revive Script Configuration (Optional)</summary>
+
+## AI Revive Script Configuration
+By default the AI revive functionality provided by the [Grimes Simple Revive script](https://github.com/kcgrimes/grimes-simple-revive) is enabled for all sides. You may adjust the settings of this functionality by editing the values in the **G_Revive_init.sqf** file.
+</details>
+
+# Example missions
+These missions may not use the latest version of the scripts so I do not recommend basing your own missions directly on these. Extract these to Documents/Arma 3/missions/ and open with the Eden editor.
+- [Take part in a NATO assault against an area controlled by AAF and CSAT](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.2/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.4.2
+- [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.2/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.2
+
+# Credits
 So far this mission uses these scripts from other developers:
 
 - [CH View Distance Script by Champ-1](https://www.armaholic.com/page.php?id=27390)
 - [Grimes Simple Revive](https://github.com/kcgrimes/grimes-simple-revive)
 
 Thanks!
+
+If you publish a scenario based on this template, please mention me in the credits as well.

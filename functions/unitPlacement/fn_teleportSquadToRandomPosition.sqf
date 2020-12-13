@@ -79,7 +79,7 @@ if (isNil "_startingRoadSection" == true) exitWith {
     } forEach _vehicles;
 
     {
-        _unitPosition = _randomPosition findEmptyPosition [0, _requiredArea, typeOf _x];
+        _unitPosition = _randomPosition findEmptyPosition [5, _requiredArea, typeOf _x];
         _azimuth = random [0, 180, 359];
 
         vehicle _x setPos _unitPosition;
@@ -126,7 +126,7 @@ if (isNil "_startingRoadSection" == false) exitWith {
 
     // Handle dismounts in group
     {
-        _unitPosition = (getPos _startingRoadSection) findEmptyPosition [0, 10, typeOf _x];
+        _unitPosition = (getPos _startingRoadSection) findEmptyPosition [5, 20, typeOf _x];
         _azimuth = random [0, 180, 359];
 
         vehicle _x setPos _unitPosition;
