@@ -180,13 +180,17 @@ To enter high command mode, press **Left Ctrl+Space**.
 <summary>AI Revive Script Configuration (Optional)</summary>
 
 ## AI Revive Script Configuration
-By default the AI revive functionality provided by the [Grimes Simple Revive script](https://github.com/kcgrimes/grimes-simple-revive) is enabled for all sides. You may adjust the settings of this functionality by editing the values in the **G_Revive_init.sqf** file.
+This mission template has the [Grimes Simple Revive](https://github.com/kcgrimes/grimes-simple-revive) script integrated.
+
+To enable it, change the **G_Revive_System** and **G_Briefing** values to **true** in the **G_Revive_init.sqf** file.
+
+There are more configurations in there and they are well documented by the comments in the file. Adjust them to your liking.
 </details>
 
 # Example missions
 These missions may not use the latest version of the scripts so I do not recommend basing your own missions directly on these. Extract these to Documents/Arma 3/missions/ and open with the Eden editor.
-- [Take part in a NATO assault against an area controlled by AAF and CSAT](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.2/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.4.2
-- [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.2/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.2
+- [Take part in a NATO assault against an area controlled by AAF and CSAT](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.3/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.4.3
+- [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.3/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.3
 
 # Credits
 So far this mission uses these scripts from other developers:

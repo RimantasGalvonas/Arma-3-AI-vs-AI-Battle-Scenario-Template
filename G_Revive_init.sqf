@@ -5,10 +5,10 @@ Version: V0.92
 */
 ////Editable parameters, sorted by category and relevance - Please adjust values to suit your application.
 //Generic
-G_Briefing = true; //true = information, how to, and credits will be displayed on ingame briefing screen. Can be used in conjunction with your own briefing. false = disabled.
+G_Briefing = false; //true = information, how to, and credits will be displayed on ingame briefing screen. Can be used in conjunction with your own briefing. false = disabled.
 
 //Revive
-G_Revive_System = true; //Whether the revive system will be used or not. true = enabled, false = disabled.
+G_Revive_System = false; //Whether the revive system will be used or not. true = enabled, false = disabled.
 G_Revive_AI_Incapacitated = [WEST, EAST, RESISTANCE, CIVILIAN]; //Array of sides of AI that will utilize revive system
 G_Revive_Unit_Exclusion = []; //Array of variable names of units to exclude from the revive system
 G_Revive_bleedoutTime = 300; //Amount of time (in seconds) unit is available to be revived, before being forced to respawn. If -1, no time limit.
