@@ -58,10 +58,10 @@ if (isNil "_startingRoadSection" == true) exitWith {
 
     _defaultPos = [[0,0],[0,0]];
 
-    _randomPosition = [_centerPos, _minimumDistance, _maximumDistance, _requiredArea, 0, 0.6, 0, nil, _defaultPos] call BIS_fnc_findSafePos;
+    _randomPosition = [_centerPos, _minimumDistance, _maximumDistance, _requiredArea, 0, 0.3, 0, nil, _defaultPos] call BIS_fnc_findSafePos;
 
-    if (str _randomPosition == str _defaultPos) then {
-        _randomPosition = [_centerPos, _minimumDistance, _maximumDistance, 1, 0, 0.6, 0] call BIS_fnc_findSafePos;
+    if ((_randomPosition select 0) == 0) then {
+        _randomPosition = [_centerPos, _minimumDistance, _maximumDistance, 1, 0, 0.3, 0] call BIS_fnc_findSafePos;
         _terrainObjects = nearestTerrainObjects [_randomPosition, [], _requiredArea, false];
 
         {

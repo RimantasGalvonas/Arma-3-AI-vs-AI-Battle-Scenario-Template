@@ -188,8 +188,8 @@ There are more configurations in there and they are well documented by the comme
 </details>
 
 # Example missions
-- [Take part in a NATO assault against an area controlled by AAF and CSAT](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.3/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.4.3
-- [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.3/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.3
+- [Take part in a NATO assault against an area controlled by AAF and CSAT](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.4/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.4.4
+- [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.4
 
 Extract these to Documents/Arma 3/missions/ and open with the Eden editor.
 
