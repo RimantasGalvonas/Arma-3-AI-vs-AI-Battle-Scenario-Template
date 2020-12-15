@@ -17,7 +17,7 @@ if ((count Rimsiakas_missionValidationResult) > 0) exitWith {
 
 {_x disableAI "all"} forEach allUnits; // Temporarily disabled to avoid firefights breaking out while mission is initializing
 
-titleCut ["Initializing...", "BLACK FADED", 999];
+titleCut ["Initializing...", "BLACK FADED", 999, false];
 sleep 0.1; // Small delay required to make sure the mission is initialized, otherwise isPlayerHighCommander is always false. Couldn't find any proper event handler for that.
 
 isPlayerHighCommander = (count (hcAllGroups player) > 0);

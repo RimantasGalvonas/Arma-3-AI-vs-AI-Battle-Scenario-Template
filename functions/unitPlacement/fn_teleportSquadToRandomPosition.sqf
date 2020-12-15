@@ -39,11 +39,13 @@ _startingRoadSection = nil;
 _maxRoadFindTryAttempts = 10;
 _roadFindAttemptsCount = 0;
 
-_averageAvailableDistance = (_minimumDistance + _maximumDistance) / 2;
-_randomPositionForRoadSearch = [[[_centerPos, (_averageAvailableDistance + 1)]], [[_centerPos, (_averageAvailableDistance - 1)]]] call BIS_fnc_randomPos;
+_vehicleSpawnRadius = (_maximumDistance - _minimumDistance) / 2;
+_whitelistedSearchAreas = [[_centerPos, _minimumDistance + _vehicleSpawnRadius]];
+_blackListedSearchAreas = [[_centerPos, _minimumDistance]];
+_randomPositionForRoadSearch = [_whitelistedSearchAreas, _blackListedSearchAreas] call BIS_fnc_randomPos;
 
 while {isNil "_startingRoadSection" && _roadFindAttemptsCount < _maxRoadFindTryAttempts} do {
-    _nearRoads = _randomPositionForRoadSearch nearRoads (_maximumDistance - _minimumDistance);
+    _nearRoads = _randomPositionForRoadSearch nearRoads (_vehicleSpawnRadius);
     {
         if (((getRoadInfo _x) select 2) == false) exitWith {_startingRoadSection = _x};
     } foreach _nearRoads;
