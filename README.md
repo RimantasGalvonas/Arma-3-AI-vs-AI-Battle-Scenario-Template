@@ -2,7 +2,7 @@
 This is a customizeable single player (for now) mission template to be used in the Eden editor.
 
 #### Features
-- It allows you to spawn units and camps in randomized position and makes the units roam the mission area randomly.
+- It allows you to spawn units and camps in randomized position and makes the units roam the mission area looking for enemies.
 - It draws a colored grid on the map showing the approximate location of enemies.
 - Works in all levels of command: you can play as a simple soldier, a squad leader or a battlefield commander.
 - Waypoints for infantry units are placed in a way that prefers moving between areas with cover.
@@ -13,7 +13,7 @@ This is a customizeable single player (for now) mission template to be used in t
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.5/SemiRandomizedBattleTemplate-0.4.5.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.6/SemiRandomizedBattleTemplate-0.4.6.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
@@ -30,12 +30,17 @@ This is a customizeable single player (for now) mission template to be used in t
 <li>
 Enter these into said entity's init box:
 <pre>
-this setVariable ["patrolRadius", <b>600</b>];
+this setVariable ["patrolRadius", <b>1000</b>];
 this setVariable ["intelGridSize", <b>100</b>];
+this setVariable ["maxInfantryResponseDistance", <b>500</b>];
+this setVariable ["maxVehicleResponseDistance", <b>1500</b>];
+this setVariable ["maxAirResponseDistance", <b>10000</b>];
 </pre>
-<b>600</b> is the radius of the mission area. Units will roam around it looking for enemies. You may adjust the number.
+<b>1000</b> is the radius of the mission area. Units will roam around it looking for enemies. You may adjust the number.
 
 <b>100</b> is the size of a colored square on the map showing you the approximate location of enemies in the mission area. You may adjust this number or set it to <b>0</b> to disable it. Setting the value to something very low will give you very precise positions but may negatively impact performance.
+
+<b>500</b>, <b>1500</b>, <b>10000</b> are maximum distances at which infantry, vehicles and aircraft respond to intel about enemy locations.
 </li>
 <li>It is recommended to place a <b>Military Symbols</b> module in the editor (found in: <b>Systems > Modules > Other</b>). It allows you to see the position of friendly groups on the map.</li>
 </ol>
@@ -130,7 +135,7 @@ You can also make **placers** place other **placers**. This could be used, for e
 Due to technical reasons, you can't just sync the two placers together. It has to be done this way:
 <ol>
 <li>Create a <b>placer</b> as usual, sync it to the <b>patrolCenter</b>.
-<li>Create another <b>placer</b> as usual. Sync units to it (or use the **groups** variable, see above) but DON'T sync the placer itself to anything. You must give this <b>placer</b> a name. For example <b>randomized_position_placer</b></li>
+<li>Create another <b>placer</b> as usual. Sync units to it (or use the <b>groups</b> variable, see above) but DON'T sync the placer itself to anything. You must give this <b>placer</b> a name. For example <b>randomized_position_placer</b></li>
 <li>
 Add this to the init box of the <b>placer created in step 1</b>:
 <pre>
@@ -190,7 +195,7 @@ There are more configurations in there and they are well documented by the comme
 # Example missions
 - [Take part in a NATO assault against an area controlled by AAF and CSAT](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.4/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.4.4
 - [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.4
-- [Basic battle across entire Altis](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.5/WarAcrossAltis.Altis.zip) Made on v0.4.5
+- [Basic battle across entire Altis](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.6/WarAcrossAltis.Altis.zip) Made on v0.4.6
 
 Extract these to Documents/Arma 3/missions/ and open with the Eden editor.
 
