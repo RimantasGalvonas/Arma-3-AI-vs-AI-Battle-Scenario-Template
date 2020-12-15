@@ -4,16 +4,27 @@ if ((isNull hcLeader (_group)) == false && isPlayerHighCommander == true) exitWi
 
 _groupPos = getPos (leader _group);
 
-_hasTanksInGroup = false;
-{
-    _vehicleConfig = configFile >> "cfgVehicles" >> (typeOf vehicle _x);
-    _vehicleClass = getText (_vehicleConfig >> "vehicleClass");
-    if (_vehicleClass == "Armored") exitWith {
-        _hasTanksInGroup = true;
-    };
-} forEach (units _group);
 
-if (behaviour (leader _group) == "combat" && _hasTanksInGroup == false) exitWith {}; // Already engaged
+//Get current types of vehicles in the group
+_typesOfVehiclesInGroup = [];
+{
+    _vehicleConfig = configFile >> "cfgVehicles" >> (typeOf (vehicle _x));
+    _vehicleClass = getText (_vehicleConfig >> "vehicleClass");
+    _typesOfVehiclesInGroup append [_vehicleClass];
+} forEach (units _group);
+_typesOfVehiclesInGroup = _typesOfVehiclesInGroup arrayIntersect _typesOfVehiclesInGroup; // Remove duplicates
+_hasTanksOrAircraftInGroup = count (_typesOfVehiclesInGroup arrayIntersect ["Air", "Armored"]) > 0;
+
+// Get max response distance
+_maxResponseDistance = patrolCenter getVariable ["maxInfantryResponseDistance", 500];
+if (count (_typesOfVehiclesInGroup arrayIntersect ["Car", "Armored"]) > 0) then {
+    _maxResponseDistance = patrolCenter getVariable ["maxVehicleResponseDistance", 1000];
+};
+if ("Air" in _typesOfVehiclesInGroup) then {
+    _maxResponseDistance = patrolCenter getVariable ["maxAirResponseDistance", 10000];
+};
+
+
 
 {
     _canRespond = true;
@@ -29,20 +40,51 @@ if (behaviour (leader _group) == "combat" && _hasTanksInGroup == false) exitWith
         _targetPriority = 2;
     };
 
-    if (_targetPriority <= _alreadyRespondingPriority) then {
+
+
+    // Ignore this target if current target has higher priority
+    if (_targetPriority < _alreadyRespondingPriority) then {
         _canRespond = false;
     };
 
-    if (_targetVehicleClass == "Armored" && _hasTanksInGroup == false) then {
+
+
+    // Ignore this target if it is armored and there are no armored or air units in group
+    if (_targetVehicleClass == "Armored" && _hasTanksOrAircraftInGroup == false) then {
         _canRespond = false;
     };
 
-    if ((_groupPos distance (getPos _x)) > (500 * _targetPriority)) then {
+
+
+    // Ignore this target if it is too far
+    _distanceToTarget = _groupPos distance (getPos _x);
+    if (_distanceToTarget > _maxResponseDistance) then {
         _canRespond = false;
     };
+
+
+
+    // Ignore this target if it has the same priority as current target and is not much closer
+    if (_targetPriority == _alreadyRespondingPriority) then {
+        _currentTargetPosition = _group getVariable ["currentTargetPosition", nil];
+
+        _distanceToCurrentTarget = nil;
+        if (!isNil "_currentTargetPosition") then {
+            _distanceToCurrentTarget = _groupPos distance _currentTargetPosition;
+        };
+
+        if (!isNil "_distanceToCurrentTarget" && {_distanceToCurrentTarget + 300 > _distanceToTarget}) then {
+            _canRespond = false;
+        };
+    };
+
+
 
     if (_canRespond == true) exitWith {
         _group setVariable ["respondingToIntelPriority", _targetPriority];
+        _group setVariable ["currentTargetPosition", getPos _target];
+        _waypointStatement = "(group this) setVariable ['currentTargetPosition', nil]; (group this) setVariable ['respondingToIntelPriority', 0];";
+
         if (_targetPriority == 2) then {
             // Redirect tank to attack another tank. Use waypoint type destroy to free up the tank instantly when the target is destroyed.
 
@@ -52,9 +94,9 @@ if (behaviour (leader _group) == "combat" && _hasTanksInGroup == false) exitWith
 
             _waypoint = _group addWaypoint [(getPos _target), 0];
             _waypoint setWaypointType "DESTROY";
-            _waypoint setWaypointStatements ["true", "(group this) setVariable ['respondingToIntelPriority', 0]; (group this) call Rimsiakas_fnc_recursiveSADWaypoint;"];
+            _waypoint setWaypointStatements ["true", _waypointStatement + " (group this) call Rimsiakas_fnc_recursiveSADWaypoint;"];
         } else {
-            [_group, (getPos _target), "(group this) setVariable ['respondingToIntelPriority', 0];"] call Rimsiakas_fnc_recursiveSADWaypoint;
+            [_group, (getPos _target), _waypointStatement] call Rimsiakas_fnc_recursiveSADWaypoint;
         };
     };
 } forEach _targets;
