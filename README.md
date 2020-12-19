@@ -6,7 +6,7 @@ This is a customizeable single player (for now) mission template to be used in t
 - It draws a colored grid on the map showing the approximate location of enemies.
 - Works in all levels of command: you can play as a simple soldier, a squad leader or a battlefield commander.
 - Waypoints for infantry units are placed in a way that prefers moving between areas with cover.
-- Groups inform each other of known enemy locations and respond if they are able (unless set as subordinates to a high commander).
+- Groups inform each other of known enemy locations and respond if they are able (unless set as subordinates to a high commander). Note: AI doesn't know about the colored map grid. They only share info about units they actually encounter.
 - Extra care is being taken to make units spawn in positions that do not make them explode on mission start or become stuck. It still sometimes happens but quite rarely.
 - Works from small scale engagements to battles spanning across the entire map.
 
@@ -14,7 +14,7 @@ This is a customizeable single player (for now) mission template to be used in t
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.6/SemiRandomizedBattleTemplate-0.4.6.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.7/SemiRandomizedBattleTemplate-0.4.7.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
@@ -45,6 +45,7 @@ this setVariable ["maxAirResponseDistance", <b>10000</b>];
 </li>
 <li>It is recommended to place a <b>Military Symbols</b> module in the editor (found in: <b>Systems > Modules > Other</b>). It allows you to see the position of friendly groups on the map.</li>
 </ol>
+<br>
 </details>
 
 <details>
@@ -73,6 +74,8 @@ You may adjust the **numbers** for minSpawnRadius and maxSpawnRadius. These valu
 You may repeat these steps to make as many placers as you want. At least two are recommended - one for each side.
 
 You may also sync the player group with one of the placers to randomize the starting position.
+
+<br>
 </details>
 
 <details>
@@ -125,6 +128,7 @@ These <b>names in bold</b> can be found by hovering over a unit placed in the Ed
 </ol>
 </li>
 </ol>
+<br>
 </details>
 
 <details>
@@ -152,6 +156,7 @@ this setVariable ["childPlacers", [<b>unitPlacer1</b>, <b>unitPlacer2</b>]];
 
 The **placer created in step 1** will randomize the position of the **placer created in step 2**. The latter one will in turn randomize the position of units assigned to it.
 
+<br>
 </details>
 
 <details>
@@ -166,6 +171,8 @@ this setVariable ["camps", [<b>side1</b>, <b>side2</b>]];
 Valid values for **sides** are **blufor**, **opfor**, **independent**. You may use as many as you want, duplicates are allowed.
 
 The camps will be populated with units from the chosen side.
+
+<br>
 </details>
 
 <details>
@@ -179,6 +186,8 @@ Add this to the init box of some **placers**. It will allow you to command the u
 this setVariable ["highCommandSubordinates", true];
 </pre>
 To enter high command mode, press **Left Ctrl+Space**.
+
+<br>
 </details>
 
 
@@ -191,6 +200,8 @@ This mission template has the [Grimes Simple Revive](https://github.com/kcgrimes
 To enable it, change the **G_Revive_System** and **G_Briefing** values to **true** in the **G_Revive_init.sqf** file.
 
 There are more configurations in there and they are well documented by the comments in the file. Adjust them to your liking.
+
+<br>
 </details>
 
 # Example missions

@@ -12,6 +12,8 @@ class CfgFunctions
             file = "functions";
             class validator {};
             class recursiveSADWaypoint {};
+            class objectsGrabberWithSoldiers {};
+            class objectsMapperWithATL {};
         };
 
         class intelSharing
@@ -29,6 +31,7 @@ class CfgFunctions
             class squadSpawner {};
             class calculateRequiredAreaForGroup {};
             class spawnCamp {};
+            class getCamps {};
             class orientGroupTowardsWaypoint {};
         };
     };
