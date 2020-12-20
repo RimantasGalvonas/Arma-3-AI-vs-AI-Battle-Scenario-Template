@@ -15,16 +15,26 @@ if ((count Rimsiakas_missionValidationResult) > 0) exitWith {
         };
 };
 
-{_x disableAI "all"} forEach allUnits; // Temporarily disabled to avoid firefights breaking out while mission is initializing
+
+
+// Temporarily disabled to avoid firefights breaking out while mission is initializing
+{_x disableAI "all"} forEach allUnits;
+
+
 
 titleCut ["Initializing...", "BLACK FADED", 999, false];
-sleep 0.1; // Small delay required to make sure the mission is initialized, otherwise isPlayerHighCommander is always false. Couldn't find any proper event handler for that.
 
+
+
+// Small delay required to make sure the mission is initialized, otherwise isPlayerHighCommander is always false. Couldn't find any proper event handler for that.
+sleep 0.1;
 isPlayerHighCommander = (count (hcAllGroups player) > 0);
 
-_placersToProcessLast = [];
+
 
 // Spawn/place units
+_placersToProcessLast = [];
+
 {
     if (_x getVariable "logicType" == "placer") then {
         if (count(_x getVariable ["camps", []]) == 0) then {
@@ -39,18 +49,21 @@ _placersToProcessLast = [];
     [_x] call Rimsiakas_fnc_placer;
 } forEach _placersToProcessLast;
 
-// set waypoint for player group
+
+
+// Set waypoint for player group
 if (isPlayerHighCommander == false) then {
     [group player] call Rimsiakas_fnc_recursiveSADWaypoint;
 };
+
+
 
 // Enable team switch
 {
     addSwitchableUnit _x;
 } forEach units group player;
 
-// Create intel grid
-[] execVM "createGrid.sqf";
+
 
 // Set visible group icons (otherwise allied faction icons are not shown)
 _friendlyGroups = [];
@@ -59,12 +72,28 @@ _friendlyGroups = [];
         _friendlyGroups append [_x];
     };
 } forEach allGroups;
+
 player setVariable ["MARTA_reveal", _friendlyGroups];
+
+// Without this the military symbols would disappear after teamswitching.
+onTeamSwitch {setGroupIconsVisible [true, false]; _to setVariable ["MARTA_reveal", (_from getVariable "MARTA_reveal")];};
+
+
+
+// Create intel grid
+[] execVM "createGrid.sqf";
+
+
 
 {_x enableAI "all"} forEach allUnits;
 
+
+
 titleCut ["", "BLACK IN", 1];
 
+
+
+// Start groups intel sharing
 {
     [_x] spawn { // This makes it run parallel for all groups
         params["_group"];
