@@ -6,13 +6,7 @@ _groupPos = getPos (leader _group);
 
 
 //Get current types of vehicles in the group
-_typesOfVehiclesInGroup = [];
-{
-    _vehicleConfig = configFile >> "cfgVehicles" >> (typeOf (vehicle _x));
-    _vehicleClass = getText (_vehicleConfig >> "vehicleClass");
-    _typesOfVehiclesInGroup append [_vehicleClass];
-} forEach (units _group);
-_typesOfVehiclesInGroup = _typesOfVehiclesInGroup arrayIntersect _typesOfVehiclesInGroup; // Remove duplicates
+_typesOfVehiclesInGroup = [_group] call Rimsiakas_fnc_getVehicleClassesInGroup;
 _hasTanksOrAircraftInGroup = count (_typesOfVehiclesInGroup arrayIntersect ["Air", "Armored"]) > 0;
 
 // Get max response distance

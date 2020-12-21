@@ -51,13 +51,6 @@ _placersToProcessLast = [];
 
 
 
-// Set waypoint for player group
-if (isPlayerHighCommander == false) then {
-    [group player] call Rimsiakas_fnc_recursiveSADWaypoint;
-};
-
-
-
 // Enable team switch
 {
     addSwitchableUnit _x;

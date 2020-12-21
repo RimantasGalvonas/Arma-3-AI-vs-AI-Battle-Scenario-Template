@@ -40,8 +40,14 @@ if (G_Revive_System == true) then {
 };
 
 if (!_isHighCommand || {_placer getVariable ["highCommandSubordinates", false] == false}) then {
-    _newGroup call Rimsiakas_fnc_recursiveSADWaypoint;
-    _newGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
+    if ("Support" in ([_newGroup] call Rimsiakas_fnc_getVehicleClassesInGroup)) then {
+        _newGroup setVariable ["respondingToIntelPriority", 10]; // High priority to prevent redirection by intel
+        _waypoint = _newGroup addWaypoint [(getPos leader _newGroup), 0];
+        _waypoint setWaypointType "SUPPORT";
+    } else {
+        _newGroup call Rimsiakas_fnc_recursiveSADWaypoint;
+        _newGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
+    };
 } else {
     player hcSetGroup [_newGroup];
 };

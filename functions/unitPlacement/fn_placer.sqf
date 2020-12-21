@@ -32,10 +32,17 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
     if (!isNil {_syncedGroup}) then {
         [_syncedGroup, _placerPos, _minSpawnRadius, _maxSpawnRadius, 0, 0.6, 0] call Rimsiakas_fnc_teleportSquadToRandomPosition;
+
         if (isPlayerHighCommander == false || (_placer getVariable ["highCommandSubordinates", false]) == false) then {
             player hcRemoveGroup _syncedGroup;
-            _syncedGroup call Rimsiakas_fnc_recursiveSADWaypoint;
-            _syncedGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
+            if ("Support" in ([_syncedGroup] call Rimsiakas_fnc_getVehicleClassesInGroup)) then {
+                _newGroup setVariable ["respondingToIntelPriority", 10]; // High priority to prevent redirection by intel
+                _waypoint = _syncedGroup addWaypoint [(getPos leader _syncedGroup), 0];
+                _waypoint setWaypointType "SUPPORT";
+            } else {
+                _syncedGroup call Rimsiakas_fnc_recursiveSADWaypoint;
+                _syncedGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
+            };
         };
         _syncedGroup deleteGroupWhenEmpty true;
     };
