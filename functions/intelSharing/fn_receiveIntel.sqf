@@ -50,6 +50,13 @@ if ("Air" in _typesOfVehiclesInGroup) then {
 
 
 
+    // Only air assets can catch up with other air assets
+    if (_targetVehicleClass == "Air" && {!("Air" in _typesOfVehiclesInGroup)}) then {
+        _canRespond = false;
+    };
+
+
+
     // Ignore this target if it is too far
     _distanceToTarget = _groupPos distance (getPos _x);
     if (_distanceToTarget > _maxResponseDistance) then {

@@ -34,8 +34,6 @@ _preferablePosition = selectBestPlaces[_finalWaypointPos, (_waypointStepDistance
 _preferablePosition = (_preferablePosition select 0) select 0;
 _preferablePosition = [_preferablePosition, 0, 10, 1] call BIS_fnc_findSafePos; // To avoid placing waypoints inside houses. Makes the units get stuck
 
-// TODO: check if water intercepts the two locations and skip this shit if it does
-
 _distance = _startingPos distance _finalWaypointPos;
 if (_distance > 2000) then {
     _waypointStepDistance = _distance / 10;
