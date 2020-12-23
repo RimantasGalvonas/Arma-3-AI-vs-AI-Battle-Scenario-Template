@@ -14,7 +14,7 @@ This is a customizeable single player (for now) mission template to be used in t
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.9/SemiRandomizedBattleTemplate-0.4.9.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.10/SemiRandomizedBattleTemplate-0.4.10.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
@@ -155,6 +155,11 @@ this setVariable ["childPlacers", [<b>unitPlacer1</b>, <b>unitPlacer2</b>]];
 </ol>
 
 The **placer created in step 1** will randomize the position of the **placer created in step 2**. The latter one will in turn randomize the position of units assigned to it.
+
+You may also add this to the init box of the **placer created in step 2** to attempt to place it at a location that has a road within its radius:
+<pre>
+this setVariable ["preferRoad", true];
+</pre>
 
 <br>
 </details>

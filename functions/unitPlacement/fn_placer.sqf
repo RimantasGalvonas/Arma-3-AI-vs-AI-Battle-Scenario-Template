@@ -4,10 +4,22 @@ _placerPos = getPos _placer;
 _minSpawnRadius = _placer getVariable "minSpawnRadius";
 _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
-// Child spawners
+// Child placers
 {
     if (_x getVariable "logicType" == "placer") then {
-        _randomPos = [[[_placerPos, _maxSpawnRadius]],[[_placerPos, _minSpawnRadius], "water"]] call BIS_fnc_randomPos;
+        _randomPos = nil;
+
+        if (_x getVariable ["preferRoad", false]) then {
+            _road = [_placerPos, _minSpawnRadius, _maxSpawnRadius] call Rimsiakas_fnc_findRoad;
+            if (!(isNil "_road")) then {
+                _randomPos = getPos _road;
+            }
+        };
+
+        if (isNil "_randomPos") then {
+            _randomPos = [[[_placerPos, _maxSpawnRadius]],[[_placerPos, _minSpawnRadius], "water"]] call BIS_fnc_randomPos;
+        };
+
         _x setPos _randomPos;
     };
 } forEach (_placer getVariable "childPlacers"); // No idea why, but it only works properly if the positions are set in a separate loop from the placement.
