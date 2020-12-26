@@ -4,6 +4,8 @@ _placerPos = getPos _placer;
 _minSpawnRadius = _placer getVariable "minSpawnRadius";
 _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
+
+
 // Child placers
 {
     if (_x getVariable "logicType" == "placer") then {
@@ -30,6 +32,7 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 } forEach (_placer getVariable "childPlacers");
 
 
+
 // Synchronized units
  {
     _syncedUnit = _x;
@@ -45,25 +48,30 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
     if (!isNil {_syncedGroup}) then {
         [_syncedGroup, _placerPos, _minSpawnRadius, _maxSpawnRadius, 0, 0.6, 0] call Rimsiakas_fnc_teleportSquadToRandomPosition;
 
-        if (isPlayerHighCommander == false || (_placer getVariable ["highCommandSubordinates", false]) == false) then {
-            player hcRemoveGroup _syncedGroup;
-            if ("Support" in ([_syncedGroup] call Rimsiakas_fnc_getVehicleClassesInGroup)) then {
-                _newGroup setVariable ["respondingToIntelPriority", 10]; // High priority to prevent redirection by intel
-                _waypoint = _syncedGroup addWaypoint [(getPos leader _syncedGroup), 0];
-                _waypoint setWaypointType "SUPPORT";
-            } else {
-                _syncedGroup call Rimsiakas_fnc_recursiveSADWaypoint;
-                _syncedGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
+        (hcLeader _syncedGroup) hcRemoveGroup _syncedGroup;
+
+        if ("Support" in ([_syncedGroup] call Rimsiakas_fnc_getVehicleClassesInGroup)) then {
+            _syncedGroup setVariable ["respondingToIntelPriority", 10]; // High priority to prevent redirection by intel
+            _waypoint = _syncedGroup addWaypoint [(getPos leader _syncedGroup), 0];
+            _waypoint setWaypointType "SUPPORT";
+        } else {
+            _syncedGroup call Rimsiakas_fnc_recursiveSADWaypoint;
+            _syncedGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
+
+            if (_placer getVariable ["highCommandSubordinates", false]) then {
+                Rimsiakas_highCommandSubordinates append [_syncedGroup];
             };
         };
+
         _syncedGroup deleteGroupWhenEmpty true;
     };
 } foreach synchronizedObjects _placer;
 
 
+
 // Units from groups variable
 {
-    [_placer, _x, isPlayerHighCommander] call Rimsiakas_fnc_squadSpawner;
+    [_placer, _x] call Rimsiakas_fnc_squadSpawner;
     {_x disableAI "all"} forEach allUnits; // Temporarily disabled to avoid firefights breaking out while mission is initializing
 } forEach (_placer getVariable "groups");
 
