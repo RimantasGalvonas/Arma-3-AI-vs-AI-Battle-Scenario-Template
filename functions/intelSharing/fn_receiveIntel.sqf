@@ -1,6 +1,6 @@
 params ["_group", "_targets"];
 
-if ((isNull hcLeader (_group)) == false && isPlayerHighCommander == true) exitWith {}; // Has high commander
+if (isPlayer (hcLeader _group)) exitWith {}; // Has high commander
 
 _groupPos = getPos (leader _group);
 
