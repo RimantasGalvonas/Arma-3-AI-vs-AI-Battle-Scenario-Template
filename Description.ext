@@ -15,6 +15,11 @@ class CfgFunctions
             class objectsGrabberWithSoldiers {};
             class objectsMapperWithATL {};
             class getVehicleClassesInGroup {};
+            class disableAIWhileLoading {
+                preInit = 1;
+                postInit = 1;
+            };
+            class reenableAI {};
         };
 
         class intelSharing

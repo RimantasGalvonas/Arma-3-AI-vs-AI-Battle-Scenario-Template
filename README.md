@@ -1,5 +1,5 @@
 # Semi-Randomized Arma 3 Mission Template
-This is a customizeable single player (for now) mission template to be used in the Eden editor.
+This is a customizeable mission template to be used in the Eden editor.
 
 #### Features
 - It allows you to spawn units and camps in randomized position and makes the units roam the mission area looking for enemies.
@@ -9,12 +9,13 @@ This is a customizeable single player (for now) mission template to be used in t
 - Groups inform each other of known enemy locations and respond if they are able (unless set as subordinates to a high commander). Note: AI doesn't know about the colored map grid. They only share info about units they actually encounter.
 - Extra care is being taken to make units spawn in positions that do not make them explode on mission start or become stuck. It still sometimes happens but quite rarely.
 - Works from small scale engagements to battles spanning across the entire map.
+- Works both on singleplayer and multiplayer.
 
 # Installation
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.10/SemiRandomizedBattleTemplate-0.4.10.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.5.0/SemiRandomizedBattleTemplate-0.5.0.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
@@ -184,12 +185,27 @@ The camps will be populated with units from the chosen side.
 <summary>High Command (Optional)</summary>
 
 ## High Command
-You may sync the player character with a **High Command - Commander** module (found in: **Systems > Modules > Other**). This will allow you to manually assign waypoints to AI groups instead of having them roam the mission area randomly.
+High Command allows you to manually assign waypoints to chosen AI groups instead of having them roam the mission area automatically.
 
-Add this to the init box of some **placers**. It will allow you to command the units from that placer:
+To enable it:
+<ol>
+<li>
+Place a <b>High Command - Commander</b> module (found in: <b>Systems > Modules > Other</b>) in the editor.
+</li>
+<li>
+Sync a playable unit to the <b>High Command - Commander</b> module.
+</li>
+<li>
+Place a <b>High Command - Subordinate</b> module and sync it to the <b>High Command - Commander</b> module. You don't need to sync any units to the subordinate module.
+</li>
+<li>
+Add this to the init box of some <b>placers</b>. It will allow you to command the units from that placer:
 <pre>
 this setVariable ["highCommandSubordinates", true];
 </pre>
+</li>
+</ol>
+
 To enter high command mode, press **Left Ctrl+Space**.
 
 <br>
@@ -209,8 +225,18 @@ There are more configurations in there and they are well documented by the comme
 <br>
 </details>
 
+<details>
+<summary>Multiplayer Considerations (Optional)</summary>
+
+## Multiplayer Considerations
+Here are some things to keep in mind when using this template to create multiplayer missions:
+- When placing units on the map, make sure to place them some distance apart and facing away from hostile units. Otherwise when the mission starts the group may spawn in combat mode.
+
+<br>
+</details>
+
 # Example missions
-- [Take part in a NATO assault against an area controlled by AAF and CSAT](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.4/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.4.4
+- [Take part in a NATO assault against an area controlled by AAF and CSAT (Multiplayer compatible)](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.5.0/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.5.0
 - [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.4
 - [Basic battle across entire Altis](https://github.com/RimantasGalvonas/Semi-Randomized-Arma-3-Mission-Template/releases/download/0.4.6/WarAcrossAltis.Altis.zip) Made on v0.4.6
 

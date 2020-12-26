@@ -1,12 +1,17 @@
-params ["_placer", "_groupConfig", ["_isHighCommand", false]];
+params ["_placer", "_groupConfig"];
 
 _placerPos = getPos _placer;
 _minSpawnRadius = _placer getVariable "minSpawnRadius";
 _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
+
+
 _actuallyVehicleClasses = ["Car", "Armored", "Air", "Support"];
 _newGroup = nil;
 
+
+
+// Convert from group config to units array
 if (typeName _groupConfig == "CONFIG") then {
     _newGroupArray = [];
     _units = [_groupConfig] call Bis_fnc_getCfgSubClasses;
@@ -20,6 +25,8 @@ if (typeName _groupConfig == "CONFIG") then {
     _groupConfig = _newGroupArray;
 };
 
+
+
 if (typeName _groupConfig == "ARRAY") then {
     _vehicleConfig = configFile >> "cfgVehicles" >> (_groupConfig select 0);;
     _sideId = getNumber (_vehicleConfig >> "side");
@@ -29,25 +36,32 @@ if (typeName _groupConfig == "ARRAY") then {
 
     {
         _unitPosition = [getPos _placer, 0, 1000, 3, 0, 0.6, 0] call BIS_fnc_findSafePos; // Very basic temporary position search. The real repositioning is done in Rimsiakas_fnc_teleportSquadToRandomPosition
-        [_unitPosition, 0, _x, _newGroup] call BIS_fnc_spawnVehicle;
+        _spawnedUnit = [_unitPosition, 0, _x, _newGroup] call BIS_fnc_spawnVehicle;
+        (_spawnedUnit select 0) disableAI "all"; // Temporarily disabled to avoid firefights breaking out while mission is initializing
     } foreach _groupConfig;
 };
 
+
+
 [_newGroup, _placerPos, _minSpawnRadius, _maxSpawnRadius, 0, 0.6, 0] call Rimsiakas_fnc_teleportSquadToRandomPosition;
+
+
 
 if (G_Revive_System == true) then {
     (units _newGroup) spawn G_fnc_initNewAI;
 };
 
-if (!_isHighCommand || {_placer getVariable ["highCommandSubordinates", false] == false}) then {
-    if ("Support" in ([_newGroup] call Rimsiakas_fnc_getVehicleClassesInGroup)) then {
-        _newGroup setVariable ["respondingToIntelPriority", 10]; // High priority to prevent redirection by intel
-        _waypoint = _newGroup addWaypoint [(getPos leader _newGroup), 0];
-        _waypoint setWaypointType "SUPPORT";
-    } else {
-        _newGroup call Rimsiakas_fnc_recursiveSADWaypoint;
-        _newGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
-    };
+
+
+if ("Support" in ([_newGroup] call Rimsiakas_fnc_getVehicleClassesInGroup)) then {
+    _newGroup setVariable ["respondingToIntelPriority", 10]; // High priority to prevent redirection by intel
+    _waypoint = _newGroup addWaypoint [(getPos leader _newGroup), 0];
+    _waypoint setWaypointType "SUPPORT";
 } else {
-    player hcSetGroup [_newGroup];
+    _newGroup call Rimsiakas_fnc_recursiveSADWaypoint;
+    _newGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
+
+    if (_placer getVariable ["highCommandSubordinates", false]) then {
+        Rimsiakas_highCommandSubordinates append [_newGroup];
+    };
 };
