@@ -2,6 +2,8 @@
 
 #include "G_Revive\G_Desc_Include.hpp"
 
+#include "missionAreaSelector\dialogs.hpp"
+
 class CfgFunctions
 {
     #include "CHVD\CfgFunctions.hpp"
@@ -41,5 +43,7 @@ class CfgFunctions
             class orientGroupTowardsWaypoint {};
             class findRoad {};
         };
+
+        #include "missionAreaSelector\functions.hpp"
     };
 };

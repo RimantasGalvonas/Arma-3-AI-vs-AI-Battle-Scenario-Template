@@ -15,13 +15,14 @@ This is a customizeable mission template to be used in the Eden editor.
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.5.0/SemiRandomizedBattleTemplate-0.5.0.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.0/AI-vs-AI-Battle-Scenario-Template-0.6.0.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
 8. Follow the **Mission Setup** instructions below or in-game.
 
 # Mission Setup
+Mandatory:
 <details>
 <summary>Mission Area Setup</summary>
 
@@ -37,12 +38,15 @@ this setVariable ["intelGridSize", <b>100</b>];
 this setVariable ["maxInfantryResponseDistance", <b>500</b>];
 this setVariable ["maxVehicleResponseDistance", <b>1500</b>];
 this setVariable ["maxAirResponseDistance", <b>10000</b>];
+this setVariable ["dynamic", false];
 </pre>
 <b>1000</b> is the radius of the mission area. Units will roam around it looking for enemies. You may adjust the number.
 
 <b>100</b> is the size of a colored square on the map showing you the approximate location of enemies in the mission area. You may adjust this number or set it to <b>0</b> to disable it. Setting the value to something very low will give you very precise positions but may negatively impact performance.
 
 <b>500</b>, <b>1500</b>, <b>10000</b> are maximum distances at which infantry, vehicles and aircraft respond to intel about enemy locations.
+
+You may change the <b>false</b> to <b>true</b> in `this setVariable ["dynamic", false];` to enable mission location selection at mission start. Read more about it below in the <b>Dynamic Mission Area</b> section.
 </li>
 <li>It is recommended to place a <b>Military Symbols</b> module in the editor (found in: <b>Systems > Modules > Other</b>). It allows you to see the position of friendly groups on the map.</li>
 </ol>
@@ -132,8 +136,10 @@ These <b>names in bold</b> can be found by hovering over a unit placed in the Ed
 <br>
 </details>
 
+Optional:
+
 <details>
-<summary>Configuring Placers To Place Other Placers (Optional)</summary>
+<summary>Configuring Placers To Place Other Placers</summary>
 
 ## Configuring Placers To Place Other Placers
 You can also make **placers** place other **placers**. This could be used, for example, to make all the enemies spawn together in some spot but that spot's location would be randomized across a large area.
@@ -166,7 +172,7 @@ this setVariable ["preferRoad", true];
 </details>
 
 <details>
-<summary>Configuring Placers To Place Camps (Optional)</summary>
+<summary>Configuring Placers To Place Camps</summary>
 
 ## Configuring Placers To Place Camps
 You can spawn camps by adding this to a placer's init box:
@@ -182,7 +188,7 @@ The camps will be populated with units from the chosen side.
 </details>
 
 <details>
-<summary>High Command (Optional)</summary>
+<summary>High Command</summary>
 
 ## High Command
 High Command allows you to manually assign waypoints to chosen AI groups instead of having them roam the mission area automatically.
@@ -213,7 +219,7 @@ To enter high command mode, press **Left Ctrl+Space**.
 
 
 <details>
-<summary>AI Revive Script Configuration (Optional)</summary>
+<summary>AI Revive Script Configuration</summary>
 
 ## AI Revive Script Configuration
 This mission template has the [Grimes Simple Revive](https://github.com/kcgrimes/grimes-simple-revive) script integrated.
@@ -226,7 +232,7 @@ There are more configurations in there and they are well documented by the comme
 </details>
 
 <details>
-<summary>Multiplayer Considerations (Optional)</summary>
+<summary>Multiplayer Considerations</summary>
 
 ## Multiplayer Considerations
 Here are some things to keep in mind when using this template to create multiplayer missions:
@@ -235,8 +241,31 @@ Here are some things to keep in mind when using this template to create multipla
 <br>
 </details>
 
+<details>
+<summary>Dynamic Mission Area</summary>
+
+## Dynamic Mission Area
+You can put this in the init box of the <b>patrolCenter</b> entity to enable mission location selection on mission start:
+<pre>this setVariable ["dynamic", true];</pre>
+
+Some things to keep in mind:
+<ul>
+<li>
+Relative positions of synced placers are preserved. If you want a certain placer not to be moved when changing the mission location, you can add this to its init box:
+<pre>this setVariable ["dynamic", false];</pre>
+</li>
+<li>
+You can sync <b>triggers</b> to the <b>patrolCenter</b> entity to have them moved. It is advised to add this to the <b>condition</b> box of the triggers:
+<pre>this && Rimsiakas_missionInitialized</pre>
+This makes the trigger inactive until placement of units on the battlefield is finished.
+</li>
+</ul>
+
+<br>
+</details>
+
 # Example missions
-- [Take part in a NATO assault against an area controlled by AAF and CSAT (Multiplayer compatible)](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.5.0/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.5.0
+- [Take part in a NATO assault against an area controlled by AAF and CSAT (Multiplayer compatible)](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.0/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.6.0
 - [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.4
 - [Basic battle across entire Altis](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.6/WarAcrossAltis.Altis.zip) Made on v0.4.6
 

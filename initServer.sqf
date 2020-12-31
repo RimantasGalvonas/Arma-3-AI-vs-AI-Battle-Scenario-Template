@@ -16,6 +16,17 @@ Rimsiakas_highCommandSubordinates = [];
 sleep 0.1;
 
 
+// Mission area selector
+if (patrolCenter getVariable ["dynamic", false] && {hasInterface}) then {
+    titleCut ["", "BLACK IN", 1];
+    _actionId = player addAction ["Select mission area", {call Rimsiakas_fnc_openMissionAreaSelector}];
+    call Rimsiakas_fnc_openMissionAreaSelector;
+    waitUntil {!isNil "Rimsiakas_missionAreaSelected"};
+    player removeAction _actionId;
+    titleCut ["Initializing...", "BLACK FADED", 999, false];
+};
+
+
 
 // Spawn/place units
 _placersToProcessLast = [];

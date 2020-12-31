@@ -1,10 +1,9 @@
 sleep 0.1; // Small delay required because otherwise the Initializing... screen and validation hints are not shown.
 
-if (!isMultiplayer) then {
+if (isNull findDisplay 46421) then { // Check to make sure the mission selector dialog is not already opened
     titleCut ["Initializing...", "BLACK FADED", 999, false];
-} else {
-    titleCut ["Initializing...", "PLAIN", 999, false];
 };
+
 
 setGroupIconsVisible [true, false];
 
