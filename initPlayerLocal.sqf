@@ -35,15 +35,6 @@ player setVariable ["CHVD_initialized", true];
 
 
 
-// Enable team switch
-if (!isMultiplayer) then {
-    {
-        addSwitchableUnit _x;
-    } forEach units group player;
-};
-
-
-
 // Set visible group icons (otherwise allied faction icons are not shown)
 _friendlyGroups = [];
 {
