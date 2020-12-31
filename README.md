@@ -1,21 +1,21 @@
 # Arma 3 AI vs AI Battle Scenario Template
-This is a customizeable mission template to be used in the Eden editor.
+This is a customizeable mission template to be used in the Eden editor. It allows you to quickly create a variety of battle scenarios involving many AI units just by placing and configuring a few objects in the editor.
 
 #### Features
-- It allows you to spawn units and camps in randomized position and makes the units roam the mission area looking for enemies.
-- It draws a colored grid on the map showing the approximate location of enemies.
-- Works in all levels of command: you can play as a simple soldier, a squad leader or a battlefield commander.
+- Randomize the position of units across a certain area and make the units roam the mission area looking for enemies.
 - Waypoints for infantry units are placed in a way that prefers moving between areas with cover.
-- Groups inform each other of known enemy locations and respond if they are able (unless set as subordinates to a high commander). Note: AI doesn't know about the colored map grid. They only share info about units they actually encounter.
-- Extra care is being taken to make units spawn in positions that do not make them explode on mission start or become stuck. It still sometimes happens but quite rarely.
+- Groups inform each other of known enemy locations and respond if they are able.
+- Works on all levels of command: you can play as a simple soldier, a squad leader or a battlefield commander.
+- Colored grid on the map showing the approximate location of enemies.
+- Dynamic mission location - select the mission location on start.
 - Works from small scale engagements to battles spanning across the entire map.
-- Works both on singleplayer and multiplayer.
+- Suitable both for singleplayer and multiplayer scenarios.
 
 # Installation
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.0/AI-vs-AI-Battle-Scenario-Template-0.6.0.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.1/AI-vs-AI-Battle-Scenario-Template-0.6.1.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
@@ -265,7 +265,7 @@ This makes the trigger inactive until placement of units on the battlefield is f
 </details>
 
 # Example missions
-- [Take part in a NATO assault against an area controlled by AAF and CSAT (Multiplayer compatible)](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.0/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.6.0
+- [Take part in a NATO assault against an area controlled by AAF and CSAT (Multiplayer compatible)](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.1/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.6.1
 - [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.4
 - [Basic battle across entire Altis](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.6/WarAcrossAltis.Altis.zip) Made on v0.4.6
 
@@ -282,3 +282,123 @@ So far this mission uses these scripts from other developers:
 Thanks!
 
 If you publish a scenario based on this template, please mention me in the credits as well.
+
+# Changelog
+<details>
+<summary>Open changelog</summary>
+<ul>
+<li>
+0.6.1 (2020-12-31)
+<ul>
+<li>Removed automatically enabling team switch for group units as it can be controlled in the editor by setting the unit as playable</li>
+<li>Fixed AI not being re-enabled after teamswitching</li>
+<li>Fixed "View Distance Settings" action not being added after teamswitch or respawn</li>
+</ul>
+</li>
+<li>
+0.6.0 (2020-12-31)
+<ul>
+<li>Added an option to selection the mission location on mission start</li>
+</ul>
+</li>
+<li>
+0.5.0 (2020-12-26)
+<ul>
+<li>Multiplayer support</li>
+</ul>
+</li>
+<li>
+0.4.10 (2020-12-23)
+<ul>
+<li>Added an option to prefer placing subplacers on roads</li>
+<li>Stop non-air units chasing after air units</li>
+</ul>
+</li>
+<li>
+0.4.9 (2020-12-21)
+<ul>
+<li>Set SUPPORT waypoint for groups with support vehicles</li>
+</ul>
+</li>
+<li>
+0.4.8 (2020-12-20)
+<ul>
+<li>Fixed allied side group icons disappearing when teamswitching</li>
+</ul>
+</li>
+<li>
+0.4.7 (2020-12-19)
+<ul>
+<li>Camp spawn improvements - random rotation, allow both static and non-static units in camp</li>
+</ul>
+</li>
+<li>
+0.4.6 (2020-12-15)
+<ul>
+<li>Updated the intel share logic to make units redirect to closer targets</li>
+</ul>
+</li>
+<li>
+0.4.5 (2020-12-15)
+<ul>
+<li>Scalability improvements to support very large mission areas</li>
+</ul>
+</li>
+<li>
+0.4.4 (2020-12-14)
+<ul>
+<li>Fix vehicles sometimes spawning somewhere far away</li>
+</ul>
+</li>
+<li>
+0.4.3 (2020-12-14)
+<ul>
+<li>Configured the AI revive script to be disabled by default</li>
+</ul>
+</li>
+<li>
+0.4.2 (2020-12-13)
+<ul>
+<li>Use DESTROY instead of SEARCH AND DESTROY waypoint for tank targets to allow armor to be redirected as soon as they deal with their targets</li>
+</ul>
+</li>
+<li>
+0.4.1 (2020-12-12)
+<ul>
+<li>Fixed mechanized infantry vehicles ofter exploding on spawn</li>
+</ul>
+</li>
+<li>
+0.4.0 (2020-12-12)
+<ul>
+<li>Implement Grimes Simple Revive script</li>
+</ul>
+</li>
+<li>
+0.3.0 (2020-12-12)
+<ul>
+<li>Added sharing of intel about known enemy positions between groups</li>
+<li>Orient groups toward waypoint on spawn</li>
+</ul>
+</li>
+<li>
+0.2.1 (2020-12-11)
+<ul>
+<li>Initialization speed improvements</li>
+</ul>
+</li>
+<li>
+0.2.0 (2020-12-10)
+<ul>
+<li>Prefer placing vehicles on roads</li>
+<li>Fix some issues with high command mode</li>
+</ul>
+</li>
+<li>
+0.1.0 (2020-12-09)
+<ul>
+<li>First release</li>
+</ul>
+</li>
+</ul>
+</details>
