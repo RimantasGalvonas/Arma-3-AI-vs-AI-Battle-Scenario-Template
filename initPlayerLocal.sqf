@@ -27,6 +27,8 @@ if ((count Rimsiakas_missionValidationResult) > 0) exitWith {
 waitUntil {(!isNil "Rimsiakas_missionInitialized" && {Rimsiakas_missionInitialized == true})};
 
 
+player setVariable ["CHVD_initialized", true];
+
 
 // Create intel grid
 [] execVM "createGrid.sqf";
@@ -53,7 +55,15 @@ _friendlyGroups = [];
 player setVariable ["MARTA_reveal", _friendlyGroups];
 
 // Without this the military symbols would disappear after teamswitching.
-onTeamSwitch {setGroupIconsVisible [true, false]; _to setVariable ["MARTA_reveal", (_from getVariable "MARTA_reveal")];};
+onTeamSwitch {
+    setGroupIconsVisible [true, false];
+    _to setVariable ["MARTA_reveal", (_from getVariable "MARTA_reveal")];
+    _from enableAI "all";
+    if (!(_to getVariable ["CHVD_initialized", false])) then {
+        call CHVD_fnc_init;
+        _to setVariable ["CHVD_initialized", true];
+    };
+};
 
 
 
