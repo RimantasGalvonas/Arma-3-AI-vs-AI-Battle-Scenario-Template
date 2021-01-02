@@ -4,7 +4,7 @@ _oldMissionPos = getPos patrolCenter;
 _newMissionPos = getMarkerPos "missionAreaMarker";
 
 _synchronizedMoveableObjects = (synchronizedObjects patrolCenter) select {typeOf _x == "LOGIC" && {_x getVariable "logicType" == "placer" && {(_x getVariable ["dynamic", true])}}};
-_synchronizedMoveableObjects append ((synchronizedObjects patrolCenter) select {typeOf _x == "EmptyDetector"}); // Triggers
+_synchronizedMoveableObjects append ((synchronizedObjects patrolCenter) select {(typeOf _x) find "EmptyDetector" == 0}); // Triggers
 
 {
     _objectPos = getPos _x;

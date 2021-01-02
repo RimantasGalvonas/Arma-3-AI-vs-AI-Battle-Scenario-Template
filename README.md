@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.1/AI-vs-AI-Battle-Scenario-Template-0.6.1.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.2/AI-vs-AI-Battle-Scenario-Template-0.6.2.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
@@ -287,6 +287,12 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+0.6.2 (2021-01-02)
+<ul>
+<li>Fix not all types of triggers and vehicles being moved when using dynamic mission location</li>
+</ul>
+</li>
 <li>
 0.6.1 (2020-12-31)
 <ul>

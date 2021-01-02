@@ -38,9 +38,10 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
     _syncedUnit = _x;
     _syncedGroup = nil;
 
-    if (_syncedUnit isKindOf "landVehicle") then {
+    if (count (["Vehicle", "VehicleAutonomous"] arrayIntersect (_syncedUnit call BIS_fnc_objectType)) > 0) then {
         _syncedUnit = (crew _x) select 0;
     };
+
     if (_syncedUnit isKindOf "man") then {
         _syncedGroup = group _syncedUnit;
     };
