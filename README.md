@@ -291,6 +291,7 @@ If you publish a scenario based on this template, please mention me in the credi
 0.6.2 (2021-01-02)
 <ul>
 <li>Fix not all types of triggers and vehicles being moved when using dynamic mission location</li>
+<li>Speed up AI reenabling</li>
 </ul>
 </li>
 <li>
