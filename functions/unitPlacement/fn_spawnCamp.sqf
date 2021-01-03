@@ -108,7 +108,7 @@ if (count _activeSideFactions > 0) then {
 
 // Create a group for the composition units
 _group = createGroup [_side, true];
-_group setVariable ["respondingToIntelPriority", 10]; // High priority to prevent redirection by intel
+_group setVariable ["ignoreIntel", true];
 
 
 

@@ -1,6 +1,7 @@
 params ["_group", "_targets"];
 
 if (isPlayer (hcLeader _group)) exitWith {}; // Has high commander
+if (_group getVariable ["ignoreIntel", false]) exitWith {};
 
 _groupPos = getPos (leader _group);
 
@@ -23,7 +24,17 @@ if ("Air" in _typesOfVehiclesInGroup) then {
 {
     _canRespond = true;
 
+
+
     _alreadyRespondingPriority = _group getVariable ["respondingToIntelPriority", 0];
+
+    _currentTargetGroup = _group getVariable ["currentTargetGroup", nil];
+    if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && {count ((units _currentTargetGroup) select {alive _x}) == 0}}) then {
+        _alreadyRespondingPriority = 0; // Entire target group was destroyed so allow assigning a new target
+    };
+
+
+
     _targetPriority = 1;
 
     _target = _x;
@@ -65,26 +76,33 @@ if ("Air" in _typesOfVehiclesInGroup) then {
 
 
 
-    // Ignore this target if it has the same priority as current target and is not much closer
     if (_targetPriority == _alreadyRespondingPriority) then {
-        _currentTargetPosition = _group getVariable ["currentTargetPosition", nil];
+        _lastReportedTargetPosition = _group getVariable ["lastReportedTargetPosition", nil];
 
-        _distanceToCurrentTarget = nil;
-        if (!isNil "_currentTargetPosition") then {
-            _distanceToCurrentTarget = _groupPos distance _currentTargetPosition;
-        };
+        if (_target == _group getVariable["currentTarget", nil]) then {
+            if ((_lastReportedTargetPosition distance getPos _target) < 150) then {
+                _canRespond = false; // This is the same target that was set previously and it is in about the same position
+            };
+        } else {
+            _distanceToCurrentTarget = nil;
+            if (!isNil "_lastReportedTargetPosition") then {
+                _distanceToCurrentTarget = _groupPos distance _lastReportedTargetPosition;
+            };
 
-        if (!isNil "_distanceToCurrentTarget" && {_distanceToCurrentTarget + 300 > _distanceToTarget}) then {
-            _canRespond = false;
-        };
+            if (!isNil "_distanceToCurrentTarget" && {_distanceToTarget > (_distanceToCurrentTarget - 300)}) then {
+                _canRespond = false; //The suggested target is not that much closer than the current target, so stick to the old one
+            };
+        }
     };
 
 
 
     if (_canRespond == true) exitWith {
+        _group setVariable ["lastReportedTargetPosition", getPos _target];
         _group setVariable ["respondingToIntelPriority", _targetPriority];
-        _group setVariable ["currentTargetPosition", getPos _target];
-        _waypointStatement = "(group this) setVariable ['currentTargetPosition', nil]; (group this) setVariable ['respondingToIntelPriority', 0];";
+        _group setVariable ["currentTargetGroup", group _target];
+        _group setVariable ["currentTarget", _target];
+        _waypointStatement = "_group = group this; _group setVariable ['lastReportedTargetPosition', nil]; _group setVariable ['respondingToIntelPriority', 0]; _group setVariable ['currentTargetGroup', nil]; _group setVariable ['currentTarget', nil];";
 
         if (_targetPriority == 2) then {
             // Redirect tank to attack another tank. Use waypoint type destroy to free up the tank instantly when the target is destroyed.

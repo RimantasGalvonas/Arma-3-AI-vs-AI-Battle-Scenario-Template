@@ -52,7 +52,7 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
         (hcLeader _syncedGroup) hcRemoveGroup _syncedGroup;
 
         if ("Support" in ([_syncedGroup] call Rimsiakas_fnc_getVehicleClassesInGroup)) then {
-            _syncedGroup setVariable ["respondingToIntelPriority", 10]; // High priority to prevent redirection by intel
+            _syncedGroup setVariable ["ignoreIntel", true];
             _waypoint = _syncedGroup addWaypoint [(getPos leader _syncedGroup), 0];
             _waypoint setWaypointType "SUPPORT";
         } else {

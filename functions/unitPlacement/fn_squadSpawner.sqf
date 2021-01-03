@@ -54,7 +54,7 @@ if (G_Revive_System == true) then {
 
 
 if ("Support" in ([_newGroup] call Rimsiakas_fnc_getVehicleClassesInGroup)) then {
-    _newGroup setVariable ["respondingToIntelPriority", 10]; // High priority to prevent redirection by intel
+    _newGroup setVariable ["ignoreIntel", true];
     _waypoint = _newGroup addWaypoint [(getPos leader _newGroup), 0];
     _waypoint setWaypointType "SUPPORT";
 } else {
