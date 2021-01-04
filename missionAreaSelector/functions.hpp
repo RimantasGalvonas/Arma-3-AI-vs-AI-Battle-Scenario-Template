@@ -6,4 +6,6 @@ class missionAreaSelector
     class confirmMissionAreaSelection {};
     class previewMissionArea {};
     class terminateMissionAreaPreview {};
+    class populateEnvConfigFields {};
+    class confirmEnvConfig {};
 }

@@ -1,4 +1,7 @@
-class RscMapControl
+// Rimsiakas_ namespace added to prevent errors due to duplicate imports from other scripts
+
+
+class Rimsiakas_RscMapControl
 {
     deletable = 0;
     fade = 0;
@@ -399,5 +402,272 @@ class RscMapControl
         coefMin = 0.85;
         coefMax = 1;
         color[] = {0,0,0,1};
+    };
+};
+
+
+class Rimsiakas_RscSlider
+{
+    deletable = 0;
+    fade = 0;
+    access = 0;
+    type = 3;
+    style = 1024;
+    color[] =
+    {
+        1,
+        1,
+        1,
+        0.8
+    };
+    colorActive[] =
+    {
+        1,
+        1,
+        1,
+        1
+    };
+    shadow = 0;
+    x = 0;
+    y = 0;
+    w = 0.3;
+    h = 0.025;
+};
+
+
+class Rimsiakas_RscButton
+{
+    deletable = 0;
+    fade = 0;
+    access = 0;
+    type = 1;
+    text = "";
+    colorText[] =
+    {
+        1,
+        1,
+        1,
+        1
+    };
+    colorDisabled[] =
+    {
+        1,
+        1,
+        1,
+        0.25
+    };
+    colorBackground[] =
+    {
+        0,
+        0,
+        0,
+        0.5
+    };
+    colorBackgroundDisabled[] =
+    {
+        0,
+        0,
+        0,
+        0.5
+    };
+    colorBackgroundActive[] =
+    {
+        0,
+        0,
+        0,
+        1
+    };
+    colorFocused[] =
+    {
+        0,
+        0,
+        0,
+        1
+    };
+    colorShadow[] =
+    {
+        0,
+        0,
+        0,
+        0
+    };
+    colorBorder[] =
+    {
+        0,
+        0,
+        0,
+        1
+    };
+    soundEnter[] =
+    {
+        "\A3\ui_f\data\sound\RscButton\soundEnter",
+        0.09,
+        1
+    };
+    soundPush[] =
+    {
+        "\A3\ui_f\data\sound\RscButton\soundPush",
+        0.09,
+        1
+    };
+    soundClick[] =
+    {
+        "\A3\ui_f\data\sound\RscButton\soundClick",
+        0.09,
+        1
+    };
+    soundEscape[] =
+    {
+        "\A3\ui_f\data\sound\RscButton\soundEscape",
+        0.09,
+        1
+    };
+    idc = -1;
+    style = 2;
+    x = 0;
+    y = 0;
+    w = 0.095589;
+    h = 0.039216;
+    shadow = 2;
+    font = "RobotoCondensed";
+    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+    url = "";
+    offsetX = 0;
+    offsetY = 0;
+    offsetPressedX = 0;
+    offsetPressedY = 0;
+    borderSize = 0;
+};
+
+
+class Rimsiakas_RscText
+{
+    deletable = 0;
+    fade = 0;
+    access = 0;
+    type = 0;
+    idc = -1;
+    colorBackground[] =
+    {
+        0,
+        0,
+        0,
+        0
+    };
+    colorText[] =
+    {
+        1,
+        1,
+        1,
+        1
+    };
+    text = "";
+    fixedWidth = 0;
+    x = 0;
+    y = 0;
+    h = 0.037;
+    w = 0.3;
+    style = 0;
+    shadow = 1;
+    colorShadow[] =
+    {
+        0,
+        0,
+        0,
+        0.5
+    };
+    font = "RobotoCondensed";
+    SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+    linespacing = 1;
+    tooltipColorText[] =
+    {
+        1,
+        1,
+        1,
+        1
+    };
+    tooltipColorBox[] =
+    {
+        1,
+        1,
+        1,
+        1
+    };
+    tooltipColorShade[] =
+    {
+        0,
+        0,
+        0,
+        0.65
+    };
+};
+
+
+class Rimsiakas_RscEdit
+{
+    deletable = 0;
+    fade = 0;
+    access = 0;
+    type = 2;
+    x = 0;
+    y = 0;
+    h = 0.04;
+    w = 0.2;
+    colorBackground[] =
+    {
+        0,
+        0,
+        0,
+        0.5
+    };
+    colorText[] =
+    {
+        1,
+        1,
+        1,
+        1
+    };
+    colorDisabled[] =
+    {
+        1,
+        1,
+        1,
+        0.8
+    };
+    colorSelection[] =
+    {
+        "(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])",
+        "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])",
+        "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",
+        1
+    };
+    autocomplete = "";
+    text = "";
+    size = 0.2;
+    style = "0x00 + 0x40";
+    font = "RobotoCondensed";
+    shadow = 2;
+    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+    canModify = 1;
+    tooltipColorText[] =
+    {
+        1,
+        1,
+        1,
+        1
+    };
+    tooltipColorBox[] =
+    {
+        1,
+        1,
+        1,
+        1
+    };
+    tooltipColorShade[] =
+    {
+        0,
+        0,
+        0,
+        0.65
     };
 };

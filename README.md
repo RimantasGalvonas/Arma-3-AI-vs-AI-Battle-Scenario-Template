@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.3/AI-vs-AI-Battle-Scenario-Template-0.6.3.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.4/AI-vs-AI-Battle-Scenario-Template-0.6.4.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
@@ -265,7 +265,7 @@ This makes the trigger inactive until placement of units on the battlefield is f
 </details>
 
 # Example missions
-- [Take part in a NATO assault against an area controlled by AAF and CSAT (Multiplayer compatible)](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.1/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.6.1
+- [Take part in a NATO assault against an area controlled by AAF and CSAT (Multiplayer compatible)](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.4/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.6.4
 - [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.4
 - [Basic battle across entire Altis](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.6/WarAcrossAltis.Altis.zip) Made on v0.4.6
 
@@ -287,6 +287,12 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+0.6.4 (2021-01-04)
+<ul>
+<li>Add ability to configure date/time and weather in mission location selection</li>
+</ul>
+</li>
 <li>
 0.6.3 (2021-01-03)
 <ul>
