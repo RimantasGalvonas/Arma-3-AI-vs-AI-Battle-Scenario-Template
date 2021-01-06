@@ -17,9 +17,9 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
 4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.4/AI-vs-AI-Battle-Scenario-Template-0.6.4.zip)
 5. Extract its contents to your mission's folder.
-6. Go back to Arma, reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
-7. If you start seeing instructions on how to setup the mission, you've installed the template correctly.
-8. Follow the **Mission Setup** instructions below or in-game.
+6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
+7. If done correctly, you should see a hint confirming that the installation was successful.
+8. Follow the **Mission Setup** instructions below.
 
 # Mission Setup
 Mandatory:
