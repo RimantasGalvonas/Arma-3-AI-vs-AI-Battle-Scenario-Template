@@ -13,7 +13,6 @@ class CfgFunctions
         {
             file = "functions";
             class validator {};
-            class recursiveSADWaypoint {};
             class objectsGrabberWithSoldiers {};
             class objectsMapperWithATL {};
             class getVehicleClassesInGroup {};
@@ -29,6 +28,7 @@ class CfgFunctions
             file = "functions\intelSharing";
             class shareIntel{};
             class receiveIntel{};
+            class hasGroupSeenItsTargetRecently {};
         }
 
         class unitPlacement
@@ -42,6 +42,13 @@ class CfgFunctions
             class getCamps {};
             class orientGroupTowardsWaypoint {};
             class findRoad {};
+        };
+
+        class waypoints
+        {
+            file = "functions\waypoints";
+            class recursiveSADWaypoint {};
+            class createIntermediateMoveWaypoints {};
         };
 
         #include "missionAreaSelector\functions.hpp"

@@ -102,20 +102,17 @@ if ("Air" in _typesOfVehiclesInGroup) then {
         _group setVariable ["respondingToIntelPriority", _targetPriority];
         _group setVariable ["currentTargetGroup", group _target];
         _group setVariable ["currentTarget", _target];
-        _waypointStatement = "_group = group this; _group setVariable ['lastReportedTargetPosition', nil]; _group setVariable ['respondingToIntelPriority', 0]; _group setVariable ['currentTargetGroup', nil]; _group setVariable ['currentTarget', nil];";
 
-        if (_targetPriority == 2) then {
-            // Redirect tank to attack another tank. Use waypoint type destroy to free up the tank instantly when the target is destroyed.
+        _waypointStatements = "
+            _group = group this;
+            _group setVariable ['lastReportedTargetPosition', nil];
+            _group setVariable ['respondingToIntelPriority', 0];
+            _group setVariable ['currentTargetGroup', nil];
+            _group setVariable ['currentTarget', nil];
+        ";
 
-            for "_i" from count (waypoints _group) - 1 to 0 step -1 do {
-                deleteWaypoint [_group, _i];
-            };
+        _waypointCondition = "!((group this) call Rimsiakas_fnc_hasGroupSeenItsTargetRecently);";
 
-            _waypoint = _group addWaypoint [(getPos _target), 0];
-            _waypoint setWaypointType "DESTROY";
-            _waypoint setWaypointStatements ["true", _waypointStatement + " (group this) call Rimsiakas_fnc_recursiveSADWaypoint;"];
-        } else {
-            [_group, (getPos _target), _waypointStatement] call Rimsiakas_fnc_recursiveSADWaypoint;
-        };
+        [_group, (getPos _target), _waypointStatements, _waypointCondition] call Rimsiakas_fnc_recursiveSADWaypoint;
     };
 } forEach _targets;
