@@ -45,19 +45,12 @@ _placersToProcessLast = [];
 } forEach _placersToProcessLast;
 
 
-
- remoteExec ["Rimsiakas_fnc_reenableAI"];
-
+remoteExec ["Rimsiakas_fnc_reenableAI"];
 
 
-// Start groups intel sharing
-{
-    [_x] spawn { // This makes it run parallel for all groups
-        params["_group"];
-        [_group] call Rimsiakas_fnc_shareIntel;
-    };
-} forEach allGroups;
-
+[] spawn {
+    call Rimsiakas_fnc_shareIntel;
+};
 
 
 addMissionEventHandler ["HandleDisconnect", {

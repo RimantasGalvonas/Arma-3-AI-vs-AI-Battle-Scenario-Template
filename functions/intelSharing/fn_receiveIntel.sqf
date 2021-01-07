@@ -2,6 +2,9 @@ params ["_group", "_targets"];
 
 if (isPlayer (hcLeader _group)) exitWith {}; // Has high commander
 if (_group getVariable ["ignoreIntel", false]) exitWith {};
+if (_group getVariable ["processingIntel", false]) exitWith {}; // Prevents multiple instances of this script being run for this group due to some scheduling nonsense
+
+_group setVariable ["processingIntel", true];
 
 _groupPos = getPos (leader _group);
 
@@ -116,3 +119,5 @@ if ("Air" in _typesOfVehiclesInGroup) then {
         [_group, (getPos _target), _waypointStatements, _waypointCondition] call Rimsiakas_fnc_recursiveSADWaypoint;
     };
 } forEach _targets;
+
+_group setVariable ["processingIntel", false];

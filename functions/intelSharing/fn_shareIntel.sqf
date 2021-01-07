@@ -1,13 +1,48 @@
-params ["_group"];
-
 while {true} do {
-    _targets = leader _group targets [true, 1000, [], 30];
+    _knownByBlufor = [];
+    _knownByOpfor = [];
+    _knownByIndependent = [];
 
     {
-        _isFriendly = [side _group, side _x] call BIS_fnc_sideIsFriendly;
-        if (_isFriendly && _group != _x) then {
-            [_x, _targets] call Rimsiakas_fnc_receiveIntel;
+        _targets = leader _x targets [true, 1000, [], 30];
+
+        if (side _x == blufor) then {
+            _knownByBlufor append _targets;
         };
+
+        if (side _x == opfor) then {
+            _knownByOpfor append _targets;
+        };
+
+        if (side _x == independent) then {
+            _knownByIndependent append _targets;
+        }
+    } forEach allGroups;
+
+    //remove duplicates
+    _knownByBlufor = _knownByBlufor arrayIntersect _knownByBlufor;
+    _knownByOpfor = _knownByOpfor arrayIntersect _knownByOpfor;
+    _knownByIndependent =_knownByIndependent arrayIntersect _knownByIndependent;
+
+
+    {
+        _commonTargets = [];
+        if ([blufor, side _x] call BIS_fnc_sideIsFriendly) then {
+            _commonTargets append _knownByBlufor;
+        };
+
+        if ([opfor, side _x] call BIS_fnc_sideIsFriendly) then {
+            _commonTargets append _knownByOpfor;
+        };
+
+        if ([independent, side _x] call BIS_fnc_sideIsFriendly) then {
+            _commonTargets append _knownByIndependent;
+        };
+
+        _commonTargets = _commonTargets arrayIntersect _commonTargets;
+
+        [_x, _commonTargets] call Rimsiakas_fnc_receiveIntel;
+
     } forEach allGroups;
 
     sleep 10;
