@@ -89,7 +89,7 @@ if ("Air" in _typesOfVehiclesInGroup) then {
                 _distanceToCurrentTarget = _groupPos distance _lastReportedTargetPosition;
             };
 
-            if (!isNil "_distanceToCurrentTarget" && {_distanceToTarget > (_distanceToCurrentTarget - 300)}) then {
+            if (!isNil "_distanceToCurrentTarget" && {_distanceToTarget > _distanceToCurrentTarget || {_distanceToCurrentTarget - _distanceToTarget < 200}}) then {
                 _canRespond = false; //The suggested target is not that much closer than the current target, so stick to the old one
             };
         }
