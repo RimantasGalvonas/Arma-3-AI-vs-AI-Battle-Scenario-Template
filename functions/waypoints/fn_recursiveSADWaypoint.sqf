@@ -9,7 +9,7 @@ for "_i" from count (waypoints _group) - 1 to 0 step -1 do {
 
 
 _waypointRadius = 5;
-_waypointStatements = format ["%1 (group this) call Rimsiakas_fnc_recursiveSADWaypoint;", _additionalWaypointStatements];
+_waypointStatements = format ["%1 [group this] call Rimsiakas_fnc_recursiveSADWaypoint;", _additionalWaypointStatements];
 
 
 

@@ -58,8 +58,8 @@ if ("Support" in ([_newGroup] call Rimsiakas_fnc_getVehicleClassesInGroup)) then
     _waypoint = _newGroup addWaypoint [(getPos leader _newGroup), 0];
     _waypoint setWaypointType "SUPPORT";
 } else {
-    _newGroup call Rimsiakas_fnc_recursiveSADWaypoint;
-    _newGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
+    [_newGroup] call Rimsiakas_fnc_recursiveSADWaypoint;
+    [_newGroup] call Rimsiakas_fnc_orientGroupTowardsWaypoint;
 
     if (_placer getVariable ["highCommandSubordinates", false]) then {
         Rimsiakas_highCommandSubordinates append [_newGroup];

@@ -54,7 +54,7 @@ _placersToProcessLast = [];
 {
     [_x] spawn { // This makes it run parallel for all groups
         params["_group"];
-        _group call Rimsiakas_fnc_shareIntel;
+        [_group] call Rimsiakas_fnc_shareIntel;
     };
 } forEach allGroups;
 

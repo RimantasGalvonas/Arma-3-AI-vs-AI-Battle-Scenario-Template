@@ -111,7 +111,7 @@ if ("Air" in _typesOfVehiclesInGroup) then {
             _group setVariable ['currentTarget', nil];
         ";
 
-        _waypointCondition = "!((group this) call Rimsiakas_fnc_hasGroupSeenItsTargetRecently);";
+        _waypointCondition = "!([group this] call Rimsiakas_fnc_hasGroupSeenItsTargetRecently);";
 
         [_group, (getPos _target), _waypointStatements, _waypointCondition] call Rimsiakas_fnc_recursiveSADWaypoint;
     };

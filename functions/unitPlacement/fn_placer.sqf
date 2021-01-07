@@ -56,8 +56,8 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
             _waypoint = _syncedGroup addWaypoint [(getPos leader _syncedGroup), 0];
             _waypoint setWaypointType "SUPPORT";
         } else {
-            _syncedGroup call Rimsiakas_fnc_recursiveSADWaypoint;
-            _syncedGroup call Rimsiakas_fnc_orientGroupTowardsWaypoint;
+            [_syncedGroup] call Rimsiakas_fnc_recursiveSADWaypoint;
+            [_syncedGroup] call Rimsiakas_fnc_orientGroupTowardsWaypoint;
 
             if (_placer getVariable ["highCommandSubordinates", false]) then {
                 Rimsiakas_highCommandSubordinates append [_syncedGroup];
