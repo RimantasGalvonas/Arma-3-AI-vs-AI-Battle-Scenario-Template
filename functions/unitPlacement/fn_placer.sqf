@@ -23,11 +23,9 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
         };
 
         _x setPos _randomPos;
-    };
-} forEach (_placer getVariable "childPlacers"); // No idea why, but it only works properly if the positions are set in a separate loop from the placement.
-{
-    if (_x getVariable "logicType" == "placer") then {
-        [_x] call Rimsiakas_fnc_placer;
+
+        _childSpawnerHandler = [_x] spawn Rimsiakas_fnc_placer; // Must be sent off to another process because otherwise the child placer variables get mixed up with the parent's somehow.
+        waitUntil {scriptDone _childSpawnerHandler};
     };
 } forEach (_placer getVariable "childPlacers");
 

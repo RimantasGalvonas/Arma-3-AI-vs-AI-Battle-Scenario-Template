@@ -13,8 +13,6 @@ class CfgFunctions
         {
             file = "functions";
             class validator {};
-            class objectsGrabberWithSoldiers {};
-            class objectsMapperWithATL {};
             class getVehicleClassesInGroup {};
             class disableAIWhileLoading {
                 preInit = 1;
@@ -42,6 +40,14 @@ class CfgFunctions
             class getCamps {};
             class orientGroupTowardsWaypoint {};
             class findRoad {};
+        };
+
+        class rewrites
+        {
+            file = "functions\rewrites";
+            class findSafePosWithDebug {};
+            class objectsGrabberWithSoldiers {};
+            class objectsMapperWithATL {};
         };
 
         class waypoints
