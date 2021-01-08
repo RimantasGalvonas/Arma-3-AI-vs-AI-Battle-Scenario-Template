@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.4/AI-vs-AI-Battle-Scenario-Template-0.6.4.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.5/AI-vs-AI-Battle-Scenario-Template-0.6.5.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -265,7 +265,7 @@ This makes the trigger inactive until placement of units on the battlefield is f
 </details>
 
 # Example missions
-- [Take part in a NATO assault against an area controlled by AAF and CSAT (Multiplayer compatible)](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.4/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.6.4
+- [Take part in a NATO assault against an area controlled by AAF and CSAT (Multiplayer compatible)](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.6.5/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.6.5
 - [Survive an assault on your camp until reinforcements arrive](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.4
 - [Basic battle across entire Altis](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.6/WarAcrossAltis.Altis.zip) Made on v0.4.6
 
@@ -287,6 +287,16 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+0.6.5 (2021-01-08)
+<ul>
+<li>Fix parent and child placer configurations getting mixed up, causing all units from parent placer being placed close together.</li>
+<li>Optimizations for intel sharing</li>
+<li>Workaround for an Arma bug which could cause groups spawned with camps being assigned waypoints from other groups</li>
+<li>Make groups stay at their search and destroy waypoints until they've dealt with or lost contact with their target</li>
+<li>Remove the in-game setup instructions and show link to this documentation instead</li>
+</ul>
+</li>
 <li>
 0.6.4 (2021-01-04)
 <ul>
