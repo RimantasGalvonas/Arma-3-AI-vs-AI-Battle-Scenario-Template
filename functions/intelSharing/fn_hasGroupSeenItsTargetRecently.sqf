@@ -1,28 +1,58 @@
-params ["_group"];
+params ["_group", ["_targetModeGroup", true]];
 
-_target = _group getVariable ['currentTarget', nil];
+scopeName "main";
 
-if (isNil '_target') exitWith {
+
+
+_targetGroup = _group getVariable ["currentTargetGroup", nil];
+
+if (isNil "_targetGroup") exitWith {
+    if (_group == group player) then {
+        hint "no group";
+    };
     false;
 };
 
-if (!alive _target) exitWith {
-    false;
+
+
+_targets = [];
+
+if (_targetModeGroup) then {
+    {
+        _targets append [_x]
+    } forEach units _targetGroup;
+} else {
+    _targets append [_group getVariable ["currentTarget", nil]];
 };
 
-_groupSeenTheTargetRecently = false;
+
 
 {
-    _targetKnowledge = _x targetKnowledge _target;
-    _lastSeen = (_targetKnowledge select 2) max 0;
-    _secondsSinceSeen = time - _lastSeen;
-    if (_lastSeen > 0 && {_secondsSinceSeen < 60}) exitWith {
-        _groupSeenTheTargetRecently = true;
-    };
-} forEach units _group;
+    call {
+        scopeName "targetCheck";
 
-if (_groupSeenTheTargetRecently) exitWith {
-    true;
-};
+        _target = _x;
+
+        if (isNil "_target") then {
+            breakOut "targetCheck";
+        };
+
+        if (!alive _target) then {
+            breakOut "targetCheck";
+        };
+
+        {
+            _targetKnowledge = _x targetKnowledge _target;
+            _lastSeen = (_targetKnowledge select 2) max 0;
+            _secondsSinceSeen = time - _lastSeen;
+
+            if (_lastSeen > 0 && {_secondsSinceSeen < 60}) then {
+                true breakOut "main";
+            };
+        } forEach units _group;
+    }
+} forEach _targets;
+
+
 
 false;
