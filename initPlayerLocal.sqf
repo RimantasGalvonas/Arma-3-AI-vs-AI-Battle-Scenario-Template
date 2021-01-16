@@ -61,7 +61,7 @@ onTeamSwitch {
 player addEventHandler ["Killed", {
     params ["_unit", "_killer", "_instigator", "_useEffects"];
     {
-        [_x] call Rimsiakas_fnc_recursiveSADWaypoint;
+        [_x] call Rimsiakas_fnc_searchForEnemies;
     } forEach hcAllGroups _unit;
 }];
 
