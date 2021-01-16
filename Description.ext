@@ -53,8 +53,12 @@ class CfgFunctions
         class waypoints
         {
             file = "functions\waypoints";
-            class recursiveSADWaypoint {};
+            class attackEnemy {};
+            class searchForEnemies {};
+            class createIntermediateCombatMoveWaypoints {};
             class createIntermediateMoveWaypoints {};
+            class waypointPreConditionTimeout {};
+            class findOverwatchWithCover {};
         };
 
         #include "missionAreaSelector\functions.hpp"

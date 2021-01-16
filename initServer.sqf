@@ -57,7 +57,7 @@ addMissionEventHandler ["HandleDisconnect", {
     params ["_unit", "_id", "_uid", "_name"];
 
     {
-        [_x] call Rimsiakas_fnc_recursiveSADWaypoint
+        [_x] call Rimsiakas_fnc_searchForEnemies
     } forEach hcAllGroups _unit;
 
     true;
