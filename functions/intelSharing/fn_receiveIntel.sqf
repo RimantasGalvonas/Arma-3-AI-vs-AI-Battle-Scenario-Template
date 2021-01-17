@@ -9,17 +9,36 @@ _group setVariable ["processingIntel", true];
 _groupPos = getPos (leader _group);
 
 
+
 //Get current types of vehicles in the group
-_typesOfVehiclesInGroup = [_group] call Rimsiakas_fnc_getVehicleClassesInGroup;
-_hasTanksOrAircraftInGroup = count (_typesOfVehiclesInGroup arrayIntersect ["Air", "Armored"]) > 0;
+_typesOfVehiclesInGroup = [];
+
+{
+    private _targetVehicleType = (vehicle _x) call BIS_fnc_objectType;
+    _typesOfVehiclesInGroup append [_targetVehicleType select 1];
+} forEach units _group;
+
+_typesOfVehiclesInGroup = _typesOfVehiclesInGroup arrayIntersect _typesOfVehiclesInGroup; // Remove duplicates
+
+
 
 // Get max response distance
 _maxResponseDistance = patrolCenter getVariable ["maxInfantryResponseDistance", 500];
-if (count (_typesOfVehiclesInGroup arrayIntersect ["Car", "Armored"]) > 0) then {
+if (count (_typesOfVehiclesInGroup arrayIntersect ["Car", "Motorcycle", "Ship", "Submarine", "TrackedAPC", "Tank", "WheeledAPC"]) > 0) then {
     _maxResponseDistance = patrolCenter getVariable ["maxVehicleResponseDistance", 1000];
 };
-if ("Air" in _typesOfVehiclesInGroup) then {
+if (count (_typesOfVehiclesInGroup arrayIntersect ["Helicopter", "Plane"]) > 0) then {
     _maxResponseDistance = patrolCenter getVariable ["maxAirResponseDistance", 10000];
+};
+
+
+
+// Free up tanks and air assets as soon as they've dealt with their target
+_currentTarget = _group getVariable["currentTarget", nil];
+if (count (_typesOfVehiclesInGroup arrayIntersect ["Tank", "Helicopter", "Plane"]) > 0) then {
+    if (!isNil "_currentTarget" && {!alive _currentTarget}) then {
+        [_group] call Rimsiakas_fnc_unsetGroupTarget;
+    };
 };
 
 
@@ -41,11 +60,28 @@ if ("Air" in _typesOfVehiclesInGroup) then {
     _targetPriority = 1;
 
     _target = _x;
-    _targetVehicleConfig = configFile >> "cfgVehicles" >> (typeOf vehicle _target);
-    _targetVehicleClass = getText (_targetVehicleConfig >> "vehicleClass");
+    _targetVehicleType = ((vehicle _target) call BIS_fnc_objectType) select 1;
 
-    if (_targetVehicleClass == "Armored") then {
-        _targetPriority = 2;
+
+
+    // Only tanks, helicopters, planes and APCs can attack APCs
+    if (_targetVehicleType in ["TrackedAPC", "WheeledAPC"]) then {
+        if (count (_typesOfVehiclesInGroup arrayIntersect ["TrackedAPC", "Tank", "WheeledAPC", "Helicopter", "Plane"]) == 0) then {
+            _canRespond = false;
+        } else {
+            _targetPriority = 2;
+        }
+    };
+
+
+
+    // Only tanks, helicopters and planes can attack tanks
+    if (_targetVehicleType == "Tank") then {
+        if (count (_typesOfVehiclesInGroup arrayIntersect ["Tank", "Helicopter", "Plane"]) == 0) then {
+            _canRespond = false;
+        } else {
+            _targetPriority = 3;
+        }
     };
 
 
@@ -57,15 +93,8 @@ if ("Air" in _typesOfVehiclesInGroup) then {
 
 
 
-    // Ignore this target if it is armored and there are no armored or air units in group
-    if (_targetVehicleClass == "Armored" && _hasTanksOrAircraftInGroup == false) then {
-        _canRespond = false;
-    };
-
-
-
     // Only air assets can catch up with other air assets
-    if (_targetVehicleClass == "Air" && {!("Air" in _typesOfVehiclesInGroup)}) then {
+    if (_targetVehicleType in ["Helicopter", "Plane"] && {count (_typesOfVehiclesInGroup arrayIntersect ["Helicopter", "Plane"]) == 0}) then {
         _canRespond = false;
     };
 
@@ -82,7 +111,7 @@ if ("Air" in _typesOfVehiclesInGroup) then {
     if (_targetPriority == _alreadyRespondingPriority) then {
         _lastReportedTargetPosition = _group getVariable ["lastReportedTargetPosition", nil];
 
-        if (_target == _group getVariable["currentTarget", nil]) then {
+        if (_target == _currentTarget) then {
             if ((_lastReportedTargetPosition distance getPos _target) < 150) then {
                 _canRespond = false; // This is the same target that was set previously and it is in about the same position
             };

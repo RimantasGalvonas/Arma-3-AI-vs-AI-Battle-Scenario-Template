@@ -2,7 +2,7 @@ params ["_group", "_startingPos", "_destination", "_enemyPos", ["_checkStartingP
 
 _waypointStepDistance = 100;
 
-_distance = _startingPos distance _destination;
+_distance = _startingPos distance2D _destination;
 
 if (_distance > 2000) then {
     _waypointStepDistance = _distance / 10;
@@ -58,16 +58,14 @@ while {_distance > (_waypointStepDistance * 1.5)} do {
 
     // Skip creating the waypoint at this step if the most suitable position was on water
     if (surfaceIsWater _preferablePosition == false) then {
-        _preferablePosition = [_preferablePosition, 0, 10, 1, 0, -1] call BIS_fnc_findSafePos; // To avoid placing waypoints inside houses. Makes the units get stuck
+        _preferablePosition = [_preferablePosition, 0, 10, 1, 0, -1, 0, [], [_preferablePosition, _preferablePosition]] call BIS_fnc_findSafePos; // To avoid placing waypoints inside houses. Makes the units get stuck
 
         _intermediateWaypoint = _group addWayPoint [_preferablePosition, 5];
         _intermediateWaypoint setWaypointType "MOVE";
         _intermediateWaypoint setWaypointStatements [_waypointCondition, ""];
     };
 
-
-
-    _distance = _preferablePosition distance _destination;
+    _distance = _preferablePosition distance2D _destination;
 
     _lastPos = _preferablePosition;
 };

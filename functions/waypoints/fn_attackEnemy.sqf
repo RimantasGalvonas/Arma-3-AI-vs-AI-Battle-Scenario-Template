@@ -39,10 +39,7 @@ _netId = _group call BIS_fnc_netId;
 _waypointStatements = "
     %1
     _group = '%2' call BIS_fnc_groupFromNetId;
-    _group setVariable ['lastReportedTargetPosition', nil];
-    _group setVariable ['respondingToIntelPriority', 0];
-    _group setVariable ['currentTargetGroup', nil];
-    _group setVariable ['currentTarget', nil];
+    [_group] call Rimsiakas_fnc_unsetGroupTarget;
     [_group] call Rimsiakas_fnc_searchForEnemies;
 ";
 _waypointStatements = format [_waypointStatements, _additionalWaypointStatements, _netId];

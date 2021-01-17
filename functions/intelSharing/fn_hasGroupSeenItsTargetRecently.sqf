@@ -15,9 +15,7 @@ if (isNil "_targetGroup") exitWith {
 _targets = [];
 
 if (_targetModeGroup) then {
-    {
-        _targets append [_x]
-    } forEach units _targetGroup;
+    _targets = units _targetGroup;
 } else {
     _targets append [_group getVariable ["currentTarget", nil]];
 };
