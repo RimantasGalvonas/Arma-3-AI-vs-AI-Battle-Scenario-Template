@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. Alt+tab out of Arma and go to Documents/Arma 3/missions/<b>YOUR_NEW_MISSION_FOLDER</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.7.1/AI-vs-AI-Battle-Scenario-Template-0.7.1.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.7.2/AI-vs-AI-Battle-Scenario-Template-0.7.2.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -92,7 +92,7 @@ This randomizes the location of units within the radius defined in the placer an
 There are two ways of doing this:
 <ol>
 <li>
-<b>Syncing units</b>
+<b>Syncing units (Recommended)</b>
 
 The simplest way to make a placer spawn units is to place a unit or a group in the editor and sync it to the placer.<br>
 Sync from the character, not the group icon.<br>
@@ -101,7 +101,8 @@ Sync only one unit from the group, not all of them. Doing otherwise should still
 <li>
 <b>Group variable</b>
 
-This method is a bit more complex but it is useful if you want to easily copy and paste placer configurations into different missions.
+This method is more complex to setup but it has its uses. This makes the placer spawn new units rather than relocate those that were already created in the editor, meaning you could, for example, activate this placer at some later point in the mission to spawn reinforcements (see the <b>Adding extra logic with triggers or init fields</b> section below).
+<br><br>
 
 Add this to the placer's init box:
 <pre>
@@ -217,7 +218,6 @@ To enter high command mode, press **Left Ctrl+Space**.
 <br>
 </details>
 
-
 <details>
 <summary>AI Revive Script Configuration</summary>
 
@@ -227,16 +227,6 @@ This mission template has the [Grimes Simple Revive](https://github.com/kcgrimes
 To enable it, change the **G_Revive_System** and **G_Briefing** values to **true** in the **G_Revive_init.sqf** file.
 
 There are more configurations in there and they are well documented by the comments in the file. Adjust them to your liking.
-
-<br>
-</details>
-
-<details>
-<summary>Multiplayer Considerations</summary>
-
-## Multiplayer Considerations
-Here are some things to keep in mind when using this template to create multiplayer missions:
-- When placing units on the map, make sure to place them some distance apart and facing away from hostile units. Otherwise when the mission starts the group may spawn in combat mode.
 
 <br>
 </details>
@@ -264,6 +254,79 @@ This makes the trigger inactive until placement of units on the battlefield is f
 <br>
 </details>
 
+<details>
+<summary>Multiplayer Considerations</summary>
+
+## Multiplayer Considerations
+Here are some things to keep in mind when using this template to create multiplayer missions:
+- When placing units on the map, make sure to place them some distance apart and facing away from hostile units. Otherwise when the mission starts the group may spawn in combat mode.
+- When using Dynamic Mission Area in multiplayer, the configuration dialog may show up before the map loading screen goes away. In that case you will have to wait for the loading screen to go away if you wish to use the location preview button.
+- **Respawn Position** modules can be synced to placers to have their locations randomized.
+- Other than that, nothing too special is required for this to work on multiplayer:<br>
+  Set some settings in <b>Attributes > Multiplayer...</b> in the editor, set some units as playable and you're good to go.
+
+
+<br>
+</details>
+
+<details>
+<summary>Adding extra logic with triggers or init fields</summary>
+
+## Adding extra logic with triggers or init fields
+<details>
+<summary>Waiting until the mission has fully initialized</summary>
+
+Init fields and statements in triggers are evaluated as soon as the mission loads. However, the mission setup scripts may still moving things around. This may cause triggers to activate prematurely and have other undesired effects.
+
+When the scripts have finished setting up the mission, a <b>Rimsiakas_missionInitialized</b> variable is created. You can check for its existence to make sure your triggers or code in init fields is evaluated only after the mission has fully initialized.
+
+Example trigger condition:
+<pre>
+this && Rimsiakas_missionInitialized
+</pre>
+
+Example init field:
+<pre>
+_var = [] spawn {
+    waitUntil {!isNil "Rimsiakas_missionInitialized"};
+    // your code here
+};
+</pre>
+
+</details>
+
+<details>
+<summary>Moving the mission area</summary>
+
+You can move the mission area and all the placers and triggers synced to it with this command:
+<pre>
+[_newPosition] call Rimsiakas_fnc_moveMissionArea;
+</pre>
+After that you have to reinitialize the intel grid, if you are using it:
+<pre>
+remoteExec ["Rimsiakas_fnc_createIntelGrid"];
+</pre>
+</details>
+
+<details>
+<summary>Manually activating a placer</summary>
+
+Placers can be activated manually like this:
+<pre>
+[] spawn {
+    [placerName] call Rimsiakas_fnc_placer;
+
+    {_x enableAI "all";} forEach allUnits;
+};
+</pre>
+
+When placing units, the AI for those units is disabled, that's why there's a line there to reenable AI.
+
+Note that these commands are wrapped in a `[] spawn {}` statement. This makes the placer run in the [scheduler](https://community.bistudio.com/wiki/Scheduler). This is needed because the logic for placers that have subplacers requires [script suspension](https://community.bistudio.com/wiki/Scheduler#Suspension).
+</details>
+<br>
+</details>
+
 # Example missions
 - [Take part in a NATO assault against an area controlled by AAF and CSAT [SP/MP/COOP]](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.7.1/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v0.7.1
 - [Survive an assault on your camp until reinforcements arrive [SP]](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.4
@@ -287,6 +350,13 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+0.7.2 (2021-01-25)
+<ul>
+<li>Refactoring to expose some logic for easier manipulation with in-game scripts</li>
+<li>Allow usage of respawn position modules with placers</li>
+</ul>
+</li>
 <li>
 0.7.1 (2021-01-17)
 <ul>

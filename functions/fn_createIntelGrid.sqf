@@ -1,5 +1,19 @@
-_gridSize = patrolCenter getVariable "intelGridSize";
+_gridSize = patrolCenter getVariable ["intelGridSize", 0];
+
 if (_gridSize == 0) exitWith {};
+
+
+// Delete old grid if it exists
+if (!isNil "intelGridTriggers") then {
+    {
+        deleteMarkerLocal (_x getVariable ["attachedMarker", ""]);
+        deleteVehicle _x;
+    } forEach intelGridTriggers;
+} else {
+    intelGridTriggers = [];
+};
+
+
 
 _middlePos = getPos patrolCenter;
 _patrolRadius = (patrolCenter getVariable "patrolRadius") * 1.5;
@@ -37,5 +51,7 @@ for "_i" from _leftmostGrid to _rightmostGrid step _gridSize do {
             };
         } forEach thisList;";
         _trg setTriggerStatements [_triggerCondition, _triggerActivation, "(thisTrigger getVariable ""attachedMarker"") setMarkerColorLocal ""ColorBLACK"""];
+
+        intelGridTriggers append [_trg];
     }
 };
