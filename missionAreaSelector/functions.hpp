@@ -8,4 +8,5 @@ class missionAreaSelector
     class terminateMissionAreaPreview {};
     class populateEnvConfigFields {};
     class confirmEnvConfig {};
+    class moveMissionArea {};
 }

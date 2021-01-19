@@ -31,7 +31,7 @@ player setVariable ["CHVD_initialized", true];
 
 
 // Create intel grid
-[] execVM "createGrid.sqf";
+[] call Rimsiakas_fnc_createIntelGrid;
 
 
 
