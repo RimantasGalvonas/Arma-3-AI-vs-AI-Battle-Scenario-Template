@@ -32,7 +32,7 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
 
 // Synchronized units
- {
+{
     _syncedUnit = _x;
     _syncedGroup = nil;
 
@@ -74,7 +74,29 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
     {_x disableAI "all"} forEach allUnits; // Temporarily disabled to avoid firefights breaking out while mission is initializing
 } forEach (_placer getVariable "groups");
 
+
+
+// Camps
 {
     [_x, _placer] call Rimsiakas_fnc_spawnCamp;
     {_x disableAI "all"} forEach allUnits; // Temporarily disabled to avoid firefights breaking out while mission is initializing
 } forEach (_placer getVariable "camps");
+
+
+
+// Synchronized respawn positions
+{
+     // Find an empty enough random position. If none can be found, clear any flattish area of terrain objects within the required radius and use that one.
+    _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 10, 0, 0.3, 0, [], [[0,0],[0,0]]] call BIS_fnc_findSafePos;
+    if ((_randomPosition select 0) == 0) then {
+        _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 5, 0, 0.3, 0] call BIS_fnc_findSafePos;
+        _terrainObjects = nearestTerrainObjects [_randomPosition, [], 10, false];
+
+        {
+            _x hideObjectGlobal true;
+        } forEach _terrainObjects;
+    };
+
+    _x setPos _randomPosition;
+
+} foreach (synchronizedObjects _placer select {(typeOf _x) find "ModuleRespawnPosition" == 0})
