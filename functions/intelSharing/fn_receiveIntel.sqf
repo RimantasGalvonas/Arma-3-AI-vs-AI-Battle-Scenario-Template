@@ -43,22 +43,20 @@ if (count (_typesOfVehiclesInGroup arrayIntersect ["Tank", "Helicopter", "Plane"
 
 
 
+_alreadyRespondingPriority = _group getVariable ["respondingToIntelPriority", 0];
+
+// Allow assigning a new target if the entire target group was destroyed
+_currentTargetGroup = _group getVariable ["currentTargetGroup", nil];
+if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && {count ((units _currentTargetGroup) select {alive _x}) == 0}}) then {
+    _alreadyRespondingPriority = 0;
+};
+
+
+
 {
     _canRespond = true;
 
-
-
-    _alreadyRespondingPriority = _group getVariable ["respondingToIntelPriority", 0];
-
-    _currentTargetGroup = _group getVariable ["currentTargetGroup", nil];
-    if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && {count ((units _currentTargetGroup) select {alive _x}) == 0}}) then {
-        _alreadyRespondingPriority = 0; // Entire target group was destroyed so allow assigning a new target
-    };
-
-
-
     _targetPriority = 1;
-
     _target = _x;
     _targetVehicleType = ((vehicle _target) call BIS_fnc_objectType) select 1;
 
@@ -130,12 +128,7 @@ if (count (_typesOfVehiclesInGroup arrayIntersect ["Tank", "Helicopter", "Plane"
 
 
     if (_canRespond == true) exitWith {
-        _group setVariable ["lastReportedTargetPosition", getPos _target];
-        _group setVariable ["respondingToIntelPriority", _targetPriority];
-        _group setVariable ["currentTargetGroup", group _target];
-        _group setVariable ["currentTarget", _target];
-
-        [_group, (getPos _target)] call Rimsiakas_fnc_attackEnemy;
+        [_group, _target, _targetPriority] call Rimsiakas_fnc_attackEnemy;
     };
 } forEach _targets;
 

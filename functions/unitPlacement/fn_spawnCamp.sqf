@@ -63,7 +63,7 @@ campAreas append [[_topLeftCorner, _bottomRightCorner]];
 // Pick a faction to use for the units in the composition
 _activeSideFactions = [];
 {
-    if (_side == side _x) then {
+    if (_side == side _x && {count (units _x) > 0}) then {
         _unit = (units _x) select 0;
         _unitConfig = configFile >> "cfgVehicles" >> typeOf _unit;
 

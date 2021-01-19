@@ -6,6 +6,8 @@ for "_i" from count (waypoints _group) - 1 to 0 step -1 do {
     deleteWaypoint [_group, _i];
 };
 
+[_group] call Rimsiakas_fnc_unsetGroupTarget;
+
 
 
 if (isNil "_destination") then {

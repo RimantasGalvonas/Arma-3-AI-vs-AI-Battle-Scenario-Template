@@ -1,4 +1,13 @@
-params ["_group", "_targetPos", ["_additionalWaypointStatements", ""], ["_additionalWaypointCondition", "true"]];
+params ["_group", "_target", ["_targetPriority", 1], ["_additionalWaypointStatements", ""], ["_additionalWaypointCondition", "true"]];
+
+
+
+_targetPos = getPos _target;
+
+_group setVariable ["lastReportedTargetPosition", getPos _target];
+_group setVariable ["respondingToIntelPriority", _targetPriority];
+_group setVariable ["currentTargetGroup", group _target];
+_group setVariable ["currentTarget", _target];
 
 
 
@@ -39,7 +48,6 @@ _netId = _group call BIS_fnc_netId;
 _waypointStatements = "
     %1
     _group = '%2' call BIS_fnc_groupFromNetId;
-    [_group] call Rimsiakas_fnc_unsetGroupTarget;
     [_group] call Rimsiakas_fnc_searchForEnemies;
 ";
 _waypointStatements = format [_waypointStatements, _additionalWaypointStatements, _netId];
