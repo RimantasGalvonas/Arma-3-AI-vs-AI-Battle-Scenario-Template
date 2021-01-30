@@ -36,7 +36,7 @@ if (count (_typesOfVehiclesInGroup arrayIntersect ["Helicopter", "Plane"]) > 0) 
 // Free up tanks and air assets as soon as they've dealt with their target
 _currentTarget = _group getVariable["currentTarget", nil];
 if (count (_typesOfVehiclesInGroup arrayIntersect ["Tank", "Helicopter", "Plane"]) > 0) then {
-    if (!isNil "_currentTarget" && {!alive _currentTarget}) then {
+    if (!isNil "_currentTarget" && {!alive _currentTarget || {count ((crew _currentTarget) select {alive _x}) == 0}}) then {
         [_group] call Rimsiakas_fnc_unsetGroupTarget;
     };
 };
@@ -59,6 +59,13 @@ if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && 
     _targetPriority = 1;
     _target = _x;
     _targetVehicleType = ((vehicle _target) call BIS_fnc_objectType) select 1;
+
+
+
+    // Empty vehicle (or already dead unit)
+    if (count ((crew _target) select {alive _x}) == 0) then {
+        _canRespond = false;
+    };
 
 
 
