@@ -253,7 +253,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
     {
         idc = 1600;
         text = "Confirm"; //--- ToDo: Localize;
-        action = "call Rimsiakas_fnc_confirmEnvConfig"
+        action = "call Rimsiakas_fnc_confirmEnvConfig";
 
         x = 10.5 * GUI_GRID_W + GUI_GRID_X;
         y = 13.5 * GUI_GRID_H + GUI_GRID_Y;
