@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. On the top menu: <b>Scenario > Open Scenario Folder</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.0/AI-vs-AI-Battle-Scenario-Template-1.0.0.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.1/AI-vs-AI-Battle-Scenario-Template-1.0.1.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -360,7 +360,7 @@ _group setVariable ["ignoreIntel", true];
 </details>
 
 # Example missions
-- [Take part in a NATO assault against an area controlled by AAF and CSAT [SP/MP/COOP]](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.0/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v1.0.0
+- [Take part in a NATO assault against an area controlled by AAF and CSAT [SP/MP/COOP]](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.1/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v1.0.1
 - [Survive an assault on your camp until reinforcements arrive [SP]](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.4
 - [Basic battle across entire Altis [SP]](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.0/WarAcrossAltis.Altis.zip) Made on v1.0.0
 
@@ -382,6 +382,12 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+1.0.1 (2021-02-04)
+<ul>
+<li>Take height advantage into consideration when choosing a position to attack from.</li>
+</ul>
+</li>
 <li>
 1.0.0 (2021-01-31)
 <ul>

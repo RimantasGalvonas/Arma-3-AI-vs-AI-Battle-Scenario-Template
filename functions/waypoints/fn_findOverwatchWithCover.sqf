@@ -88,8 +88,8 @@ for "_radius" from _minDistance to _maxDistance step _intersectionCheckInterval 
 
 
 
-// Group the separate positions into larger areas to calculate which one has the most covered positions nearby. Positions and their cover amount is put into a flat array to be used with selectRandomWeighted command
-_positionsAndNearbyCoverCount = [];
+// Group the separate positions into larger areas to calculate a score for each one taking available cover and height advantage into account. Positions and their scores are put into a flat array to be used with selectRandomWeighted command
+_positionsAndScore = [];
 for "_radius" from _minDistance to _maxDistance step _coverGroupingRadius do {
     _circumference = _radius * 2 * 3.14;
     _pointsCount = _circumference / _coverGroupingRadius;
@@ -101,7 +101,22 @@ for "_radius" from _minDistance to _maxDistance step _coverGroupingRadius do {
         _coverAroundThisPos = _selectedPositions inAreaArray [_checkPos, _coverGroupingRadius, _coverGroupingRadius, 0, false];
 
         if (count _coverAroundThisPos > 0) then {
-            _positionsAndNearbyCoverCount append [_checkPos, count _coverAroundThisPos];
+            _heightDifference = (getTerrainHeightASL _checkPos) - (getTerrainHeightASL _targetPos);
+
+            _heightMultiplier = 1;
+            if (_heightDifference > 0) then {
+                _heightMultiplier = 1 + (_heightDifference * 0.05); // Add 1 to multiplier with every 20 meters of height advantage
+                _heightMultiplier = _heightMultiplier min 3;
+            } else {
+                if (_heightDifference < 0) then {
+                    _heightMultiplier = 1 / (1 + (abs _heightDifference * 0.05)); // Halve the multiplier with every 20 meters of height disadvantage
+                    _heightMultiplier = _heightMultiplier max 0.33;
+                };
+            };
+
+            _score = (count _coverAroundThisPos) * _heightMultiplier;
+
+            _positionsAndScore append [_checkPos, _score];
 
 
             // Debugging
@@ -110,7 +125,7 @@ for "_radius" from _minDistance to _maxDistance step _coverGroupingRadius do {
             _markerName setMarkerTypeLocal "mil_dot";
             _markerName setMarkerColorLocal "ColorYellow";
             _markerName setMarkerAlphaLocal 0.5;
-            _markerName setMarkerTextLocal str count _coverAroundThisPos;*/
+            _markerName setMarkerTextLocal ((str count _coverAroundThisPos) + " " + str _heightDifference + " " + str _score);*/
         };
     };
 };
@@ -118,7 +133,7 @@ for "_radius" from _minDistance to _maxDistance step _coverGroupingRadius do {
 
 
 // Don't always return the best position, but a bit randomized - otherwise nearby squads will be taking identical paths to the same target.
-_result = selectRandomWeighted _positionsAndNearbyCoverCount;
+_result = selectRandomWeighted _positionsAndScore;
 
 if (isNil "_result") then {
     _result = _centerPos;
