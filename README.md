@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. On the top menu: <b>Scenario > Open Scenario Folder</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.1/AI-vs-AI-Battle-Scenario-Template-1.0.1.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.2/AI-vs-AI-Battle-Scenario-Template-1.0.2.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -38,13 +38,13 @@ this setVariable ["intelGridSize", <b>100</b>];
 this setVariable ["maxInfantryResponseDistance", <b>500</b>];
 this setVariable ["maxVehicleResponseDistance", <b>1500</b>];
 this setVariable ["maxAirResponseDistance", <b>10000</b>];
-this setVariable ["dynamic", false];
+this setVariable ["dynamic", <b>false</b>];
 </pre>
 <b>1000</b> is the radius of the mission area. Units will roam around it looking for enemies. You may adjust the number.
 
 <b>100</b> is the size of a colored square on the map showing you the approximate location of enemies in the mission area. You may adjust this number or set it to <b>0</b> to disable it. Setting the value to something very low will give you very precise positions but may negatively impact performance.
 
-<b>500</b>, <b>1500</b>, <b>10000</b> are maximum distances at which infantry, vehicles and aircraft respond to intel about enemy locations.
+<b>500</b>, <b>1500</b>, <b>10000</b> are maximum distances at which infantry, vehicles and aircraft respond to intel about enemy locations. You may adjust these numbers.
 
 You may change the <b>false</b> to <b>true</b> in `this setVariable ["dynamic", false];` to enable mission location selection at mission start. Read more about it below in the <b>Dynamic Mission Area</b> section.
 </li>
@@ -78,8 +78,6 @@ You may adjust the **numbers** for minSpawnRadius and maxSpawnRadius. These valu
 
 You may repeat these steps to make as many placers as you want. At least two are recommended - one for each side.
 
-You may also sync the player group with one of the placers to randomize the starting position.
-
 <br>
 </details>
 
@@ -92,14 +90,24 @@ This randomizes the location of units within the radius defined in the placer an
 There are two ways of doing this:
 <ol>
 <li>
-<b>Syncing units (Recommended)</b>
+<details>
+<summary><b>Syncing units (Recommended)</b></summary>
+<br>
+The simplest way to make a placer spawn units is to place units or vehicles in the editor and sync them to the placer.
+<br><br>
+Sync only one unit from the group, not the entire group. Doing otherwise would still work but it forces redundant calculations and makes initialization much slower.
+<br><br>
 
-The simplest way to make a placer spawn units is to place a unit or a group in the editor and sync it to the placer.<br>
-Sync from the character, not the group icon.<br>
-Sync only one unit from the group, not all of them. Doing otherwise should still work but it forces redundant calculations and makes initialization slower.
+Other things that can be synced to placers:
+- **Respawn Position** Module
+- **Spawn AI** Module
+- **Spawn AI: Spawnpoint** Module
+<br><br>
+</details>
 </li>
 <li>
-<b>Group variable</b>
+<details>
+<summary><b>Group variable</b></summary>
 
 This method is more complex to setup but it has its uses. This makes the placer spawn new units rather than relocate those that were already created in the editor, meaning you could, for example, activate this placer at some later point in the mission to spawn reinforcements (see the <b>Adding extra logic with triggers or init fields</b> section below).
 <br><br>
@@ -132,6 +140,7 @@ You may also create custom groups out of individual units by replacing **(GROUP_
 These <b>names in bold</b> can be found by hovering over a unit placed in the Eden editor or in **configFile >> "CfgVehicles"**
 </li>
 </ol>
+</details>
 </li>
 </ol>
 <br>
@@ -245,7 +254,7 @@ Relative positions of synced placers are preserved. If you want a certain placer
 <pre>this setVariable ["dynamic", false];</pre>
 </li>
 <li>
-You can sync <b>triggers</b> to the <b>patrolCenter</b> entity to have them moved. It is advised to add this to the <b>condition</b> box of the triggers:
+Sync your <b>triggers</b> to the <b>patrolCenter</b> entity to have them moved when changing the mission location. It is advised to add this to the <b>condition</b> box of the triggers:
 <pre>this && Rimsiakas_missionInitialized</pre>
 This makes the trigger inactive until placement of units on the battlefield is finished.
 </li>
@@ -273,6 +282,8 @@ Here are some things to keep in mind when using this template to create multipla
 <summary>Adding extra logic with triggers or init fields</summary>
 
 ## Adding extra logic with triggers or init fields
+<ul>
+<li>
 <details>
 <summary>Waiting until the mission has fully initialized</summary>
 
@@ -294,7 +305,8 @@ _var = [] spawn {
 </pre>
 <br>
 </details>
-
+</li>
+<li>
 <details>
 <summary>Moving the mission area</summary>
 
@@ -308,7 +320,8 @@ remoteExec ["Rimsiakas_fnc_createIntelGrid"];
 </pre>
 <br>
 </details>
-
+</li>
+<li>
 <details>
 <summary>Manually activating a placer</summary>
 
@@ -327,7 +340,8 @@ Note that these commands are wrapped in a `[] spawn {}` statement. This makes th
 <br>
 <br>
 </details>
-
+</li>
+<li>
 <details>
 <summary>Making a group attack a specific unit</summary>
 <pre>
@@ -338,7 +352,8 @@ Note that these commands are wrapped in a `[] spawn {}` statement. This makes th
 <br>
 <br>
 </details>
-
+</li>
+<li>
 <details>
 <summary>Making a group search for enemies in the mission area</summary>
 <pre>
@@ -348,14 +363,16 @@ This will also make the group abandon its current target.
 <br>
 <br>
 </details>
-
+</li>
+<li>
 <details>
 <summary>Making a group ignore all the intel about enemy locations</summary>
 <pre>
 _group setVariable ["ignoreIntel", true];
 </pre>
 </details>
-<br>
+</li>
+</ul>
 </details>
 
 # Example missions
@@ -387,6 +404,12 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+1.0.2 (2021-02-08)
+<ul>
+<li>Allow syncing Spawn AI modules to placers.</li>
+</ul>
+</li>
 <li>
 1.0.1 (2021-02-04)
 <ul>
