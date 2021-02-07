@@ -99,4 +99,4 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
     _x setPos _randomPosition;
 
-} foreach (synchronizedObjects _placer select {(typeOf _x) find "ModuleRespawnPosition" == 0})
+} foreach (synchronizedObjects _placer select {(typeOf _x) find "ModuleRespawnPosition" == 0 || {typeOf _x in ['ModuleSpawnAI_F', "ModuleSpawnAIPoint_F"]}});
