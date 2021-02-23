@@ -54,8 +54,6 @@ if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && 
 
 
 {
-    _canRespond = true;
-
     _targetPriority = 1;
     _target = _x;
     _targetVehicleType = ((vehicle _target) call BIS_fnc_objectType) select 1;
@@ -64,7 +62,7 @@ if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && 
 
     // Empty vehicle (or already dead unit)
     if (count ((crew _target) select {alive _x}) == 0) then {
-        _canRespond = false;
+        continue;
     };
 
 
@@ -72,7 +70,7 @@ if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && 
     // Only tanks, helicopters, planes and APCs can attack APCs
     if (_targetVehicleType in ["TrackedAPC", "WheeledAPC"]) then {
         if (count (_typesOfVehiclesInGroup arrayIntersect ["TrackedAPC", "Tank", "WheeledAPC", "Helicopter", "Plane"]) == 0) then {
-            _canRespond = false;
+            continue;
         } else {
             _targetPriority = 2;
         }
@@ -83,7 +81,7 @@ if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && 
     // Only tanks, helicopters and planes can attack tanks
     if (_targetVehicleType == "Tank") then {
         if (count (_typesOfVehiclesInGroup arrayIntersect ["Tank", "Helicopter", "Plane"]) == 0) then {
-            _canRespond = false;
+            continue;
         } else {
             _targetPriority = 3;
         }
@@ -93,14 +91,14 @@ if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && 
 
     // Ignore this target if current target has higher priority
     if (_targetPriority < _alreadyRespondingPriority) then {
-        _canRespond = false;
+        continue;
     };
 
 
 
     // Only air assets can catch up with other air assets
     if (_targetVehicleType in ["Helicopter", "Plane"] && {count (_typesOfVehiclesInGroup arrayIntersect ["Helicopter", "Plane"]) == 0}) then {
-        _canRespond = false;
+        continue;
     };
 
 
@@ -108,7 +106,7 @@ if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && 
     // Ignore this target if it is too far
     _distanceToTarget = _groupPos distance (getPos _x);
     if (_distanceToTarget > _maxResponseDistance) then {
-        _canRespond = false;
+        continue;
     };
 
 
@@ -118,7 +116,7 @@ if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && 
 
         if (_target == _currentTarget) then {
             if ((_lastReportedTargetPosition distance getPos _target) < 150) then {
-                _canRespond = false; // This is the same target that was set previously and it is in about the same position
+                continue; // This is the same target that was set previously and it is in about the same position
             };
         } else {
             _distanceToCurrentTarget = nil;
@@ -127,16 +125,15 @@ if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && 
             };
 
             if (!isNil "_distanceToCurrentTarget" && {_distanceToTarget > _distanceToCurrentTarget || {_distanceToCurrentTarget - _distanceToTarget < 200}}) then {
-                _canRespond = false; //The suggested target is not that much closer than the current target, so stick to the old one
+                continue; //The suggested target is not that much closer than the current target, so stick to the old one
             };
         }
     };
 
 
 
-    if (_canRespond == true) exitWith {
-        [_group, _target, _targetPriority] call Rimsiakas_fnc_attackEnemy;
-    };
+    [_group, _target, _targetPriority] call Rimsiakas_fnc_attackEnemy;
+    break;
 } forEach _targets;
 
 _group setVariable ["processingIntel", false];

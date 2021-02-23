@@ -23,29 +23,25 @@ if (_targetModeGroup) then {
 
 
 {
-    call {
-        scopeName "targetCheck";
+    _target = _x;
 
-        _target = _x;
+    if (isNil "_target") then {
+        continue;
+    };
 
-        if (isNil "_target") then {
-            breakOut "targetCheck";
+    if (!alive _target) then {
+        continue;
+    };
+
+    {
+        _targetKnowledge = _x targetKnowledge _target;
+        _lastSeen = (_targetKnowledge select 2) max 0;
+        _secondsSinceSeen = time - _lastSeen;
+
+        if (_lastSeen > 0 && {_secondsSinceSeen < 60}) then {
+            true breakOut "main";
         };
-
-        if (!alive _target) then {
-            breakOut "targetCheck";
-        };
-
-        {
-            _targetKnowledge = _x targetKnowledge _target;
-            _lastSeen = (_targetKnowledge select 2) max 0;
-            _secondsSinceSeen = time - _lastSeen;
-
-            if (_lastSeen > 0 && {_secondsSinceSeen < 60}) then {
-                true breakOut "main";
-            };
-        } forEach units _group;
-    }
+    } forEach units _group;
 } forEach _targets;
 
 

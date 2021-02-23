@@ -54,32 +54,29 @@ for "_radius" from _minDistance to _maxDistance step _intersectionCheckInterval 
     _angleIncrement = 360 / _pointsCount;
 
     for "_angle" from _angleStart to _angleEnd step _angleIncrement do {
-        call { // create a scope at each position so it can be broken out of.
-            scopeName "angleCheck";
 
-            _checkPos = _centerPos getPos [_radius, _angle];
+        _checkPos = _centerPos getPos [_radius, _angle];
 
-            if (
-                _approachMode && {!([_attackerPosition, _targetDirection, _approachConeAngle, _checkPos] call BIS_fnc_inAngleSector)}) then {
-                breakOut "angleCheck";
-            };
+        if (
+            _approachMode && {!([_attackerPosition, _targetDirection, _approachConeAngle, _checkPos] call BIS_fnc_inAngleSector)}) then {
+            continue;
+        };
 
-            _checkPos set [2, 1]; // Check from 1 meter above ground
+        _checkPos set [2, 1]; // Check from 1 meter above ground
 
-            _isFlat = (isNil "_requiredFlatness" || {!(_checkPos isFlatEmpty [-1, -1, _requiredFlatness, _intersectionCheckInterval / 2, 0] isEqualTo [])});
+        _isFlat = (isNil "_requiredFlatness" || {!(_checkPos isFlatEmpty [-1, -1, _requiredFlatness, _intersectionCheckInterval / 2, 0] isEqualTo [])});
 
-            if (_isFlat) then {
-                if (!terrainIntersect [_targetPos, _checkPos]) then {
-                    if (count (nearestTerrainObjects [_checkPos, _suitableCoverClasses, _intersectionCheckInterval, false]) > 0) then {
-                        _selectedPositions append [_checkPos];
+        if (_isFlat) then {
+            if (!terrainIntersect [_targetPos, _checkPos]) then {
+                if (count (nearestTerrainObjects [_checkPos, _suitableCoverClasses, _intersectionCheckInterval, false]) > 0) then {
+                    _selectedPositions append [_checkPos];
 
-                        // Debugging
-                        /*_markerName = "vantagePointDebug" + str _checkPos;
-                        createMarkerLocal [_markerName, _checkPos];
-                        _markerName setMarkerTypeLocal "mil_dot";
-                        _markerName setMarkerAlphaLocal 0.3;
-                        _markerName setMarkerColorLocal "ColorGreen";*/
-                    };
+                    // Debugging
+                    /*_markerName = "vantagePointDebug" + str _checkPos;
+                    createMarkerLocal [_markerName, _checkPos];
+                    _markerName setMarkerTypeLocal "mil_dot";
+                    _markerName setMarkerAlphaLocal 0.3;
+                    _markerName setMarkerColorLocal "ColorGreen";*/
                 };
             };
         };
