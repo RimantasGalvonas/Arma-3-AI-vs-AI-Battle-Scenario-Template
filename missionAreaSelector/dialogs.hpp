@@ -1,7 +1,11 @@
-#include "defines.hpp"
-
 class Rimsiakas_MissionAreaSelectorDialog
 {
+    import RscButton;
+    import RscMapControl;
+    import RscText;
+    import RscEdit;
+    import RscSlider;
+
     idd = 46421;
     movingEnabled = false;
     enableSimulation = true;
@@ -18,7 +22,7 @@ class Rimsiakas_MissionAreaSelectorDialog
     // GUI EDITOR OUTPUT START (by Rimantas, v1.063, #Lihatu)
     ////////////////////////////////////////////////////////
 
-    class Rimsiakas_MissionAreaSelectorDialog_ConfirmButton: Rimsiakas_RscButton
+    class Rimsiakas_MissionAreaSelectorDialog_ConfirmButton: RscButton
     {
         idc = 1000;
         action = "[] call Rimsiakas_fnc_confirmMissionAreaSelection";
@@ -29,7 +33,7 @@ class Rimsiakas_MissionAreaSelectorDialog
         w = 5.5 * GUI_GRID_W;
         h = 1.5 * GUI_GRID_H;
     };
-    class Rimsiakas_MissionAreaSelectorDialog_Map: Rimsiakas_RscMapControl
+    class Rimsiakas_MissionAreaSelectorDialog_Map: RscMapControl
     {
         idc = 1001;
 
@@ -38,7 +42,7 @@ class Rimsiakas_MissionAreaSelectorDialog
         w = 39 * GUI_GRID_W;
         h = 20 * GUI_GRID_H;
     };
-    class Rimsiakas_MissionAreaSelectorDialog_Instruction: Rimsiakas_RscText
+    class Rimsiakas_MissionAreaSelectorDialog_Instruction: RscText
     {
         idc = 1002;
 
@@ -50,7 +54,7 @@ class Rimsiakas_MissionAreaSelectorDialog
         colorBackground[] = {-1,-1,-1,0.5};
         sizeEx = 0.05;
     };
-    class Rimsiakas_MissionAreaSelectorDialog_PreviewButton: Rimsiakas_RscButton
+    class Rimsiakas_MissionAreaSelectorDialog_PreviewButton: RscButton
     {
         idc = 1003;
         action = "[] call Rimsiakas_fnc_previewMissionArea";
@@ -62,7 +66,7 @@ class Rimsiakas_MissionAreaSelectorDialog
         h = 1.5 * GUI_GRID_H;
     };
 
-    class Rimsiakas_MissionAreaSelectorDialog_EnvConfigButton: Rimsiakas_RscButton
+    class Rimsiakas_MissionAreaSelectorDialog_EnvConfigButton: RscButton
     {
         idc = 1004;
         action = "[] spawn {createDialog 'Rimsiakas_EnvironmentConfigurationDialog';};";
@@ -94,7 +98,7 @@ class Rimsiakas_MissionAreaPreviewDialog
     // GUI EDITOR OUTPUT START (by Rimantas, v1.063, #Lydoby)
     ////////////////////////////////////////////////////////
 
-    class BackToSelectionButton: Rimsiakas_RscButton
+    class BackToSelectionButton: RscButton
     {
         idc = 1600;
         text = "Back to selection"; //--- ToDo: Localize;
@@ -141,7 +145,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
     // GUI EDITOR OUTPUT START (by Rimantas, v1.063, #Gizebo)
     ////////////////////////////////////////////////////////
 
-    class Rimsiakas_EnvironmentConfigurationDialog_Background: Rimsiakas_RscText
+    class Rimsiakas_EnvironmentConfigurationDialog_Background: RscText
     {
         idc = 1000;
         x = 9.5 * GUI_GRID_W + GUI_GRID_X;
@@ -150,7 +154,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         h = 7 * GUI_GRID_H;
         colorBackground[] = {-1,-1,-1,0.5};
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_DateTimeLabel: Rimsiakas_RscText
+    class Rimsiakas_EnvironmentConfigurationDialog_DateTimeLabel: RscText
     {
         idc = 1001;
         text = "Time:"; //--- ToDo: Localize;
@@ -159,7 +163,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         w = 3.5 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_DateSeparator1: Rimsiakas_RscText
+    class Rimsiakas_EnvironmentConfigurationDialog_DateSeparator1: RscText
     {
         idc = 1002;
         text = "-"; //--- ToDo: Localize;
@@ -168,7 +172,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         w = 1 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_DateSeparator2: Rimsiakas_RscText
+    class Rimsiakas_EnvironmentConfigurationDialog_DateSeparator2: RscText
     {
         idc = 1003;
         text = "-"; //--- ToDo: Localize;
@@ -177,7 +181,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         w = 1 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_TimeSeparator: Rimsiakas_RscText
+    class Rimsiakas_EnvironmentConfigurationDialog_TimeSeparator: RscText
     {
         idc = 1004;
         text = ":"; //--- ToDo: Localize;
@@ -186,7 +190,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         w = 1 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_YearField: Rimsiakas_RscEdit
+    class Rimsiakas_EnvironmentConfigurationDialog_YearField: RscEdit
     {
         idc = 1400;
         x = 12.5 * GUI_GRID_W + GUI_GRID_X;
@@ -195,7 +199,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         h = 1 * GUI_GRID_H;
         maxChars = 4;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_MonthField: Rimsiakas_RscEdit
+    class Rimsiakas_EnvironmentConfigurationDialog_MonthField: RscEdit
     {
         idc = 1401;
         x = 16.5 * GUI_GRID_W + GUI_GRID_X;
@@ -204,7 +208,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         h = 1 * GUI_GRID_H;
         maxChars = 2;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_DayField: Rimsiakas_RscEdit
+    class Rimsiakas_EnvironmentConfigurationDialog_DayField: RscEdit
     {
         idc = 1402;
         x = 19 * GUI_GRID_W + GUI_GRID_X;
@@ -213,7 +217,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         h = 1 * GUI_GRID_H;
         maxChars = 2;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_HourField: Rimsiakas_RscEdit
+    class Rimsiakas_EnvironmentConfigurationDialog_HourField: RscEdit
     {
         idc = 1403;
         x = 22 * GUI_GRID_W + GUI_GRID_X;
@@ -222,7 +226,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         h = 1 * GUI_GRID_H;
         maxChars = 2;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_MinuteField: Rimsiakas_RscEdit
+    class Rimsiakas_EnvironmentConfigurationDialog_MinuteField: RscEdit
     {
         idc = 1404;
         x = 24.5 * GUI_GRID_W + GUI_GRID_X;
@@ -231,7 +235,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         h = 1 * GUI_GRID_H;
         maxChars = 2;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_OvercastLabel: Rimsiakas_RscText
+    class Rimsiakas_EnvironmentConfigurationDialog_OvercastLabel: RscText
     {
         idc = 1005;
         text = "Overcast:"; //--- ToDo: Localize;
@@ -240,7 +244,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         w = 3.5 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_OvercastSlider: Rimsiakas_RscSlider
+    class Rimsiakas_EnvironmentConfigurationDialog_OvercastSlider: RscSlider
     {
         idc = 1900;
         sliderRange[] = {0,10};
@@ -249,7 +253,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         w = 11.5 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
     };
-    class Rimsiakas_EnvironmentConfigurationDialog_ConfirmButton: Rimsiakas_RscButton
+    class Rimsiakas_EnvironmentConfigurationDialog_ConfirmButton: RscButton
     {
         idc = 1600;
         text = "Confirm"; //--- ToDo: Localize;

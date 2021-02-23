@@ -1,3 +1,5 @@
+// Modified by Rimsiakas: added G_ namespace to class names and renamed the parent classes where used.
+
 // Control types
 #define CT_STATIC           0
 #define CT_BUTTON           1
@@ -74,7 +76,7 @@
 
 #define SL_TEXTURES       0x10
 
-// progress bar 
+// progress bar
 #define ST_VERTICAL       0x01
 #define ST_HORIZONTAL     0
 
@@ -96,7 +98,7 @@
 //Base Classes//
 ////////////////
 
-class RscText
+class G_RscText
 {
 	access = 0;
 	idc = -1;
@@ -116,7 +118,7 @@ class RscText
 	w = 0;
 };
 
-class RscPicture
+class G_RscPicture
 {
 	access = 0;
 	idc = -1;
@@ -136,7 +138,7 @@ class RscPicture
 	h = 0.15;
 };
 
-class RscButton
+class G_RscButton
 {
 	access = 0;
 	type = CT_BUTTON;
@@ -168,7 +170,7 @@ class RscButton
 	borderSize = 0;
 };
 
-class RscFrame
+class G_RscFrame
 {
 	type = CT_STATIC;
 	idc = -1;
@@ -181,7 +183,7 @@ class RscFrame
 	text = "";
 };
 
-class Box
+class G_Box
 {
 	type = CT_STATIC;
 	idc = -1;

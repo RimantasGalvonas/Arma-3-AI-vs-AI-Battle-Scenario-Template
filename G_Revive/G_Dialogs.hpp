@@ -3,9 +3,9 @@ class G_Revive_Dialog
 	idd = 474637;
 	movingenable = false;
 	onLoad = "_this call G_fnc_Dialog_Rescuer_Text; _this call G_fnc_Dialog_Downs_Text;";
-	
+
 	class controls {
-		class G_giveUp: RscButton
+		class G_giveUp: G_RscButton
 		{
 			idc = 1600;
 			text = "Give Up"; //--- ToDo: Localize;
@@ -19,10 +19,10 @@ class G_Revive_Dialog
 			action = "closeDialog 0; player setDamage 1;";
 		};
 	};
-	
-	class controlsBackground 
+
+	class controlsBackground
 	{
-		class G_Near_Rescuers: RscText
+		class G_Near_Rescuers: G_RscText
 		{
 			idc = 1001;
 			text = "";
@@ -35,7 +35,7 @@ class G_Revive_Dialog
 			h = 0.15 * safezoneH;
 			colorBackground[] = {0,0,0,1};
 		};
-		class G_Downs_Remaining: RscText
+		class G_Downs_Remaining: G_RscText
 		{
 			idc = 1002;
 			text = "";
@@ -48,7 +48,7 @@ class G_Revive_Dialog
 			h = 0.15 * safezoneH;
 			colorBackground[] = {0,0,0,1};
 		};
-		class G_Frame_Bottom: RscText
+		class G_Frame_Bottom: G_RscText
 		{
 			idc = 1003;
 			text = "\n\nYou are Incapacitated and awaiting revive."; //--- ToDo: Localize;
