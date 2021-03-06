@@ -376,13 +376,61 @@ _group setVariable ["ignoreIntel", true];
 </details>
 
 # Example missions
-- [Take part in a NATO assault against an area controlled by AAF and CSAT [SP/MP/COOP]](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.1/PartakeInAnAssaultAgainstEnemySector.Altis.zip) Made on v1.0.1
-- [Survive an assault on your camp until reinforcements arrive [SP]](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip) Made on v0.4.4
-- [Basic battle across entire Altis [SP]](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.1/WarAcrossAltis.Altis.zip) Made on v1.0.1
-
 Extract these to Documents/Arma 3/missions/ and open with the Eden editor.
 
 These missions may not use the latest version of the scripts so I do not recommend basing your own missions directly on these.
+<ul>
+<li>
+<details>
+<summary>Take part in a NATO assault against an area controlled by AAF and CSAT [SP/MP/COOP]</summary>
+
+
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.1/PartakeInAnAssaultAgainstEnemySector.Altis.zip)
+
+This is the main example mission, showing off most of the available functionality and includes an explanation on how it was made in the mission diary.
+
+Made on v1.0.1
+</details>
+</li>
+<li>
+<details>
+<summary>Mountain Battle Towards Kavala [SP]</summary>
+
+
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.2/BattleThroughMountainsTowardsKavala.Altis.zip)
+
+A game mode where units keep spawning and the mission goal is to push the battle towards the starting line of the enemy.<br>
+This scenario demonstrates the possibility to add additional logic to the scenarios right in the editor without having to modify the scripts themselves. Look for the **missionLocationChangerLogic** object and expressions in the **Spawn AI** modules.
+
+Made on v1.0.2
+
+</details>
+</li>
+<li>
+<details>
+<summary>Survive an assault on your camp until reinforcements arrive [SP]</summary>
+
+
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip)
+
+An intense scenario where you must survive an attack from all sides until reinforcements arrive to eliminate the enemy thread.
+
+Made on v0.4.4
+</details>
+</li>
+<li>
+<details>
+<summary>Basic battle across entire Altis [SP]</summary>
+
+
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.1/WarAcrossAltis.Altis.zip)
+
+Basically just a benchmark to show the scalability of these scripts.
+
+Made on v1.0.1
+</details>
+</li>
+</ul>
 
 # Contact me
 If you have any questions, suggestions, feedback, etc. you can contact me here:
