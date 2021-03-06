@@ -383,7 +383,7 @@ These missions may not use the latest version of the scripts so I do not recomme
 <li>
 <details>
 <summary>Take part in a NATO assault against an area controlled by AAF and CSAT [SP/MP/COOP]</summary>
-
+<br>
 
 [Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.1/PartakeInAnAssaultAgainstEnemySector.Altis.zip)
 
@@ -395,7 +395,7 @@ Made on v1.0.1
 <li>
 <details>
 <summary>Mountain Battle Towards Kavala [SP]</summary>
-
+<br>
 
 [Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.2/BattleThroughMountainsTowardsKavala.Altis.zip)
 
@@ -409,7 +409,7 @@ Made on v1.0.2
 <li>
 <details>
 <summary>Survive an assault on your camp until reinforcements arrive [SP]</summary>
-
+<br>
 
 [Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip)
 
@@ -421,7 +421,7 @@ Made on v0.4.4
 <li>
 <details>
 <summary>Basic battle across entire Altis [SP]</summary>
-
+<br>
 
 [Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.1/WarAcrossAltis.Altis.zip)
 
