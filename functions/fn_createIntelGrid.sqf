@@ -16,14 +16,11 @@ if (!isNil "intelGridTriggers") then {
 
 
 _middlePos = getPos patrolCenter;
-_patrolRadius = (patrolCenter getVariable "patrolRadius") * 1.5;
-_centerGridStartX = floor ((_middlePos select 0) / _gridSize) * _gridSize + _gridSize / 2;
-_centerGridStartY = floor ((_middlePos select 1) / _gridSize) * _gridSize + _gridSize / 2;
-_gridStartY = floor ((_middlePos select 1) / _gridSize) * _gridSize + _gridSize / 2;
-_leftmostGrid = (_centerGridStartX - floor (_patrolRadius / 2));
-_rightmostGrid = (_centerGridStartX + ceil (_patrolRadius / 2));
-_topGrid = (_centerGridStartY - floor (_patrolRadius / 2));
-_bottomGrid = (_centerGridStartY + ceil (_patrolRadius / 2));
+_patrolRadius = (patrolCenter getVariable "patrolRadius");
+_leftmostGrid = (_middlePos select 0) - _patrolRadius + (_gridSize / 2);
+_rightmostGrid = (_middlePos select 0) + _patrolRadius;
+_topGrid = (_middlePos select 1) - _patrolRadius + (_gridSize / 2);
+_bottomGrid = (_middlePos select 1) + _patrolRadius - (_gridSize / 2);
 
 for "_i" from _leftmostGrid to _rightmostGrid step _gridSize do {
     for "_j" from _topGrid to _bottomGrid step _gridSize do {
