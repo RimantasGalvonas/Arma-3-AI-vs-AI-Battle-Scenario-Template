@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. On the top menu: <b>Scenario > Open Scenario Folder</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.2/AI-vs-AI-Battle-Scenario-Template-1.0.2.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.3/AI-vs-AI-Battle-Scenario-Template-1.0.3.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -394,15 +394,16 @@ Made on v1.0.1
 </li>
 <li>
 <details>
-<summary>Mountain Battle Towards Kavala [SP]</summary>
+<summary>Force Through Gamemode [SP/COOP]</summary>
 <br>
 
-[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.2/BattleThroughMountainsTowardsKavala.Altis.zip)
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.3/BattleThroughMountainsTowardsKavala.Altis.zip)
 
-A game mode where units keep spawning and the mission goal is to push the battle towards the starting line of the enemy.<br>
+This is the source for this mission: https://steamcommunity.com/sharedfiles/filedetails/?id=2418209864
+
 This scenario demonstrates the possibility to add additional logic to the scenarios right in the editor without having to modify the scripts themselves. Look for the **missionLocationChangerLogic** object and expressions in the **Spawn AI** modules.
 
-Made on v1.0.2
+Made on v1.0.3
 
 </details>
 </li>
@@ -413,7 +414,7 @@ Made on v1.0.2
 
 [Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/0.4.4/HoldOutUntilReinforcementsArrive.Altis.zip)
 
-An intense scenario where you must survive an attack from all sides until reinforcements arrive to eliminate the enemy thread.
+An intense scenario where you must survive an attack from all sides until reinforcements arrive to eliminate the enemy threat.
 
 Made on v0.4.4
 </details>
@@ -452,6 +453,14 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+1.0.3 (2021-03-09)
+<ul>
+<li>Decrease group's tendency to clump together.</li>
+<li>Don't show Grimes Simple Revive validation messages if it's not enabled.</li>
+<li>Fix intel grid somewhat not matching the mission exactly.</li>
+</ul>
+</li>
 <li>
 1.0.2 (2021-02-08)
 <ul>

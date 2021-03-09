@@ -52,6 +52,8 @@ if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && 
 };
 
 
+_targets = _targets call BIS_fnc_arrayShuffle;
+
 
 {
     _targetPriority = 1;
