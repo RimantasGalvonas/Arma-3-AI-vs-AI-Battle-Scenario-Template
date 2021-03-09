@@ -84,7 +84,7 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
 
 
-// Synchronized respawn positions
+// Synchronized respawn positions, AI spawn modules and objects
 {
      // Find an empty enough random position. If none can be found, clear any flattish area of terrain objects within the required radius and use that one.
     _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 10, 0, 0.3, 0, [], [[0,0],[0,0]]] call BIS_fnc_findSafePos;
@@ -99,4 +99,4 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
     _x setPos _randomPosition;
 
-} foreach (synchronizedObjects _placer select {(typeOf _x) find "ModuleRespawnPosition" == 0 || {typeOf _x in ['ModuleSpawnAI_F', "ModuleSpawnAIPoint_F"]}});
+} foreach (synchronizedObjects _placer select {(typeOf _x) find "ModuleRespawnPosition" == 0 || {typeOf _x in ['ModuleSpawnAI_F', "ModuleSpawnAIPoint_F"] || {"Object" in (_x call BIS_fnc_objectType)}}});
