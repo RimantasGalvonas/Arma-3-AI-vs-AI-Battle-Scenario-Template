@@ -101,9 +101,11 @@ if (!isDedicated) then {
 	//Done on all machines to prevent anyone from loading script
 if ((count _validationFailed) > 0) exitWith {
 	{
-		private _msg = format["G_Revive_Init ERROR: %1", _x];
-		systemChat _msg;
-		diag_log _msg;
+		if (G_Revive_System) then {
+			private _msg = format["G_Revive_Init ERROR: %1", _x];
+			systemChat _msg;
+			diag_log _msg;
+		};
 	} forEach _validationFailed;
 };
 
@@ -199,7 +201,7 @@ G_fnc_onRespawn = compile preprocessFileLineNumbers "G_Revive\G_Respawn.sqf";
 
 //Create function that will:
 	//Create public object variables as enabled,
-	//add EHs for revive system if enabled, 
+	//add EHs for revive system if enabled,
 	//add Fixed Spawn EH to AI if enabled,
 G_fnc_EH = compile preprocessFileLineNumbers "G_Revive\G_fnc_EH.sqf";
 
@@ -273,9 +275,9 @@ if (!(G_Respawn_Button) && (G_isClient)) then {
 			//Wait for game menu to open
 			waitUntil {sleep 0.1; !isNull (findDisplay 49)};
 			//Add EH to close game menu when respawn button is clicked and announce that it is disabled
-			_respawnButtonEH = ((findDisplay 49) displayCtrl 1010) ctrlAddEventHandler ["MouseButtonDown",{(findDisplay 49) closeDisplay 0; titleText ["The Respawn Button is disabled by the host!","PLAIN",1]; titleFadeOut 5;}]; 
+			_respawnButtonEH = ((findDisplay 49) displayCtrl 1010) ctrlAddEventHandler ["MouseButtonDown",{(findDisplay 49) closeDisplay 0; titleText ["The Respawn Button is disabled by the host!","PLAIN",1]; titleFadeOut 5;}];
 			//Wait for game menu to be closed (and EH deleted)
 			waitUntil {sleep 0.1; isNull (findDisplay 49)};
 		};
-	};  
+	};
 };
