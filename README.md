@@ -102,6 +102,7 @@ Other things that can be synced to placers:
 - **Respawn Position** Module
 - **Spawn AI** Module
 - **Spawn AI: Spawnpoint** Module
+- Objects
 <br><br>
 </details>
 </li>
@@ -460,6 +461,7 @@ If you publish a scenario based on this template, please mention me in the credi
 <li>Don't show Grimes Simple Revive validation messages if it's not enabled.</li>
 <li>Fix intel grid not matching the mission exactly.</li>
 <li>Fix group icons sometimes disappearing from the map after teamswitch or respawn</li>
+<li>Allow syncing objects to placers</li>
 </ul>
 </li>
 <li>
