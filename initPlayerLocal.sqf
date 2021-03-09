@@ -36,19 +36,15 @@ player setVariable ["CHVD_initialized", true];
 
 
 // Set visible group icons (otherwise allied faction icons are not shown)
-_friendlyGroups = [];
-{
-    if ([side player, side _x] call BIS_fnc_sideIsFriendly) then {
-        _friendlyGroups append [_x];
-    };
-} forEach allGroups;
-
+_friendlyGroups = allGroups select {[side player, side _x] call BIS_fnc_sideIsFriendly};
 player setVariable ["MARTA_reveal", _friendlyGroups];
+setGroupIconsVisible [true, false];
 
 // Without this the military symbols would disappear after teamswitching.
 onTeamSwitch {
     setGroupIconsVisible [true, false];
     _to setVariable ["MARTA_reveal", (_from getVariable "MARTA_reveal")];
+    setGroupIconsVisible [true, false];
     _from enableAI "all";
     if (!(_to getVariable ["CHVD_initialized", false])) then {
         call CHVD_fnc_init;

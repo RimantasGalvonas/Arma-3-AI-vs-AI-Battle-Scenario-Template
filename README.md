@@ -458,7 +458,8 @@ If you publish a scenario based on this template, please mention me in the credi
 <ul>
 <li>Decrease group's tendency to clump together.</li>
 <li>Don't show Grimes Simple Revive validation messages if it's not enabled.</li>
-<li>Fix intel grid somewhat not matching the mission exactly.</li>
+<li>Fix intel grid not matching the mission exactly.</li>
+<li>Fix group icons sometimes disappearing from the map after teamswitch or respawn</li>
 </ul>
 </li>
 <li>

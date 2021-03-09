@@ -2,7 +2,9 @@ params ["_newUnit", "_oldUnit", "_respawn", "_respawnDelay"];
 
 
 
-_newUnit setVariable ["MARTA_reveal", (_oldUnit getVariable "MARTA_reveal")];
+_friendlyGroups = allGroups select {[side _newUnit, side _x] call BIS_fnc_sideIsFriendly};
+_newUnit setVariable ["MARTA_reveal", _friendlyGroups];
+setGroupIconsVisible [true, false];
 
 
 
