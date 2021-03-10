@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. On the top menu: <b>Scenario > Open Scenario Folder</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.3/AI-vs-AI-Battle-Scenario-Template-1.0.3.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.4/AI-vs-AI-Battle-Scenario-Template-1.0.4.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -313,7 +313,7 @@ _var = [] spawn {
 
 You can move the mission area and all the placers and triggers synced to it with this command:
 <pre>
-[_newPosition] call Rimsiakas_fnc_moveMissionArea;
+[_newPosition, _rotationAngle] call Rimsiakas_fnc_moveMissionArea;
 </pre>
 After that you have to reinitialize the intel grid, if you are using it:
 <pre>
@@ -454,6 +454,13 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+1.0.4 (2021-03-11)
+<ul>
+<li>Add rotation param to moveMissionArea function.</li>
+<li>Add an extra position search fallback for objects placement.</li>
+</ul>
+</li>
 <li>
 1.0.3 (2021-03-09)
 <ul>
