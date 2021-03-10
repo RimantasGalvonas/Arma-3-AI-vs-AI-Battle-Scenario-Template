@@ -86,12 +86,23 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
 // Synchronized respawn positions, AI spawn modules and objects
 {
-     // Find an empty enough random position. If none can be found, clear any flattish area of terrain objects within the required radius and use that one.
     _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 10, 0, 0.3, 0, [], [[0,0],[0,0]]] call BIS_fnc_findSafePos;
     if ((_randomPosition select 0) == 0) then {
-        _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 5, 0, 0.3, 0] call BIS_fnc_findSafePos;
-        _terrainObjects = nearestTerrainObjects [_randomPosition, [], 10, false];
+        // If no clear area can be found, try to find a flattish place
+        _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 0.1, 0, 0.3, 0, [], [[0,0],[0,0]]] call BIS_fnc_findSafePos;
 
+        if ((_randomPosition select 0) == 0) then {
+            // If no flat area can be found, choose a random one
+            _blacklistedAreas = ["water"];
+            if (_minSpawnRadius > 0) then {
+                _blacklistedAreas = [_placerPos, _minSpawnRadius];
+            };
+
+            _randomPosition = [[[_placerPos, _maxSpawnRadius]], [_blacklistedAreas]] call BIS_fnc_randomPos;
+        };
+
+        // Clear the chosen area
+        _terrainObjects = nearestTerrainObjects [_randomPosition, [], 10, false];
         {
             _x hideObjectGlobal true;
         } forEach _terrainObjects;
