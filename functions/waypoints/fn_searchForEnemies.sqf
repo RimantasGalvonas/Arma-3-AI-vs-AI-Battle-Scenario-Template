@@ -11,7 +11,7 @@ for "_i" from count (waypoints _group) - 1 to 0 step -1 do {
 
 
 if (isNil "_destination") then {
-    _destination = [[[getPos patrolCenter, (patrolCenter getVariable "patrolRadius") / 2]], ["water"]] call BIS_fnc_randomPos;
+    _destination = [[[getPos patrolCenter, (patrolCenter getVariable "patrolRadius") / 1.2]], ["water"]] call BIS_fnc_randomPos;
 };
 
 

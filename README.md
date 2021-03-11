@@ -398,13 +398,13 @@ Made on v1.0.1
 <summary>Force Through Gamemode [SP/COOP]</summary>
 <br>
 
-[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.3/BattleThroughMountainsTowardsKavala.Altis.zip)
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.4/ForceThrough-Altis.Altis.zip)
 
 This is the source for this mission: https://steamcommunity.com/sharedfiles/filedetails/?id=2418209864
 
 This scenario demonstrates the possibility to add additional logic to the scenarios right in the editor without having to modify the scripts themselves. Look for the **missionLocationChangerLogic** object and expressions in the **Spawn AI** modules.
 
-Made on v1.0.3
+Made on v1.0.4
 
 </details>
 </li>
@@ -459,6 +459,7 @@ If you publish a scenario based on this template, please mention me in the credi
 <ul>
 <li>Add rotation param to moveMissionArea function.</li>
 <li>Add an extra position search fallback for objects placement.</li>
+<li>Increase the random roam area.</li>
 </ul>
 </li>
 <li>
