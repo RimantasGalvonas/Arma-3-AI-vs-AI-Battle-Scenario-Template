@@ -460,6 +460,8 @@ If you publish a scenario based on this template, please mention me in the credi
 <li>Add rotation param to moveMissionArea function.</li>
 <li>Add an extra position search fallback for objects placement.</li>
 <li>Increase the random roam area.</li>
+<li>Place combat movement waypoints placement more precisely near cover.</li>
+<li>Make groups hold position only at waypoints with enough cover.</li>
 </ul>
 </li>
 <li>

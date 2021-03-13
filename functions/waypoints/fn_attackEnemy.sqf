@@ -48,6 +48,7 @@ if (_groupHasVehicles == true) then {
     _finalWaypoint setWaypointType "DESTROY";
     _finalWaypoint setWaypointStatements [_waypointCondition, _waypointStatements];
 } else {
+    private ["_vantagePoint"];
     _targetPos = getPos _target;
 
     _distance = (leader _group) distance _targetPos;
@@ -55,6 +56,7 @@ if (_groupHasVehicles == true) then {
     if (_distance > 250) then {
         // Find a good place to attack from and advance onto the enemy from that position
         _vantagePoint = [getPos (leader _group), _targetPos, (500 min _distance), 250, nil, true] call Rimsiakas_fnc_findOverwatchWithCover;
+        _vantagePoint = _vantagePoint select 0;
 
         [_group, getPos (leader _group), _vantagePoint, _targetPos] call Rimsiakas_fnc_createIntermediateCombatMoveWaypoints;
         [_group, _vantagePoint, _targetPos, _targetPos, false] call Rimsiakas_fnc_createIntermediateCombatMoveWaypoints;
