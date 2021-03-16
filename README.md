@@ -7,7 +7,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 - Waypoints for infantry units are placed in a way that prefers moving between and attacking from areas with cover.
 - Works on all levels of command: you can play as a simple soldier, a squad leader or a battlefield commander.
 - Colored grid on the map showing the approximate location of enemies.
-- Dynamic mission location - select the mission location on start.
+- Dynamic mission area - select the mission location on start.
 - Works from small scale engagements to battles spanning across the entire map.
 - Suitable both for singleplayer and multiplayer scenarios.
 
@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. On the top menu: <b>Scenario > Open Scenario Folder</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.4/AI-vs-AI-Battle-Scenario-Template-1.0.4.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.0/AI-vs-AI-Battle-Scenario-Template-1.1.0.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -259,6 +259,13 @@ Sync your <b>triggers</b> to the <b>patrolCenter</b> entity to have them moved w
 <pre>this && Rimsiakas_missionInitialized</pre>
 This makes the trigger inactive until placement of units on the battlefield is finished.
 </li>
+<li>
+Using the <b>Advanced Config</b> dialog allows you to rotate and scale the mission area.<br/>When you change the scale of the mission area, the triggers the areas of triggers and placers that are synced to the <b>Patrol Center</b> entity are also scaled.<br/>
+If you want the placer spawn radiuses not to change when doing this, add this variable to its init field:
+<pre>this setVariable ["scalable", false];</pre>
+Because triggers do not have an init field, you will have to use an init field of some other entity (e.g. <b>Game Logic</b>) to set this value:
+<pre>triggerName setVariable ["scalable", false];</pre>
+</li>
 </ul>
 
 <br>
@@ -386,11 +393,11 @@ These missions may not use the latest version of the scripts so I do not recomme
 <summary>Take part in a NATO assault against an area controlled by AAF and CSAT [SP/MP/COOP]</summary>
 <br>
 
-[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.1/PartakeInAnAssaultAgainstEnemySector.Altis.zip)
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.0/PartakeInAnAssaultAgainstEnemySector.Altis.zip)
 
 This is the main example mission, showing off most of the available functionality and includes an explanation on how it was made in the mission diary.
 
-Made on v1.0.1
+Made on v1.1.0
 </details>
 </li>
 <li>
@@ -398,13 +405,13 @@ Made on v1.0.1
 <summary>Force Through Gamemode [SP/COOP]</summary>
 <br>
 
-[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.0.4/ForceThrough-Altis.Altis.zip)
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.0/ForceThrough-Altis.Altis.zip)
 
 This is the source for this mission: https://steamcommunity.com/sharedfiles/filedetails/?id=2418209864
 
 This scenario demonstrates the possibility to add additional logic to the scenarios right in the editor without having to modify the scripts themselves. Look for the **missionLocationChangerLogic** object and expressions in the **Spawn AI** modules.
 
-Made on v1.0.4
+Made on v1.1.0
 
 </details>
 </li>
@@ -454,6 +461,12 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+1.1.0 (2021-03-17)
+<ul>
+<li>Dynamic Mission Area - Add advanced mission area configuration dialog, allowing rotation and scaling of the mission area.</li>
+</ul>
+</li>
 <li>
 1.0.4 (2021-03-11)
 <ul>

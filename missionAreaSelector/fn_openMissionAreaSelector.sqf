@@ -10,7 +10,7 @@ if (!createDialog "Rimsiakas_MissionAreaSelectorDialog") exitWith {
 _missionAreaSize = patrolCenter getVariable "patrolRadius";
 
 createMarkerLocal ["missionAreaMarker", getPos patrolCenter];
-"missionAreaMarker" setMarkerShapeLocal "ELLIPSE";
+"missionAreaMarker" setMarkerShapeLocal "RECTANGLE";
 "missionAreaMarker" setMarkerColorLocal "ColorRed";
 "missionAreaMarker" setMarkerBrushLocal "DiagGrid";
 "missionAreaMarker" setMarkerSizeLocal [_missionAreaSize, _missionAreaSize];
@@ -30,4 +30,6 @@ _map ctrlAddEventHandler ["MouseButtonClick", {
 
     _pos = _ctrl ctrlMapScreenToWorld [_x, _y];
     "missionAreaMarker" setMarkerPosLocal _pos;
+
+    [_pos] call Rimsiakas_fnc_moveMissionArea;
 }];

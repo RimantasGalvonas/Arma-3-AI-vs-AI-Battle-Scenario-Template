@@ -3,10 +3,14 @@ class missionAreaSelector
     file = "missionAreaSelector";
 
     class openMissionAreaSelector {};
-    class confirmMissionAreaSelection {};
+    class openAdvancedConfig {};
+    class refreshAdvancedConfigInfo {};
+    class confirmAdvancedParams{};
     class previewMissionArea {};
     class terminateMissionAreaPreview {};
     class populateEnvConfigFields {};
     class confirmEnvConfig {};
     class moveMissionArea {};
+    class createMarkersForSyncedObjects {};
+    class scaleObjectPlacement {};
 }
