@@ -41,15 +41,19 @@ player setVariable ["MARTA_reveal", _friendlyGroups];
 setGroupIconsVisible [true, false];
 
 // Without this the military symbols would disappear after teamswitching.
-onTeamSwitch {
+addMissionEventHandler ["TeamSwitch", {
+    params ["_from", "_to"];
+
     _to setVariable ["MARTA_reveal", (_from getVariable ["MARTA_reveal", []])];
     setGroupIconsVisible [true, false];
+
     _from enableAI "all";
+
     if (!(_to getVariable ["CHVD_initialized", false])) then {
         call CHVD_fnc_init;
         _to setVariable ["CHVD_initialized", true];
     };
-};
+}];
 
 
 
