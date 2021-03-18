@@ -3,6 +3,7 @@ params ["_group", "_targets"];
 if (isPlayer (hcLeader _group)) exitWith {}; // Has high commander
 if (_group getVariable ["ignoreIntel", false]) exitWith {};
 if (_group getVariable ["processingIntel", false]) exitWith {}; // Prevents multiple instances of this script being run for this group due to some scheduling nonsense
+if (getText ((configOf (units _group select 0)) >> "simulation") == "UAVPilot") exitWith {};
 
 _group setVariable ["processingIntel", true];
 
