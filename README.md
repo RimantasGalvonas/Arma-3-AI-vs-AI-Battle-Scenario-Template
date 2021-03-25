@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. On the top menu: <b>Scenario > Open Scenario Folder</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.0/AI-vs-AI-Battle-Scenario-Template-1.1.0.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.1/AI-vs-AI-Battle-Scenario-Template-1.1.1.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -393,11 +393,11 @@ These missions may not use the latest version of the scripts so I do not recomme
 <summary>Take part in a NATO assault against an area controlled by AAF and CSAT [SP/MP/COOP]</summary>
 <br>
 
-[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.0/PartakeInAnAssaultAgainstEnemySector.Altis.zip)
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.1/PartakeInAnAssaultAgainstEnemySector.Altis.zip)
 
 This is the main example mission, showing off most of the available functionality and includes an explanation on how it was made in the mission diary.
 
-Made on v1.1.0
+Made on v1.1.1
 </details>
 </li>
 <li>
@@ -405,13 +405,13 @@ Made on v1.1.0
 <summary>Force Through Gamemode [SP/COOP]</summary>
 <br>
 
-[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.0/ForceThrough-Altis.Altis.zip)
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.1/ForceThrough-Altis.Altis.zip)
 
 This is the source for this mission: https://steamcommunity.com/sharedfiles/filedetails/?id=2418209864
 
 This scenario demonstrates the possibility to add additional logic to the scenarios right in the editor without having to modify the scripts themselves. Look for the **missionLocationChangerLogic** object and expressions in the **Spawn AI** modules.
 
-Made on v1.1.0
+Made on v1.1.1
 
 </details>
 </li>
@@ -461,6 +461,15 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+1.1.1 (2021-03-25)
+<ul>
+<li>Fix group icons and view distance settings disappearing after a few times dying.</li>
+<li>Stop player-deployed UAVs from reacting to intel on their own.</li>
+<li>Add 'relocateToNEarestLandIfOnWater' variable for placers to relocate the placer to the nearest coast automatically.</li>
+</ul>
+</li>
+<li>
 <li>
 1.1.0 (2021-03-17)
 <ul>
