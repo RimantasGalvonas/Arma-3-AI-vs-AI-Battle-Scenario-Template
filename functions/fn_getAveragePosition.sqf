@@ -1,7 +1,7 @@
 params ["_positions"];
 
-_xSum = 0;
-_ySum = 0;
+private _xSum = 0;
+private _ySum = 0;
 
 {
     _xSum = _xSum + (_x select 0);

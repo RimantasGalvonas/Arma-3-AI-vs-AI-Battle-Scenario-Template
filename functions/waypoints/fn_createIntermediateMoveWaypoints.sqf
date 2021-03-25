@@ -1,28 +1,28 @@
 params ["_group", "_destination"];
 
-_waypointStepDistance = 100;
+private _waypointStepDistance = 100;
 
-_startingPos = getPos (leader _group);
+private _startingPos = getPos (leader _group);
 
-_distance = _startingPos distance2D _destination;
+private _distance = _startingPos distance2D _destination;
 
 if (_distance > 2000) then {
     _waypointStepDistance = _distance / 10;
 };
 
-_lastPos = _startingPos;
+private _lastPos = _startingPos;
 while {_distance > (_waypointStepDistance * 1.5)} do {
-    _dir = _lastPos getDir _destination;
+    private _dir = _lastPos getDir _destination;
 
     // Infantry should prefer moving between high ground, trees and buildings
-    _intermediatePosition = _lastPos getPos [_waypointStepDistance, _dir];
-    _preferablePosition = selectBestPlaces[_intermediatePosition, (_waypointStepDistance / 2), "houses + trees + hills - (100 * waterDepth)", 5, 1];
+    private _intermediatePosition = _lastPos getPos [_waypointStepDistance, _dir];
+    private _preferablePosition = selectBestPlaces[_intermediatePosition, (_waypointStepDistance / 2), "houses + trees + hills - (100 * waterDepth)", 5, 1];
     _preferablePosition = (_preferablePosition select 0) select 0;
 
     if (surfaceIsWater _preferablePosition == false) then {
         _preferablePosition = [_preferablePosition, 0, 10, 1, 0, -1, 0, [], [_preferablePosition, _preferablePosition]] call BIS_fnc_findSafePos; // To avoid placing waypoints inside houses. Makes the units get stuck
 
-        _intermediateWaypoint = _group addWayPoint [_preferablePosition, 5];
+        private _intermediateWaypoint = _group addWayPoint [_preferablePosition, 5];
         _intermediateWaypoint setWaypointType "MOVE";
     };
 

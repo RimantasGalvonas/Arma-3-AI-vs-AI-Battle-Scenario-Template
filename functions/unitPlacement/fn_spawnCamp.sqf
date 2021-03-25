@@ -4,27 +4,27 @@ if (typeName _side != "SIDE") then {
     throw "Param passed to the spawnCamp function must be a SIDE OBJECT, not a string. Use [opfor]/[blufor]/[independent]";
 };
 
-_placerPos = getPos _placer;
-_minSpawnRadius = _placer getVariable "minSpawnRadius";
-_maxSpawnRadius = _placer getVariable "maxSpawnRadius";
-_compositionAzimuth = random 360;
+private _placerPos = getPos _placer;
+private _minSpawnRadius = _placer getVariable "minSpawnRadius";
+private _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
+private _compositionAzimuth = random 360;
 
 if (isNil "campAreas") then {
     campAreas = [];
 };
 
 
-_compositions = call Rimsiakas_fnc_getCamps;
-_composition = selectRandom _compositions;
-_compositionSize = _composition select 1;
-_compositionElements = _composition select 0;
+private _compositions = call Rimsiakas_fnc_getCamps;
+private _composition = selectRandom _compositions;
+private _compositionSize = _composition select 1;
+private _compositionElements = _composition select 0;
 
 
 // Find random position that fits the composition. If none can be found, clear any flattish area of terrain objects within the required radius and use that one.
-_randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, _compositionSize, 0, 0.3, 0, campAreas, [[0,0],[0,0]]] call BIS_fnc_findSafePos;
+private _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, _compositionSize, 0, 0.3, 0, campAreas, [[0,0],[0,0]]] call BIS_fnc_findSafePos;
 if ((_randomPosition select 0) == 0) then {
     _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 5, 0, 0.3, 0, campAreas] call BIS_fnc_findSafePos;
-    _terrainObjects = nearestTerrainObjects [_randomPosition, [], _compositionSize, false];
+    private _terrainObjects = nearestTerrainObjects [_randomPosition, [], _compositionSize, false];
 
     {
         _x hideObjectGlobal true;
@@ -34,10 +34,10 @@ if ((_randomPosition select 0) == 0) then {
 
 
 // Separate soldiers from objects
-_compositionObjects = [];
-_compositionUnits = [];
+private _compositionObjects = [];
+private _compositionUnits = [];
 {
-    _sim = getText (configFile >> "CfgVehicles" >> _x select 0 >> "simulation");
+    private _sim = getText (configFile >> "CfgVehicles" >> _x select 0 >> "simulation");
 
     if (_sim == "soldier") then {
         _compositionUnits append [_x];
@@ -54,31 +54,31 @@ _compositionUnits = [];
 
 
 // Register the area of this camp to prevent other camps on spawning at the same place
-_topLeftCorner = [((_randomPosition select 0) - _compositionSize), ((_randomPosition select 1) + _compositionSize)];
-_bottomRightCorner = [((_randomPosition select 0) + _compositionSize), ((_randomPosition select 1) - _compositionSize)];
+private _topLeftCorner = [((_randomPosition select 0) - _compositionSize), ((_randomPosition select 1) + _compositionSize)];
+private _bottomRightCorner = [((_randomPosition select 0) + _compositionSize), ((_randomPosition select 1) - _compositionSize)];
 campAreas append [[_topLeftCorner, _bottomRightCorner]];
 
 
 
 // Pick a faction to use for the units in the composition
-_activeSideFactions = [];
+private _activeSideFactions = [];
 {
     if (_side == side _x && {count (units _x) > 0}) then {
-        _unit = (units _x) select 0;
-        _unitConfig = configFile >> "cfgVehicles" >> typeOf _unit;
+        private _unit = (units _x) select 0;
+        private _unitConfig = configFile >> "cfgVehicles" >> typeOf _unit;
 
         _activeSideFactions append [getText (_unitConfig >> "faction")];
     };
 } forEach allGroups;
 _activeSideFactions = _activeSideFactions arrayIntersect _activeSideFactions; // remove duplicates
 
-_factionToUse = nil;
+private _factionToUse = nil;
 
 if (count _activeSideFactions > 0) then {
     _factionToUse = selectRandom _activeSideFactions;
 } else {
-    _allSideFactionsSearchString = format["getNumber (_x >> 'side') == %1", ([_side] call BIS_fnc_sideID)];
-    _allSideFactions = _allSideFactionsSearchString configClasses (configFile >> "CfgFactionClasses");
+    private _allSideFactionsSearchString = format["getNumber (_x >> 'side') == %1", ([_side] call BIS_fnc_sideID)];
+    private _allSideFactions = _allSideFactionsSearchString configClasses (configFile >> "CfgFactionClasses");
     _factionToUse = selectRandom _allSideFactions;
     _factionToUse = configName _factionToUse;
 };
@@ -87,6 +87,8 @@ if (count _activeSideFactions > 0) then {
 
 // Assign soldiers with matching roles from the selected faction to the units in the composition
 {
+    private ["_unitClass", "_unitConfig", "_role", "_configSearchString", "_matchingSoldiers"];
+
     _unitClass = _x select 0;
     _unitConfig = configFile >> "cfgVehicles" >> _unitClass;
 
@@ -107,13 +109,13 @@ if (count _activeSideFactions > 0) then {
 
 
 // Create a group for the composition units
-_group = createGroup [_side, true];
+private _group = createGroup [_side, true];
 _group setVariable ["ignoreIntel", true];
 
 
 
 // Define a function to rotate relative to composition center. Taken from BIS_fnc_objectsMapper
-_multiplyMatrixFunc = {
+private _multiplyMatrixFunc = {
     private ["_array1", "_array2", "_result"];
     _array1 = _this select 0;
     _array2 = _this select 1;
@@ -130,11 +132,12 @@ _multiplyMatrixFunc = {
 
 // Spawn the units from correct factions in correct positions
 {
+    private ["_relPos", "_azimuth", "_init", "_rotMatrix", "_newRelPos", "_unitPosition", "_soldier", "_matchingRoleSoldiers"];
+
     _relPos = _x select 1;
     _azimuth =  _x select 2;
     _init = _x select 7;
 
-    private ["_rotMatrix", "_newRelPos", "_newPos"];
     _rotMatrix =
     [
         [cos _compositionAzimuth, sin _compositionAzimuth],
@@ -148,7 +151,7 @@ _multiplyMatrixFunc = {
 
     _matchingRoleSoldiers = _x select 10;
     {
-        _unitClass = configName _x;
+        private _unitClass = configName _x;
         _soldier = [(getPos patrolCenter), _azimuth + _compositionAzimuth, _unitClass, _group] call BIS_fnc_spawnVehicle;
         _soldier = _soldier select 0;
         if (typeOf _soldier != "") exitWith {}; // This needs to be done because some classes do not spawn a soldier. No idea why.

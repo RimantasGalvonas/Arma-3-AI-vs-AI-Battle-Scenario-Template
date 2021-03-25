@@ -1,15 +1,15 @@
 params ["_placer"];
 
-_placerPos = getPos _placer;
-_minSpawnRadius = _placer getVariable "minSpawnRadius";
-_maxSpawnRadius = _placer getVariable "maxSpawnRadius";
+private _placerPos = getPos _placer;
+private _minSpawnRadius = _placer getVariable "minSpawnRadius";
+private _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
 
 
 // Child placers
 {
     if (_x getVariable "logicType" == "placer") then {
-        _randomPos = nil;
+        private _randomPos = nil;
 
         if (_x getVariable ["preferRoad", false]) then {
             _road = [_placerPos, _minSpawnRadius, _maxSpawnRadius] call Rimsiakas_fnc_findRoad;
@@ -24,8 +24,7 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
         _x setPos _randomPos;
 
-        _childSpawnerHandler = [_x] spawn Rimsiakas_fnc_placer; // Must be sent off to another process because otherwise the child placer variables get mixed up with the parent's somehow.
-        waitUntil {scriptDone _childSpawnerHandler};
+        [_x] call Rimsiakas_fnc_placer;
     };
 } forEach (_placer getVariable "childPlacers");
 
@@ -33,8 +32,8 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
 // Synchronized units
 {
-    _syncedUnit = _x;
-    _syncedGroup = nil;
+    private _syncedUnit = _x;
+    private _syncedGroup = nil;
 
     if (count (["Vehicle", "VehicleAutonomous"] arrayIntersect (_syncedUnit call BIS_fnc_objectType)) > 0) then {
         _syncedUnit = (crew _x) select 0;
@@ -86,14 +85,14 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
 // Synchronized respawn positions, AI spawn modules and objects
 {
-    _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 10, 0, 0.3, 0, [], [[0,0],[0,0]]] call BIS_fnc_findSafePos;
+    private _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 10, 0, 0.3, 0, [], [[0,0],[0,0]]] call BIS_fnc_findSafePos;
     if ((_randomPosition select 0) == 0) then {
         // If no clear area can be found, try to find a flattish place
         _randomPosition = [_placerPos, _minSpawnRadius, _maxSpawnRadius, 0.1, 0, 0.3, 0, [], [[0,0],[0,0]]] call BIS_fnc_findSafePos;
 
         if ((_randomPosition select 0) == 0) then {
             // If no flat area can be found, choose a random one
-            _blacklistedAreas = ["water"];
+            private _blacklistedAreas = ["water"];
             if (_minSpawnRadius > 0) then {
                 _blacklistedAreas = [_placerPos, _minSpawnRadius];
             };
@@ -102,7 +101,7 @@ _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
         };
 
         // Clear the chosen area
-        _terrainObjects = nearestTerrainObjects [_randomPosition, [], 10, false];
+        private _terrainObjects = nearestTerrainObjects [_randomPosition, [], 10, false];
         {
             _x hideObjectGlobal true;
         } forEach _terrainObjects;

@@ -1,10 +1,10 @@
 while {true} do {
-    _knownByBlufor = [];
-    _knownByOpfor = [];
-    _knownByIndependent = [];
+    private _knownByBlufor = [];
+    private _knownByOpfor = [];
+    private _knownByIndependent = [];
 
     {
-        _targets = leader _x targets [true, 1000, [], 30];
+        private _targets = leader _x targets [true, 1000, [], 30];
 
         if (side _x == blufor) then {
             _knownByBlufor append _targets;
@@ -26,7 +26,7 @@ while {true} do {
 
 
     {
-        _commonTargets = [];
+        private _commonTargets = [];
         if ([blufor, side _x] call BIS_fnc_sideIsFriendly) then {
             _commonTargets append _knownByBlufor;
         };

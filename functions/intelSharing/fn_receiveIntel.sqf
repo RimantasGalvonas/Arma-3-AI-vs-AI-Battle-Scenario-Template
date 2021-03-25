@@ -7,12 +7,12 @@ if (getText ((configOf (units _group select 0)) >> "simulation") == "UAVPilot") 
 
 _group setVariable ["processingIntel", true];
 
-_groupPos = getPos (leader _group);
+private _groupPos = getPos (leader _group);
 
 
 
 //Get current types of vehicles in the group
-_typesOfVehiclesInGroup = [];
+private _typesOfVehiclesInGroup = [];
 
 {
     private _targetVehicleType = (vehicle _x) call BIS_fnc_objectType;
@@ -24,7 +24,7 @@ _typesOfVehiclesInGroup = _typesOfVehiclesInGroup arrayIntersect _typesOfVehicle
 
 
 // Get max response distance
-_maxResponseDistance = patrolCenter getVariable ["maxInfantryResponseDistance", 500];
+private _maxResponseDistance = patrolCenter getVariable ["maxInfantryResponseDistance", 500];
 if (count (_typesOfVehiclesInGroup arrayIntersect ["Car", "Motorcycle", "Ship", "Submarine", "TrackedAPC", "Tank", "WheeledAPC"]) > 0) then {
     _maxResponseDistance = patrolCenter getVariable ["maxVehicleResponseDistance", 1000];
 };
@@ -35,7 +35,7 @@ if (count (_typesOfVehiclesInGroup arrayIntersect ["Helicopter", "Plane"]) > 0) 
 
 
 // Free up tanks and air assets as soon as they've dealt with their target
-_currentTarget = _group getVariable["currentTarget", nil];
+private _currentTarget = _group getVariable["currentTarget", nil];
 if (count (_typesOfVehiclesInGroup arrayIntersect ["Tank", "Helicopter", "Plane"]) > 0) then {
     if (!isNil "_currentTarget" && {!alive _currentTarget || {count ((crew _currentTarget) select {alive _x}) == 0}}) then {
         [_group] call Rimsiakas_fnc_unsetGroupTarget;
@@ -44,10 +44,10 @@ if (count (_typesOfVehiclesInGroup arrayIntersect ["Tank", "Helicopter", "Plane"
 
 
 
-_alreadyRespondingPriority = _group getVariable ["respondingToIntelPriority", 0];
+private _alreadyRespondingPriority = _group getVariable ["respondingToIntelPriority", 0];
 
 // Allow assigning a new target if the entire target group was destroyed
-_currentTargetGroup = _group getVariable ["currentTargetGroup", nil];
+private _currentTargetGroup = _group getVariable ["currentTargetGroup", nil];
 if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && {count ((units _currentTargetGroup) select {alive _x}) == 0}}) then {
     _alreadyRespondingPriority = 0;
 };
@@ -57,9 +57,9 @@ _targets = _targets call BIS_fnc_arrayShuffle;
 
 
 {
-    _targetPriority = 1;
-    _target = _x;
-    _targetVehicleType = ((vehicle _target) call BIS_fnc_objectType) select 1;
+    private _targetPriority = 1;
+    private _target = _x;
+    private _targetVehicleType = ((vehicle _target) call BIS_fnc_objectType) select 1;
 
 
 
@@ -107,7 +107,7 @@ _targets = _targets call BIS_fnc_arrayShuffle;
 
 
     // Ignore this target if it is too far
-    _distanceToTarget = _groupPos distance (getPos _x);
+    private _distanceToTarget = _groupPos distance (getPos _x);
     if (_distanceToTarget > _maxResponseDistance) then {
         continue;
     };
@@ -115,14 +115,14 @@ _targets = _targets call BIS_fnc_arrayShuffle;
 
 
     if (_targetPriority == _alreadyRespondingPriority) then {
-        _lastReportedTargetPosition = _group getVariable ["lastReportedTargetPosition", nil];
+        private _lastReportedTargetPosition = _group getVariable ["lastReportedTargetPosition", nil];
 
         if (_target == _currentTarget) then {
             if ((_lastReportedTargetPosition distance getPos _target) < 150) then {
                 continue; // This is the same target that was set previously and it is in about the same position
             };
         } else {
-            _distanceToCurrentTarget = nil;
+            private _distanceToCurrentTarget = nil;
             if (!isNil "_lastReportedTargetPosition") then {
                 _distanceToCurrentTarget = _groupPos distance _lastReportedTargetPosition;
             };

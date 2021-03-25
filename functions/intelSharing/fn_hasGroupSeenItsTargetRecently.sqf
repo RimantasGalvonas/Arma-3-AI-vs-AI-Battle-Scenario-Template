@@ -4,7 +4,7 @@ scopeName "main";
 
 
 
-_targetGroup = _group getVariable ["currentTargetGroup", nil];
+private _targetGroup = _group getVariable ["currentTargetGroup", nil];
 
 if (isNil "_targetGroup") exitWith {
     false;
@@ -12,7 +12,7 @@ if (isNil "_targetGroup") exitWith {
 
 
 
-_targets = [];
+private _targets = [];
 
 if (_targetModeGroup) then {
     _targets = units _targetGroup;
@@ -23,7 +23,7 @@ if (_targetModeGroup) then {
 
 
 {
-    _target = _x;
+    private _target = _x;
 
     if (isNil "_target") then {
         continue;
@@ -34,9 +34,9 @@ if (_targetModeGroup) then {
     };
 
     {
-        _targetKnowledge = _x targetKnowledge _target;
-        _lastSeen = (_targetKnowledge select 2) max 0;
-        _secondsSinceSeen = time - _lastSeen;
+        private _targetKnowledge = _x targetKnowledge _target;
+        private _lastSeen = (_targetKnowledge select 2) max 0;
+        private _secondsSinceSeen = time - _lastSeen;
 
         if (_lastSeen > 0 && {_secondsSinceSeen < 60}) then {
             true breakOut "main";

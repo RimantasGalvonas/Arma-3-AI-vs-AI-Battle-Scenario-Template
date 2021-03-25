@@ -1,5 +1,6 @@
 params ["_group", "_target", ["_targetPriority", 1], ["_additionalWaypointStatements", ""], ["_additionalWaypointCondition", "true"]];
 
+private ["_netId", "_groupHasVehicles", "_waypointCondition", "_waypointStatements", "_finalWaypoint"];
 
 
 _group setVariable ["lastReportedTargetPosition", getPos _target];
@@ -48,7 +49,7 @@ if (_groupHasVehicles == true) then {
     _finalWaypoint setWaypointType "DESTROY";
     _finalWaypoint setWaypointStatements [_waypointCondition, _waypointStatements];
 } else {
-    private ["_vantagePoint"];
+    private ["_vantagePoint", "_targetPos", "_distance"];
     _targetPos = getPos _target;
 
     _distance = (leader _group) distance _targetPos;
