@@ -5,6 +5,10 @@ private _minSpawnRadius = _placer getVariable "minSpawnRadius";
 private _maxSpawnRadius = _placer getVariable "maxSpawnRadius";
 
 
+if (surfaceIsWater _placerPos && {_placer getVariable ["relocateToNearestLandIfOnWater", false]}) then {
+    _placerPos = [_placerPos] call Rimsiakas_fnc_findNearestLand;
+};
+
 
 // Child placers
 {
