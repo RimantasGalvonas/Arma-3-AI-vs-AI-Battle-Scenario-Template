@@ -46,7 +46,10 @@ while {_distance > (_waypointStepDistance * 1.5)} do {
             if ((count (_vantagePointData select 1)) > ((count units _group) * 0.75)) then {
                 // This is an advantageous position so stay there until the target is dealt with or can't be seen anymore
                 // Do the check every 15 seconds to give time for the group to notice the enemy upon arriving to the waypoint
-                _waypointCondition = "([group this, 15] call Rimsiakas_fnc_waypointPreConditionTimeout) && {!([group this] call Rimsiakas_fnc_hasGroupSeenItsTargetRecently)}";
+                _waypointCondition = "
+                    [group this] call Rimsiakas_fnc_temporaryCombatMode;
+                    ([group this, 15] call Rimsiakas_fnc_waypointPreConditionTimeout) && {!([group this] call Rimsiakas_fnc_hasGroupSeenItsTargetRecently)};
+                ";
             };
         };
     };
