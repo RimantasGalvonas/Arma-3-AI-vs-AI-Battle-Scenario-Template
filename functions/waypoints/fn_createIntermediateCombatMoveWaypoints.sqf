@@ -80,9 +80,24 @@ while {_distance > (_waypointStepDistance * 1.5)} do {
             _preferablePosition = _backupPreferablePosition;
         };
 
+        // Reset the chosen attack position to the next waypoint position if the original attack position has been passed already. This is used in making groups spread out.
+        _waypointStatement = "
+            private _group = group this;
+            private _selectedAttackPosition = _group getVariable ['attackingFromPos', nil];
+            if (isNil '_selectedAttackPosition') exitWith {};
+            private _lastKnownTargetPos = _group getVariable 'lastReportedTargetPosition';
+            if ((_lastKnownTargetPos distance2D this) < (_lastKnownTargetPos distance2D _selectedAttackPosition) || {(_selectedAttackPosition distance2D this) < 50}) then {
+                private _waypointPos = waypointPosition [_group, (currentWaypoint _group) + 1];
+                if ((_waypointPos select 0) == 0) then {
+                    _waypointPos = waypointPosition [_group, currentWaypoint _group];
+                };
+                _group setVariable ['attackingFromPos', _waypointPos];
+            };
+        ";
+
         _intermediateWaypoint = _group addWayPoint [_preferablePosition, 1];
         _intermediateWaypoint setWaypointType "MOVE";
-        _intermediateWaypoint setWaypointStatements [_waypointCondition, ""];
+        _intermediateWaypoint setWaypointStatements [_waypointCondition, "_waypointStatement"];
 
         if (_withinEngangementDistance && {!isPlayer leader _group}) then {
             _intermediateWaypoint setWaypointFormation (patrolCenter getVariable ["aiConfigAttackFormation", "WEDGE"]);
