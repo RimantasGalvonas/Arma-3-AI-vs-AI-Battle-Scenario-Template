@@ -49,7 +49,7 @@ if (_groupHasVehicles == true) then {
     _finalWaypoint setWaypointType "DESTROY";
     _finalWaypoint setWaypointStatements [_waypointCondition, _waypointStatements];
 } else {
-    private ["_vantagePoint", "_targetPos", "_distance", "_maxFlankingDistance", "_minFlankingDistance"];
+    private ["_vantagePoint", "_targetPos", "_distance", "_maxFlankingDistance", "_minFlankingDistance", "_vantagePointWPCondition", "_vantagePointWP"];
     _targetPos = getPos _target;
 
     _distance = (leader _group) distance _targetPos;
@@ -68,6 +68,17 @@ if (_groupHasVehicles == true) then {
         _vantagePoint = _vantagePoint select 0;
 
         [_group, getPos (leader _group), _vantagePoint, _targetPos] call Rimsiakas_fnc_createIntermediateCombatMoveWaypoints;
+
+
+        _vantagePointWPCondition = "
+            [group this] call Rimsiakas_fnc_temporaryCombatMode;
+            ([group this, 15] call Rimsiakas_fnc_waypointPreConditionTimeout) && {!([group this] call Rimsiakas_fnc_hasGroupSeenItsTargetRecently)};
+        ";
+        _vantagePointWP = _group addWayPoint [_vantagePoint, 1];
+        _vantagePointWP setWaypointType "MOVE";
+        _vantagePointWP setWaypointStatements [_vantagePointWPCondition, ""];
+
+
         [_group, _vantagePoint, _targetPos, _targetPos, false] call Rimsiakas_fnc_createIntermediateCombatMoveWaypoints;
     } else {
         // Enemy is nearby so advance onto their position directly
