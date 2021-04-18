@@ -66,6 +66,7 @@ class CfgFunctions
             class waypointPreConditionTimeout {};
             class findOverwatchWithCover {};
             class temporaryCombatMode {};
+            class isPositionInForest {};
         };
 
         #include "missionAreaSelector\functions.hpp"

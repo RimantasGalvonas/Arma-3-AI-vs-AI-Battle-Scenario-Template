@@ -1,6 +1,6 @@
 params ["_group", "_startingPos", "_destination", "_enemyPos", ["_checkStartingPos", true]];
 
-private ["_waypointStepDistance", "_distance", "_maxEngagementDistance", "_lastPos", "_intermediatePositions"];
+private ["_waypointStepDistance", "_distance", "_lastPos", "_intermediatePositions"];
 
 _waypointStepDistance = 100;
 
@@ -10,14 +10,12 @@ if (_distance > 2000) then {
     _waypointStepDistance = _distance / 10;
 };
 
-_maxEngagementDistance = 500; // TODO: calculate according to squad weaponry
-
 _lastPos = _startingPos;
 
 _intermediatePositions = [];
 
 while {_distance > (_waypointStepDistance * 1.5)} do {
-    private ["_preferablePosition", "_intermediatePosition", "_dir", "_waypointCondition", "_vantagePointData", "_vantagePoint", "_intermediateWaypoint", "_backupPreferablePosition"];
+    private ["_preferablePosition", "_intermediatePosition", "_dir", "_waypointCondition", "_maxEngagementDistance", "_vantagePointData", "_vantagePoint", "_intermediateWaypoint", "_backupPreferablePosition"];
 
     _preferablePosition = nil;
     _intermediatePosition = nil;
@@ -33,7 +31,10 @@ while {_distance > (_waypointStepDistance * 1.5)} do {
         _intermediatePosition = _lastPos getPos [_waypointStepDistance, _dir];
     };
 
-
+    _maxEngagementDistance = 500; // TODO: calculate according to squad weaponry
+    if ([_enemyPos] call Rimsiakas_fnc_isPositionInForest || {[_intermediatePosition] call Rimsiakas_fnc_isPositionInForest}) then {
+        _maxEngagementDistance = 200;
+    };
 
     // If within engagement distance, try to find a position from which the target is visible, preferably with cover
     if ((_intermediatePosition distance _enemyPos) < _maxEngagementDistance) then {
