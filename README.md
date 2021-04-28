@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. On the top menu: <b>Scenario > Open Scenario Folder</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.1/AI-vs-AI-Battle-Scenario-Template-1.1.1.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.2/AI-vs-AI-Battle-Scenario-Template-1.1.2.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -405,13 +405,13 @@ Made on v1.1.1
 <summary>Force Through Gamemode [SP/COOP]</summary>
 <br>
 
-[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.1/ForceThrough-Altis.Altis.zip)
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.2/ForceThrough-Altis.Altis.zip)
 
 This is the source for this mission: https://steamcommunity.com/sharedfiles/filedetails/?id=2418209864
 
 This scenario demonstrates the possibility to add additional logic to the scenarios right in the editor without having to modify the scripts themselves. Look for the **missionLocationChangerLogic** object and expressions in the **Spawn AI** modules.
 
-Made on v1.1.1
+Made on v1.1.2
 
 </details>
 </li>
@@ -461,6 +461,15 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+1.1.2 (2021-04-28)
+<ul>
+<li>Make groups take cover when staying at waypoints to look for enemies.</li>
+<li>Decrease engagement and flanking distance in forests.</li>
+<li>Fix actual vantage point waypoints not being added.</li>
+<li>Allow switching to a different target when the current target group is fleeing.</li>
+</ul>
+</li>
 <li>
 1.1.1 (2021-03-25)
 <ul>
