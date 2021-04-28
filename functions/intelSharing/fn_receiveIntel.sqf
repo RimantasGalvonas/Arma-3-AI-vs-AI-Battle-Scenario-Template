@@ -48,7 +48,7 @@ private _alreadyRespondingPriority = _group getVariable ["respondingToIntelPrior
 
 // Allow assigning a new target if the entire target group was destroyed
 private _currentTargetGroup = _group getVariable ["currentTargetGroup", nil];
-if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && {count ((units _currentTargetGroup) select {alive _x}) == 0}}) then {
+if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && {count ((units _currentTargetGroup) select {alive _x && {!fleeing _x}}) == 0}}) then {
     _alreadyRespondingPriority = 0;
 };
 
