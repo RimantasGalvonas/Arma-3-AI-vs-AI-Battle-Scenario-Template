@@ -1,21 +1,18 @@
 params ["_group", "_centerPos", "_minimumDistance", "_maximumDistance", "_maxGradient", "_waterMode", "_shoreMode"];
 
-private _actuallyVehicleClasses = ["Car", "Armored", "Air", "Support"];
-
 private _vehicles = [];
 private _dismounts = [];
 
 {
-    private _vehicleConfig = configFile >> "cfgVehicles" >> (typeOf vehicle _x);
+    private _unitVehicleType = (vehicle _x) call BIS_fnc_objectType;
 
-    private _vehicleClass = getText (_vehicleConfig >> "vehicleClass");
-
-    if (_vehicleClass in _actuallyVehicleClasses) then {
-        _vehicles append [_x];
+    if ((_unitVehicleType select 0) in ["Vehicle", "VehicleAutonomous"]) then {
+        _vehicles append [vehicle _x];
     } else {
         _dismounts append [_x];
     };
 } forEach (units _group);
+_vehicles = _vehicles arrayIntersect _vehicles;
 
 
 
