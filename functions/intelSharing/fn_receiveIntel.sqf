@@ -45,16 +45,23 @@ if (count (_typesOfVehiclesInGroup arrayIntersect ["Tank", "Helicopter", "Plane"
 
 
 private _alreadyRespondingPriority = _group getVariable ["respondingToIntelPriority", 0];
+private _allowStartNewSearch = false;
 
 // Allow assigning a new target if the entire target group was destroyed
 private _currentTargetGroup = _group getVariable ["currentTargetGroup", nil];
 if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && {count ((units _currentTargetGroup) select {alive _x && {!fleeing _x}}) == 0}}) then {
     _alreadyRespondingPriority = 0;
+
+    if (count (allGroups select {_x != _group && {side _x == side _group && {(leader _x) distance2D (_group getVariable "lastReportedTargetPosition") < 200}}}) > 0) then {
+        // There are other friendly groups within the viscinity of the last target. Skip sweeping the area (SAD waypoint) in the case no new target is selected to decrease group clumping.
+        _allowStartNewSearch = true;
+    };
 };
 
 
 _targets = _targets call BIS_fnc_arrayShuffle;
 
+private _selectedNewTarget = false;
 
 {
     private _targetPriority = 1;
@@ -136,7 +143,16 @@ _targets = _targets call BIS_fnc_arrayShuffle;
 
 
     [_group, _target, _targetPriority] call Rimsiakas_fnc_attackEnemy;
+    _selectedNewTarget = true;
     break;
 } forEach _targets;
+
+
+
+if (!_selectedNewTarget && {_allowStartNewSearch}) then {
+    [_group] call Rimsiakas_fnc_searchForEnemies;
+};
+
+
 
 _group setVariable ["processingIntel", false];
