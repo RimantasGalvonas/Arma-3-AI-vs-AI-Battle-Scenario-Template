@@ -13,4 +13,5 @@ class missionAreaSelector
     class moveMissionArea {};
     class createMarkersForSyncedObjects {};
     class scaleObjectPlacement {};
+    class initMissionAreaSelection {};
 }

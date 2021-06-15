@@ -15,8 +15,6 @@ createMarkerLocal ["missionAreaMarker", getPos patrolCenter];
 "missionAreaMarker" setMarkerBrushLocal "DiagGrid";
 "missionAreaMarker" setMarkerSizeLocal [_missionAreaSize, _missionAreaSize];
 
-
-
 waitUntil {!isNull findDisplay 46421};
 
 _dialog = findDisplay 46421;
@@ -31,5 +29,5 @@ _map ctrlAddEventHandler ["MouseButtonClick", {
     _pos = _ctrl ctrlMapScreenToWorld [_x, _y];
     "missionAreaMarker" setMarkerPosLocal _pos;
 
-    [_pos] call Rimsiakas_fnc_moveMissionArea;
+    [_pos] remoteExecCall ["Rimsiakas_fnc_moveMissionArea", 2];
 }];

@@ -17,13 +17,13 @@ private _scaleObjectPlacementFunc = {
     private _originalDistance = _object getVariable ["originalDistanceFromCenter", nil];
     if (isNil "_originalDistance") then {
         _originalDistance = patrolCenter distance2D _object;
-        _object setVariable ["originalDistanceFromCenter", _originalDistance];
+        _object setVariable ["originalDistanceFromCenter", _originalDistance, true];
     };
 
     private _azimuth = _object getVariable ["originalAzimuthFromCenter", nil];
     if (isNil "_azimuth") then {
         _azimuth = patrolCenter getDir _object;
-        _object setVariable ["originalAzimuthFromCenter", _azimuth];
+        _object setVariable ["originalAzimuthFromCenter", _azimuth, true];
     } else {
         _azimuth = _azimuth + (patrolCenter getVariable ["rotation", 0]);
     };
@@ -40,7 +40,7 @@ private _scaleObjectPlacementFunc = {
             if (isNil {_object getVariable ["originalTriggerArea", nil]}) then {
                 _origTriggerArea = triggerArea _object;
                 // No idea why it needs to be cast into a string, but it does.
-                _object setVariable ["originalTriggerArea", (str _origTriggerArea)];
+                _object setVariable ["originalTriggerArea", (str _origTriggerArea), true];
             } else {
                 _origTriggerArea = parseSimpleArray (_object getVariable "originalTriggerArea");
             };
@@ -49,6 +49,10 @@ private _scaleObjectPlacementFunc = {
             _triggerArea set [0, (_origTriggerArea select 0) * _scale];
             _triggerArea set [1, (_origTriggerArea select 1) * _scale];
             _object setTriggerArea _triggerArea;
+            if (!hasInterface && {!isNil "Rimsiakas_loggedInAdmin"}) then {
+                // This is needed because this script runs on the dedicated server and the setTriggerArea command has local effects
+                [_object, _triggerArea] remoteExec ["setTriggerArea", Rimsiakas_loggedInAdmin];
+            };
         };
 
 
@@ -58,10 +62,10 @@ private _scaleObjectPlacementFunc = {
 
             if (isNil "_minSpawnRadius") then {
                 _minSpawnRadius = _object getVariable "minSpawnRadius";
-                _object setVariable ["minSpawnRadius_original", _minSpawnRadius];
+                _object setVariable ["minSpawnRadius_original", _minSpawnRadius, true];
             };
 
-            _object setVariable ["minSpawnRadius", _minSpawnRadius * _scale];
+            _object setVariable ["minSpawnRadius", _minSpawnRadius * _scale, true];
 
 
 
@@ -72,7 +76,7 @@ private _scaleObjectPlacementFunc = {
                 _object setVariable ["maxSpawnRadius_original", _maxSpawnRadius];
             };
 
-            _object setVariable ["maxSpawnRadius", _maxSpawnRadius * _scale];
+            _object setVariable ["maxSpawnRadius", _maxSpawnRadius * _scale, true];
             {
                 [_x, _scale] call _scaleObjectPlacementFunc;
             } forEach (_object getVariable ["childPlacers", []]);
@@ -89,11 +93,11 @@ private _scaleObjectPlacementFunc = {
 
 // Use unscaled values to keep this reversible. Otherwise it gets all messed up due to float imprecision
 if (isNil {patrolCenter getVariable ["scaling", nil];}) then {
-    patrolCenter setVariable ["patrolRadius_original", patrolCenter getVariable "patrolRadius"];
-    patrolCenter setVariable ["intelGridSize_original", patrolCenter getVariable "intelGridSize"];
-    patrolCenter setVariable ["maxInfantryResponseDistance_original", patrolCenter getVariable "maxInfantryResponseDistance"];
-    patrolCenter setVariable ["maxVehicleResponseDistance_original", patrolCenter getVariable "maxVehicleResponseDistance"];
-    patrolCenter setVariable ["maxAirResponseDistance_original", patrolCenter getVariable "maxAirResponseDistance"];
+    patrolCenter setVariable ["patrolRadius_original", patrolCenter getVariable "patrolRadius", true];
+    patrolCenter setVariable ["intelGridSize_original", patrolCenter getVariable "intelGridSize", true];
+    patrolCenter setVariable ["maxInfantryResponseDistance_original", patrolCenter getVariable "maxInfantryResponseDistance", true];
+    patrolCenter setVariable ["maxVehicleResponseDistance_original", patrolCenter getVariable "maxVehicleResponseDistance", true];
+    patrolCenter setVariable ["maxAirResponseDistance_original", patrolCenter getVariable "maxAirResponseDistance", true];
 };
 
 _patrolRadius = (patrolCenter getVariable "patrolRadius_original") * _scale;
@@ -107,4 +111,8 @@ patrolCenter setVariable ["scaling", _scale, true];
 if ("missionAreaMarker" in allMapMarkers) then {
     private _markerSize = (markerSize "missionAreaMarker") select 0;
     "missionAreaMarker" setMarkerSizeLocal [_patrolRadius, _patrolRadius];
+};
+
+if (!hasInterface && {!isNil "Rimsiakas_loggedInAdmin"}) then {
+    ["missionAreaMarker", [_patrolRadius, _patrolRadius]] remoteExec ["setMarkerSizeLocal", Rimsiakas_loggedInAdmin];
 };
