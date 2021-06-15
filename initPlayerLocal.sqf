@@ -1,7 +1,7 @@
 sleep 0.1; // Small delay required because otherwise the Initializing... screen and validation hints are not shown.
 
 if (isNull findDisplay 46421) then { // Check to make sure the mission selector dialog is not already opened
-    titleCut ["Initializing...", "BLACK FADED", 999, false];
+    cutText ["Initializing...", "BLACK FADED", 3600, false];
 };
 
 
@@ -19,7 +19,14 @@ if ((count Rimsiakas_missionValidationResult) > 0) exitWith {
             (_x select 0) hintC (_x select 1);
         } forEach Rimsiakas_missionValidationResult;
     };
-    titleCut ["", "BLACK IN", 1];
+    cutText ["", "BLACK IN", 1];
+};
+
+
+if (patrolCenter getVariable ["dynamic", false] && {!isServer && {isNil "Rimsiakas_missionAreaSelected" || {!Rimsiakas_missionAreaSelected}}}) then {
+    cutText ["Waiting for the host to select the mission location.\n(On dedicated servers this requires an admin to login or be elected.)", "BLACK FADED", 3600, false];
+    waitUntil {!isNil "Rimsiakas_missionAreaSelected" && {Rimsiakas_missionAreaSelected}};
+    cutText ["Initializing...", "BLACK FADED", 3600, false];
 };
 
 
@@ -66,4 +73,4 @@ player addEventHandler ["Killed", {
 
 
 
-titleCut ["", "BLACK IN", 1];
+cutText ["", "BLACK IN", 1];

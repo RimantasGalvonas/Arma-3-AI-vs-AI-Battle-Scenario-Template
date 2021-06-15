@@ -38,7 +38,7 @@ private _moveObjectFunc = {
     private _relPos = [(_objectPos select 0) - (_oldMissionPos select 0), (_objectPos select 1) - (_oldMissionPos select 1)];
 
     if (isNil {_object getVariable ["originalAzimuthFromCenter", nil]}) then {
-        _object setVariable ["originalAzimuthFromCenter", patrolCenter getDir _object]; // This is used to ensure scaling reversability
+        _object setVariable ["originalAzimuthFromCenter", patrolCenter getDir _object, true]; // This is used to ensure scaling reversability
     };
 
     if (_rotation != 0) then {
@@ -53,6 +53,11 @@ private _moveObjectFunc = {
         private _triggerArea = triggerArea _object;
         _triggerArea set [2, (_triggerArea select 2) + _rotation];
         _object setTriggerArea _triggerArea;
+
+        if (!hasInterface && {!isNil "Rimsiakas_loggedInAdmin"}) then {
+            // This is needed because this script runs on the dedicated server and the setTriggerArea command has local effects
+            [_object, _triggerArea] remoteExec ["setTriggerArea", Rimsiakas_loggedInAdmin];
+        };
     } else {
         _object setDir ((getDir _object) + _rotation);
 
@@ -79,4 +84,8 @@ patrolCenter setVariable ["rotation", _oldRotation + _rotation, true];
 
 if ("missionAreaMarker" in allMapMarkers) then {
     "missionAreaMarker" setMarkerDirLocal (_oldRotation + _rotation);
+};
+
+if (!hasInterface && {!isNil "Rimsiakas_loggedInAdmin"}) then {
+    ["missionAreaMarker", (_oldRotation + _rotation)] remoteExec ["setMarkerDirLocal", Rimsiakas_loggedInAdmin];
 };

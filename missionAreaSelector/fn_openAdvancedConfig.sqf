@@ -20,14 +20,22 @@ _map ctrlAddEventHandler ["MouseButtonClick", {
     _y = _this select 3;
 
     _pos = _ctrl ctrlMapScreenToWorld [_x, _y];
-    "missionAreaMarker" setMarkerPosLocal _pos;
-
-    [_pos] call Rimsiakas_fnc_moveMissionArea;
-    call Rimsiakas_fnc_createMarkersForSyncedObjects;
+    [_pos, "advanced"] remoteExecCall ["Rimsiakas_fnc_handleMapClick", 2];
 }];
 
 _map ctrlMapAnimAdd [0, 0.25, getMarkerPos "missionAreaMarker"];
 ctrlMapAnimCommit _map;
+
+if (!isServer) then {
+    // This script runs on a client which sends mission location changes to the dedicated server.
+    // There's no way to know when the server has received and processed the mission location changes so this needs to be refreshed constantly.
+    [] spawn {
+        while {!isNull findDisplay 46424} do {
+            call Rimsiakas_fnc_createMarkersForSyncedObjects;
+            sleep 0.3;
+        };
+    };
+};
 
 
 waitUntil {isNull findDisplay 46424};

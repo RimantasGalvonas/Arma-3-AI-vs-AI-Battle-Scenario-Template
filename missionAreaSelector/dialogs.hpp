@@ -348,7 +348,7 @@ class Rimsiakas_AdvancedConfigDialog
     class Rimsiakas_AdvancedConfigDialog_RotateCCW: RscButton
     {
         idc = 1003;
-        action = "[] spawn {[nil, -5] call Rimsiakas_fnc_moveMissionArea; call Rimsiakas_fnc_refreshAdvancedConfigInfo;};";
+        action = "['rotate_ccw'] remoteExecCall ['Rimsiakas_fnc_handleTransformButton', 2];";
 
         text = "Rotate CCW"; //--- ToDo: Localize;
         x = 6.5 * GUI_GRID_W + GUI_GRID_X;
@@ -360,7 +360,7 @@ class Rimsiakas_AdvancedConfigDialog
     class Rimsiakas_AdvancedConfigDialog_RotateCW: RscButton
     {
         idc = 1004;
-        action = "[] spawn {[nil, 5] call Rimsiakas_fnc_moveMissionArea; call Rimsiakas_fnc_refreshAdvancedConfigInfo;};";
+        action = "['rotate_cw'] remoteExecCall ['Rimsiakas_fnc_handleTransformButton', 2];";
 
         text = "Rotate CW"; //--- ToDo: Localize;
         x = 12.5 * GUI_GRID_W + GUI_GRID_X;
@@ -372,7 +372,7 @@ class Rimsiakas_AdvancedConfigDialog
     class Rimsiakas_AdvancedConfigDialog_ScaleDown: RscButton
     {
         idc = 1005;
-        action = "[-0.1] call Rimsiakas_fnc_scaleObjectPlacement; call Rimsiakas_fnc_refreshAdvancedConfigInfo;";
+        action = "['scale_down'] remoteExecCall ['Rimsiakas_fnc_handleTransformButton', 2];";
 
         text = "Scale-"; //--- ToDo: Localize;
         x = 18.5 * GUI_GRID_W + GUI_GRID_X;
@@ -384,7 +384,7 @@ class Rimsiakas_AdvancedConfigDialog
     class Rimsiakas_AdvancedConfigDialog_ScaleUp: RscButton
     {
         idc = 1006;
-        action = "[0.1] call Rimsiakas_fnc_scaleObjectPlacement; call Rimsiakas_fnc_refreshAdvancedConfigInfo;";
+        action = "['scale_up'] remoteExecCall ['Rimsiakas_fnc_handleTransformButton', 2];";
 
         text = "Scale+"; //--- ToDo: Localize;
         x = 24.5 * GUI_GRID_W + GUI_GRID_X;

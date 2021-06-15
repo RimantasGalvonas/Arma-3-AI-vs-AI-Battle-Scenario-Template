@@ -6,9 +6,9 @@ _newDate append [parseNumber (ctrlText 1402)];
 _newDate append [parseNumber (ctrlText 1403)];
 _newDate append [parseNumber (ctrlText 1404)];
 
-setDate _newDate;
+[_newDate] remoteExecCall ["setDate", 2];
 
-0 setOvercast ((sliderPosition 1900) / 10);
-forceWeatherChange;
+[0, ((sliderPosition 1900) / 10)] remoteExecCall ["setOvercast", 2];
+remoteExecCall ["forceWeatherChange", 2];
 
 closeDialog 1;

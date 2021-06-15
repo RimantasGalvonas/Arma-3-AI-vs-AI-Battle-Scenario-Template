@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. On the top menu: <b>Scenario > Open Scenario Folder</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.3/AI-vs-AI-Battle-Scenario-Template-1.1.3.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.2.0/AI-vs-AI-Battle-Scenario-Template-1.2.0.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -405,13 +405,13 @@ Made on v1.1.1
 <summary>Force Through Gamemode [SP/COOP]</summary>
 <br>
 
-[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.1.3/ForceThrough-Altis.Altis.zip)
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.2.0/ForceThroughMissions.zip)
 
-This is the source for this mission: https://steamcommunity.com/sharedfiles/filedetails/?id=2418209864
+This is the source for these missions: https://steamcommunity.com/workshop/filedetails/?id=2427506774
 
 This scenario demonstrates the possibility to add additional logic to the scenarios right in the editor without having to modify the scripts themselves. Look for the **missionLocationChangerLogic** object and expressions in the **Spawn AI** modules.
 
-Made on v1.1.3
+Made on v1.2.0
 
 </details>
 </li>
@@ -461,6 +461,12 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+1.2.0 (2021-06-16)
+<ul>
+<li>Make Dynamic Mission Area compatible with dedicated servers.</li>
+</ul>
+</li>
 <li>
 1.1.3 (2021-06-12)
 <ul>
