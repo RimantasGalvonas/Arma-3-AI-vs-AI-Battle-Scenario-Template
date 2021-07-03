@@ -10,4 +10,5 @@
     ctrlSetText [1404, str (_now select 4)];
 
     sliderSetPosition [1900, (overcast * 10)];
+    sliderSetPosition [1901, (fog * 10)];
 };
