@@ -141,7 +141,8 @@ class Rimsiakas_EnvironmentConfigurationDialog
         Rimsiakas_EnvironmentConfigurationDialog_DateSeparator1,
         Rimsiakas_EnvironmentConfigurationDialog_DateSeparator2,
         Rimsiakas_EnvironmentConfigurationDialog_TimeSeparator,
-        Rimsiakas_EnvironmentConfigurationDialog_OvercastLabel
+        Rimsiakas_EnvironmentConfigurationDialog_OvercastLabel,
+        Rimsiakas_EnvironmentConfigurationDialog_FogLabel
     };
     controls[]=
     {
@@ -151,6 +152,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         Rimsiakas_EnvironmentConfigurationDialog_HourField,
         Rimsiakas_EnvironmentConfigurationDialog_MinuteField,
         Rimsiakas_EnvironmentConfigurationDialog_OvercastSlider,
+        Rimsiakas_EnvironmentConfigurationDialog_FogSlider,
         Rimsiakas_EnvironmentConfigurationDialog_ConfirmButton
     };
     ////////////////////////////////////////////////////////
@@ -163,7 +165,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         x = 9.5 * GUI_GRID_W + GUI_GRID_X;
         y = 8.5 * GUI_GRID_H + GUI_GRID_Y;
         w = 19.5 * GUI_GRID_W;
-        h = 7 * GUI_GRID_H;
+        h = 8.5 * GUI_GRID_H;
         colorBackground[] = {-1,-1,-1,0.5};
     };
     class Rimsiakas_EnvironmentConfigurationDialog_DateTimeLabel: RscText
@@ -252,7 +254,7 @@ class Rimsiakas_EnvironmentConfigurationDialog
         idc = 1005;
         text = "Overcast:"; //--- ToDo: Localize;
         x = 10 * GUI_GRID_W + GUI_GRID_X;
-        y = 10.5 * GUI_GRID_H + GUI_GRID_Y;
+        y = 10.7 * GUI_GRID_H + GUI_GRID_Y;
         w = 3.5 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
     };
@@ -261,21 +263,41 @@ class Rimsiakas_EnvironmentConfigurationDialog
         idc = 1900;
         sliderRange[] = {0,10};
         x = 14 * GUI_GRID_W + GUI_GRID_X;
-        y = 10.71 * GUI_GRID_H + GUI_GRID_Y;
+        y = 10.91 * GUI_GRID_H + GUI_GRID_Y;
+        w = 11.5 * GUI_GRID_W;
+        h = 1 * GUI_GRID_H;
+    };
+    class Rimsiakas_EnvironmentConfigurationDialog_FogLabel: RscText
+    {
+        idc = 1006;
+
+        text = "Fog:"; //--- ToDo: Localize;
+        x = 10 * GUI_GRID_W + GUI_GRID_X;
+        y = 12.5 * GUI_GRID_H + GUI_GRID_Y;
+        w = 3.5 * GUI_GRID_W;
+        h = 1 * GUI_GRID_H;
+    };
+    class Rimsiakas_EnvironmentConfigurationDialog_FogSlider: RscSlider
+    {
+        idc = 1901;
+        sliderRange[] = {0,10};
+
+        x = 14 * GUI_GRID_W + GUI_GRID_X;
+        y = 12.7 * GUI_GRID_H + GUI_GRID_Y;
         w = 11.5 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
     };
     class Rimsiakas_EnvironmentConfigurationDialog_ConfirmButton: RscButton
-    {
-        idc = 1600;
-        text = "Confirm"; //--- ToDo: Localize;
-        action = "call Rimsiakas_fnc_confirmEnvConfig";
+        {
+            idc = 1600;
+            text = "Confirm"; //--- ToDo: Localize;
+            action = "call Rimsiakas_fnc_confirmEnvConfig";
 
-        x = 10.5 * GUI_GRID_W + GUI_GRID_X;
-        y = 13.5 * GUI_GRID_H + GUI_GRID_Y;
-        w = 5 * GUI_GRID_W;
-        h = 1.5 * GUI_GRID_H;
-    };
+            x = 10.5 * GUI_GRID_W + GUI_GRID_X;
+            y = 14.5 * GUI_GRID_H + GUI_GRID_Y;
+            w = 5 * GUI_GRID_W;
+            h = 1.5 * GUI_GRID_H;
+        };
     ////////////////////////////////////////////////////////
     // GUI EDITOR OUTPUT END
     ////////////////////////////////////////////////////////
