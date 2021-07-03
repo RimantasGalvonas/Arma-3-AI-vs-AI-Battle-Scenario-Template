@@ -16,7 +16,7 @@ if (!isNil "intelGridTriggers") then {
 
 
 private _rotateRelativePosition = {
-    params ["_rotation", "_relPos", "_result"];
+    params ["_rotation", "_relPos"];
 
     private _rotMatrix =
     [
