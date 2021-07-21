@@ -35,6 +35,10 @@ Rimsiakas_missionAreaPreviewProcessId = [] spawn {
         _dotPositions append [_endPos];
     } forEach _corners;
 
+    if (!isNil "Rimsiakas_MissionAreaPreviewHandlerId") then {
+        removeMissionEventHandler ["Draw3D", Rimsiakas_MissionAreaPreviewHandlerId];
+    };
+
     Rimsiakas_MissionAreaPreviewHandlerId = addMissionEventHandler [
         "Draw3D",
         {
