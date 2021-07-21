@@ -2,9 +2,7 @@ params ["_newUnit", "_oldUnit", "_respawn", "_respawnDelay"];
 
 
 
-_friendlyGroups = allGroups select {[side _newUnit, side _x] call BIS_fnc_sideIsFriendly};
-_newUnit setVariable ["MARTA_reveal", _friendlyGroups];
-setGroupIconsVisible [true, false];
+[_newUnit] call Rimsiakas_fnc_revealFriendlyGroupsOnMap;
 
 
 

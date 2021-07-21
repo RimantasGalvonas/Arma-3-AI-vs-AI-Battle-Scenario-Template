@@ -23,6 +23,7 @@ class CfgFunctions
             class reenableAI {};
             class createIntelGrid {};
             class getAveragePosition {};
+            class revealFriendlyGroupsOnMap {};
         };
 
         class intelSharing
