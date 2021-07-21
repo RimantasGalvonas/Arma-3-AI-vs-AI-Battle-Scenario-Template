@@ -1,6 +1,6 @@
-params ["_position"];
+params ["_position", ["_depth", 100]];
 
-private _targetPosForestFactor = selectBestPlaces [_position, 100, "-forest", 30, 1];
+private _targetPosForestFactor = selectBestPlaces [_position, _depth, "-forest", 30, 1];
 
 _targetPosForestFactor = (_targetPosForestFactor select 0) select 1;
 
