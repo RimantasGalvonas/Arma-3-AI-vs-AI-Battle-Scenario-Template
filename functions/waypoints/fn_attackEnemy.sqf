@@ -57,7 +57,7 @@ if (_groupHasVehicles == true) then {
     _maxFlankingDistance = 500;
     _minFlankingDistance = 250;
 
-    if ([_targetPos] call Rimsiakas_fnc_isPositionInForest) then {
+    if ([_targetPos] call Rimsiakas_fnc_isPositionInForest || {[_targetPos] call Rimsiakas_fnc_isPositionAmongBuildings}) then {
         _maxFlankingDistance = 300;
         _minFlankingDistance = 100;
     };

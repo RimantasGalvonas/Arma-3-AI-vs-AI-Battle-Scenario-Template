@@ -32,7 +32,12 @@ while {_distance > (_waypointStepDistance * 1.5)} do {
     };
 
     _maxEngagementDistance = 500; // TODO: calculate according to squad weaponry
-    if ([_enemyPos] call Rimsiakas_fnc_isPositionInForest || {[_intermediatePosition, _waypointStepDistance / 1.5] call Rimsiakas_fnc_isPositionInForest}) then {
+    if (
+        [_enemyPos] call Rimsiakas_fnc_isPositionInForest || {
+        [_intermediatePosition, _waypointStepDistance / 1.5] call Rimsiakas_fnc_isPositionInForest || {
+        [_enemyPos] call Rimsiakas_fnc_isPositionAmongBuildings || {
+        [_intermediatePosition] call Rimsiakas_fnc_isPositionAmongBuildings
+    }}}) then {
         _maxEngagementDistance = 200;
     };
 
