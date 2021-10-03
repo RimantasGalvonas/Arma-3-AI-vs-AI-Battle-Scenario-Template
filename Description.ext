@@ -68,6 +68,7 @@ class CfgFunctions
             class findOverwatchWithCover {};
             class temporaryCombatMode {};
             class isPositionInForest {};
+            class isPositionAmongBuildings {};
         };
 
         #include "missionAreaSelector\functions.hpp"
