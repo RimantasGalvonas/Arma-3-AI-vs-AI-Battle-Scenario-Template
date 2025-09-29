@@ -23,7 +23,12 @@ while {_distance > (_waypointStepDistance * 1.5)} do {
         _preferablePosition = [_preferablePosition, 0, 10, 1, 0, -1, 0, [], [_preferablePosition, _preferablePosition]] call BIS_fnc_findSafePos; // To avoid placing waypoints inside houses. Makes the units get stuck
 
         private _intermediateWaypoint = _group addWayPoint [_preferablePosition, 5];
+        
         _intermediateWaypoint setWaypointType "MOVE";
+
+        if (!isPlayer leader _group) then {
+            _intermediateWaypoint setWaypointFormation (patrolCenter getVariable ["aiConfigPatrolFormation", "WEDGE"]);
+        };
     };
 
     _distance = _preferablePosition distance2D _destination;

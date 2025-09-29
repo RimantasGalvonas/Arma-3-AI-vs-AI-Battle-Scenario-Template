@@ -63,6 +63,10 @@ remoteExec ["Rimsiakas_fnc_reenableAI"];
     call Rimsiakas_fnc_shareIntel;
 };
 
+[] spawn {
+    call Rimsiakas_fnc_controlGroupSpeed;
+};
+
 
 addMissionEventHandler ["HandleDisconnect", {
     params ["_unit", "_id", "_uid", "_name"];

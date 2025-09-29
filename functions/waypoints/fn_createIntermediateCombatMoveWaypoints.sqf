@@ -41,8 +41,10 @@ while {_distance > (_waypointStepDistance * 1.5)} do {
         _maxEngagementDistance = 200;
     };
 
+    private _withinEngangementDistance = (_intermediatePosition distance _enemyPos) < _maxEngagementDistance;
+
     // If within engagement distance, try to find a position from which the target is visible, preferably with cover
-    if ((_intermediatePosition distance _enemyPos) < _maxEngagementDistance) then {
+    if (_withinEngangementDistance) then {
         _vantagePointData = [_intermediatePosition, _destination, _waypointStepDistance / 1.5] call Rimsiakas_fnc_findOverwatchWithCover;
         _vantagePoint = _vantagePointData select 0;
 
@@ -81,6 +83,10 @@ while {_distance > (_waypointStepDistance * 1.5)} do {
         _intermediateWaypoint = _group addWayPoint [_preferablePosition, 1];
         _intermediateWaypoint setWaypointType "MOVE";
         _intermediateWaypoint setWaypointStatements [_waypointCondition, ""];
+
+        if (_withinEngangementDistance && {!isPlayer leader _group}) then {
+            _intermediateWaypoint setWaypointFormation (patrolCenter getVariable ["aiConfigAttackFormation", "WEDGE"]);
+        };
     };
 
     _distance = _preferablePosition distance2D _destination;

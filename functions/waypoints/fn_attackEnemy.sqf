@@ -106,4 +106,5 @@ if (_groupHasVehicles == true) then {
     _finalWaypoint = _group addWayPoint [getPos _target, 5];
     _finalWaypoint setWaypointType "SAD";
     _finalWaypoint setWaypointStatements [_waypointCondition, _waypointStatements];
+    _finalWaypoint setWaypointFormation (patrolCenter getVariable ["aiConfigAttackFormation", "WEDGE"]);
 };

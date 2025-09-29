@@ -24,6 +24,7 @@ class CfgFunctions
             class createIntelGrid {};
             class getAveragePosition {};
             class revealFriendlyGroupsOnMap {};
+            class controlGroupSpeed {};
         };
 
         class intelSharing
