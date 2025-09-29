@@ -6,7 +6,6 @@ class Rimsiakas_MissionAreaSelectorDialog
     import RscEdit;
     import RscSlider;
     import RscCombo;
-    import RscXListBox;
 
     idd = 46421;
     movingEnabled = false;
@@ -575,18 +574,14 @@ class Rimsiakas_AiConfigurationDialog
         Rimsiakas_AiConfigurationDialog_Background,
         Rimsiakas_AiConfigurationDialog_PatrolFormationLabel,
         Rimsiakas_AiConfigurationDialog_AttackFormationLabel,
-        Rimsiakas_AiConfigurationDialog_DefaultMovementSpeedLabel,
-        Rimsiakas_AiConfigurationDialog_ForestMovementSpeedLabel,
-        Rimsiakas_AiConfigurationDialog_BuildingsMovementSpeedLabel
+        Rimsiakas_AiConfigurationDialog_MovementSpeedModeLabel,
     };
 
     controls[]=
     {
         Rimsiakas_AiConfigurationDialog_PatrolFormation,
         Rimsiakas_AiConfigurationDialog_AttackFormation,
-        Rimsiakas_AiConfigurationDialog_DefaultMovementSpeed,
-        Rimsiakas_AiConfigurationDialog_ForestMovementSpeed,
-        Rimsiakas_AiConfigurationDialog_BuildingsMovementSpeed,
+        Rimsiakas_AiConfigurationDialog_MovementSpeedMode,
         Rimsiakas_AiConfigurationDialog_ConfirmButton
     };
 
@@ -755,107 +750,44 @@ class Rimsiakas_AiConfigurationDialog
         };
     };
 
-    class Rimsiakas_AiConfigurationDialog_DefaultMovementSpeedLabel: RscText
+    class Rimsiakas_AiConfigurationDialog_MovementSpeedModeLabel: RscText
     {
         idc = 1005;
-        text = "Default movement speed:"; //--- ToDo: Localize;
+        text = "Group movement speed:"; //--- ToDo: Localize;
         x = 10 * GUI_GRID_W + GUI_GRID_X;
         y = 7 * GUI_GRID_H + GUI_GRID_Y;
         w = 10 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
     };
 
-    class Rimsiakas_AiConfigurationDialog_DefaultMovementSpeed: RscXListBox
+    class Rimsiakas_AiConfigurationDialog_MovementSpeedMode: RscCombo
     {
         idc = 1006;
-        x = 20.5 * GUI_GRID_W + GUI_GRID_X;
-        y = 7 * GUI_GRID_H + GUI_GRID_Y;
-        w = 8 * GUI_GRID_W;
-        h = 1 * GUI_GRID_H;
-
-        class Items
-        {
-            class Slow
-            {
-                text = "Slow";
-                data = "LIMITED";
-                default = 0;
-            };
-            class Normal
-            {
-                text = "Normal";
-                data = "NORMAL";
-                default = 1;
-            };
-        };
-    };
-
-    class Rimsiakas_AiConfigurationDialog_ForestMovementSpeedLabel: RscText
-    {
-        idc = 1007;
-        text = "Movement speed in forests:"; //--- ToDo: Localize;
         x = 10 * GUI_GRID_W + GUI_GRID_X;
         y = 8 * GUI_GRID_H + GUI_GRID_Y;
-        w = 10 * GUI_GRID_W;
-        h = 1 * GUI_GRID_H;
-    };
-
-    class Rimsiakas_AiConfigurationDialog_ForestMovementSpeed: RscXListBox
-    {
-        idc = 1008;
-        x = 20.5 * GUI_GRID_W + GUI_GRID_X;
-        y = 8 * GUI_GRID_H + GUI_GRID_Y;
-        w = 8 * GUI_GRID_W;
+        w = 18.5 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
 
         class Items
         {
-            class Slow
-            {
-                text = "Slow";
-                data = "LIMITED";
-                default = 0;
-            };
             class Normal
             {
                 text = "Normal";
                 data = "NORMAL";
                 default = 1;
             };
-        };
-    };
-
-    class Rimsiakas_AiConfigurationDialog_BuildingsMovementSpeedLabel: RscText
-    {
-        idc = 1009;
-        text = "Mov. speed among buildings:"; //--- ToDo: Localize;
-        x = 10 * GUI_GRID_W + GUI_GRID_X;
-        y = 9 * GUI_GRID_H + GUI_GRID_Y;
-        w = 10 * GUI_GRID_W;
-        h = 1 * GUI_GRID_H;
-    };
-
-    class Rimsiakas_AiConfigurationDialog_BuildingsMovementSpeed: RscXListBox
-    {
-        idc = 1010;
-        x = 20.5 * GUI_GRID_W + GUI_GRID_X;
-        y = 9 * GUI_GRID_H + GUI_GRID_Y;
-        w = 8 * GUI_GRID_W;
-        h = 1 * GUI_GRID_H;
-
-        class Items
-        {
+            class Smart
+            {
+                text = "Smart";
+                data = "SMART";
+                tooltip = "Slow in cover, fast in open areas";
+                default = 0;
+            };
             class Slow
             {
                 text = "Slow";
-                data = "LIMITED";
+                data = "SLOW";
                 default = 0;
-            };
-            class Normal
-            {
-                text = "Normal";
-                data = "NORMAL";
-                default = 1;
             };
         };
     };
