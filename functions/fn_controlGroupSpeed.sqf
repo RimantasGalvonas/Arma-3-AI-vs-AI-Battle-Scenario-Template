@@ -28,6 +28,14 @@ while {_speedMode != "NORMAL"} do {
             continue;
         };
 
+        private _targetGroup = _group getVariable ["currentTargetGroup", nil];
+
+        if (!isNil "_targetGroup" && {patrolCenter getVariable ["aiConfigAttackSpeedOverride", false]}) then {
+            _group setSpeedMode "NORMAL";
+
+            continue;
+        };
+
 
 
         // Slow speed mode
