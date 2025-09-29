@@ -7,4 +7,7 @@ patrolCenter setVariable ["aiConfigAttackFormation", _attackFormation, true];
 private _speedMode = lbData [1006, lbCurSel 1006];
 patrolCenter setVariable ["aiConfigSpeedMode", _speedMode, true];
 
+private _attackSpeedOverride = cbChecked (displayCtrl 1008);
+patrolCenter setVariable ["aiConfigAttackSpeedOverride", _attackSpeedOverride, true];
+
 closeDialog 1;

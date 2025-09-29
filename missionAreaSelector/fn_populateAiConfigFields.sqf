@@ -28,4 +28,7 @@
 
     private _speedMode = patrolCenter getVariable ["aiConfigSpeedMode", "NORMAL"];
     lbSetCurSel [1006, _speedHashMap get _speedMode];
+
+    private _attackSpeedOverride = patrolCenter getVariable ["aiConfigAttackSpeedOverride", false];
+    (displayCtrl 1008) cbSetChecked _attackSpeedOverride;
 };

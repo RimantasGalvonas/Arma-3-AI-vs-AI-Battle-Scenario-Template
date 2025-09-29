@@ -6,6 +6,7 @@ class Rimsiakas_MissionAreaSelectorDialog
     import RscEdit;
     import RscSlider;
     import RscCombo;
+    import RscCheckBox;
 
     idd = 46421;
     movingEnabled = false;
@@ -575,6 +576,7 @@ class Rimsiakas_AiConfigurationDialog
         Rimsiakas_AiConfigurationDialog_PatrolFormationLabel,
         Rimsiakas_AiConfigurationDialog_AttackFormationLabel,
         Rimsiakas_AiConfigurationDialog_MovementSpeedModeLabel,
+        Rimsiakas_AiConfigurationDialog_AttackSpeedOverrideLabel,
     };
 
     controls[]=
@@ -582,6 +584,7 @@ class Rimsiakas_AiConfigurationDialog
         Rimsiakas_AiConfigurationDialog_PatrolFormation,
         Rimsiakas_AiConfigurationDialog_AttackFormation,
         Rimsiakas_AiConfigurationDialog_MovementSpeedMode,
+        Rimsiakas_AiConfigurationDialog_AttackSpeedOverride,
         Rimsiakas_AiConfigurationDialog_ConfirmButton
     };
 
@@ -612,6 +615,7 @@ class Rimsiakas_AiConfigurationDialog
         y = 2 * GUI_GRID_H + GUI_GRID_Y;
         w = 18.5 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
+        tooltip = "Group will use this formation while looking for targets or while moving towards their target";
 
         class Items
         {
@@ -790,6 +794,27 @@ class Rimsiakas_AiConfigurationDialog
                 default = 0;
             };
         };
+    };
+
+    class Rimsiakas_AiConfigurationDialog_AttackSpeedOverrideLabel: RscText
+    {
+        idc = 1007;
+        text = "Force normal attack speed:"; //--- ToDo: Localize;
+        x = 10 * GUI_GRID_W + GUI_GRID_X;
+        y = 10 * GUI_GRID_H + GUI_GRID_Y;
+        w = 10 * GUI_GRID_W;
+        h = 1 * GUI_GRID_H;
+    };
+
+    class Rimsiakas_AiConfigurationDialog_AttackSpeedOverride: RscCheckBox
+    {
+        idc = 1008;
+        x = 19.5 * GUI_GRID_W + GUI_GRID_X;
+        y = 10 * GUI_GRID_H + GUI_GRID_Y;
+        w = 1 * GUI_GRID_W;
+        h = 1 * GUI_GRID_H;
+        tooltip = "Switch to Normal speed mode as soon as a target is assigned.";
+        checked = 0;
     };
 
     class Rimsiakas_AiConfigurationDialog_ConfirmButton: RscButton
