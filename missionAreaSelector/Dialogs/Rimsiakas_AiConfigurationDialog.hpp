@@ -13,6 +13,7 @@ class Rimsiakas_AiConfigurationDialog
         Rimsiakas_AiConfigurationDialog_AttackFormationLabel,
         Rimsiakas_AiConfigurationDialog_MovementSpeedModeLabel,
         Rimsiakas_AiConfigurationDialog_AttackSpeedOverrideLabel,
+        Rimsiakas_AiConfigurationDialog_AllowGroupJoiningLabel
     };
 
     controls[]=
@@ -21,6 +22,7 @@ class Rimsiakas_AiConfigurationDialog
         Rimsiakas_AiConfigurationDialog_AttackFormation,
         Rimsiakas_AiConfigurationDialog_MovementSpeedMode,
         Rimsiakas_AiConfigurationDialog_AttackSpeedOverride,
+        Rimsiakas_AiConfigurationDialog_AllowGroupJoining,
         Rimsiakas_AiConfigurationDialog_ConfirmButton
     };
 
@@ -250,6 +252,27 @@ class Rimsiakas_AiConfigurationDialog
         w = 1 * GUI_GRID_W;
         h = 1 * GUI_GRID_H;
         tooltip = "Switch to Normal speed mode as soon as a target is assigned.";
+        checked = 0;
+    };
+
+    class Rimsiakas_AiConfigurationDialog_AllowGroupJoiningLabel: RscText
+    {
+        idc = 1009;
+        text = "Allow last man to join new group:"; //--- ToDo: Localize;
+        x = 10 * GUI_GRID_W + GUI_GRID_X;
+        y = 12 * GUI_GRID_H + GUI_GRID_Y;
+        w = 12 * GUI_GRID_W;
+        h = 1 * GUI_GRID_H;
+    };
+
+    class Rimsiakas_AiConfigurationDialog_AllowGroupJoining: RscCheckBox
+    {
+        idc = 1010;
+        x = 21.5 * GUI_GRID_W + GUI_GRID_X;
+        y = 12 * GUI_GRID_H + GUI_GRID_Y;
+        w = 1 * GUI_GRID_W;
+        h = 1 * GUI_GRID_H;
+        tooltip = "Allow the last surviving AI unit to join a new group, if there is one nearby.";
         checked = 0;
     };
 
