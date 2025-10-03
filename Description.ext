@@ -25,6 +25,7 @@ class CfgFunctions
             class getAveragePosition {};
             class revealFriendlyGroupsOnMap {};
             class controlGroupSpeed {};
+            class controlGroupJoining {};
         };
 
         class intelSharing
