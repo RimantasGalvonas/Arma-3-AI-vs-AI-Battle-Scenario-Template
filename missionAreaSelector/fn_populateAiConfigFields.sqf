@@ -31,4 +31,7 @@
 
     private _attackSpeedOverride = patrolCenter getVariable ["aiConfigAttackSpeedOverride", false];
     (displayCtrl 1008) cbSetChecked _attackSpeedOverride;
+
+    private _allowJoinGroup = patrolCenter getVariable ["aiConfigAllowLastManToJoinNewGroup", false];
+    (displayCtrl 1010) cbSetChecked _allowJoinGroup;
 };

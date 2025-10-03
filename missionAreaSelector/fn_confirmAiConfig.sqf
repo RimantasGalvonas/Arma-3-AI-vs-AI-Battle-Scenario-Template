@@ -10,4 +10,7 @@ patrolCenter setVariable ["aiConfigSpeedMode", _speedMode, true];
 private _attackSpeedOverride = cbChecked (displayCtrl 1008);
 patrolCenter setVariable ["aiConfigAttackSpeedOverride", _attackSpeedOverride, true];
 
+private _allowJoinGroup = cbChecked (displayCtrl 1010);
+patrolCenter setVariable ["aiConfigAllowLastManToJoinNewGroup", _allowJoinGroup, true];
+
 closeDialog 1;
