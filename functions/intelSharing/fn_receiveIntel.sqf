@@ -21,12 +21,12 @@ private _maxResponseDistance = _attackCapabilities get "maxResponseDistance";
 
 private _alreadyRespondingPriority = _attackCapabilities get "alreadyRespondingPriority";
 
-private _selectedNewTarget = false;
+private _selectedNewTarget = nil;
+private _targetPriority = nil;
 
 _targets = _targets call BIS_fnc_arrayShuffle;
 
 {
-    private _targetPriority = 1;
     private _target = _x;
     private _targetVehicleType = ((vehicle _target) call BIS_fnc_objectType) select 1;
 
@@ -37,7 +37,7 @@ _targets = _targets call BIS_fnc_arrayShuffle;
         continue;
     };
 
-
+    _targetPriority = 1;
 
     if (_targetVehicleType in ["TrackedAPC", "WheeledAPC"]) then {
         if (_attackCapabilities get "canAttackAPCs") then {
@@ -95,16 +95,17 @@ _targets = _targets call BIS_fnc_arrayShuffle;
     };
 
 
-
-    [_group, _target, _targetPriority] call Rimsiakas_fnc_attackEnemy;
-    _selectedNewTarget = true;
-    break;
+    _selectedNewTarget = _target;
 } forEach _targets;
 
 
 
-if (!_selectedNewTarget && {_attackCapabilities get "allowStartNewSearch"}) then {
-    [_group] call Rimsiakas_fnc_searchForEnemies;
+if (!isNil "_selectedNewTarget") then {
+    [_group, _selectedNewTarget, _targetPriority] call Rimsiakas_fnc_attackEnemy;
+} else {
+    if (_attackCapabilities get "allowStartNewSearch") then {
+        [_group] call Rimsiakas_fnc_searchForEnemies;
+    };
 };
 
 
