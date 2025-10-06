@@ -35,6 +35,7 @@ class CfgFunctions
             class receiveIntel{};
             class hasGroupSeenItsTargetRecently {};
             class unsetGroupTarget {};
+            class getAttackCapabilities {};
         }
 
         class unitPlacement
