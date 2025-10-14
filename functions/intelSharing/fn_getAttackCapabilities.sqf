@@ -60,7 +60,8 @@ if (count (_typesOfVehiclesInGroup arrayIntersect ["Tank", "Helicopter", "Plane"
 
 
 
-// Reset _alreadyRespondingPriority to allow assigning a new target if the entire target group was destroyed
+// Reset _alreadyRespondingPriority to allow assigning a new target if the entire target group was destroyed.
+// Not setting "shouldAbandonCurrentTarget" instead, because it would clear the lastReportedTargetPosition which might still be useful at this point.
 private _currentTargetGroup = _group getVariable ["currentTargetGroup", nil];
 if (!isNil "_currentTargetGroup" && {typeName _currentTargetGroup == "GROUP" && {count ((units _currentTargetGroup) select {alive _x && {!fleeing _x}}) == 0}}) then {
     _capabilitiesMap set ["alreadyRespondingPriority", 0];

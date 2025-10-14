@@ -3,10 +3,15 @@ params ["_group", "_target", ["_targetPriority", 1], ["_additionalWaypointStatem
 private ["_netId", "_groupHasVehicles", "_waypointCondition", "_waypointStatements", "_finalWaypoint"];
 
 
+
+private _previousTargetGroup = _group getVariable ["currentTargetGroup", false];
+
 _group setVariable ["lastReportedTargetPosition", getPos _target];
 _group setVariable ["respondingToIntelPriority", _targetPriority];
 _group setVariable ["currentTargetGroup", group _target];
 _group setVariable ["currentTarget", _target];
+
+[_group, _previousTargetGroup, group _target] call Rimsiakas_fnc_afterTargetChange;
 
 
 
