@@ -36,6 +36,7 @@ class CfgFunctions
             class hasGroupSeenItsTargetRecently {};
             class unsetGroupTarget {};
             class getAttackCapabilities {};
+            class afterTargetChange {};
         }
 
         class unitPlacement
