@@ -24,8 +24,6 @@ private _alreadyRespondingPriority = _attackCapabilities get "alreadyRespondingP
 private _selectedNewTarget = nil;
 private _selectedNewTargetPriority = 0;
 
-private _targetAttackersForDebugging = [];
-
 // Sort from furthest to closest, so that once the entire target list is looped through, the last found suitable target would be the closest.
 _targets = [_targets, [leader _group], { _input0 distance _x }, "DESCEND"] call BIS_fnc_sortBy;
 
@@ -114,13 +112,9 @@ _targets = [_targets, [leader _group], { _input0 distance _x }, "DESCEND"] call 
 
     _selectedNewTarget = _target;
     _selectedNewTargetPriority = _targetPriority;
-    _targetAttackersForDebugging = _targetAlreadyAttackedBy;
 } forEach _targets;
 
 if (!isNil "_selectedNewTarget") then {
-    private _stringCastedAttackers = [];
-    {_stringCastedAttackers append [str _x]} forEach _targetAttackersForDebugging;
-    priorityCalculationDebugData append [createHashMapFromArray [["groupName", str _group], ["target", str group _selectedNewTarget], ["targetPriority", _selectedNewTargetPriority], ["targetAttackers", _stringCastedAttackers]]];
     [_group, _selectedNewTarget, _selectedNewTargetPriority] call Rimsiakas_fnc_attackEnemy;
 } else {
     if (_attackCapabilities get "allowStartNewSearch") then {
