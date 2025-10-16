@@ -37,6 +37,7 @@ class CfgFunctions
             class unsetGroupTarget {};
             class getAttackCapabilities {};
             class afterTargetChange {};
+            class sortGroupsByAmountAndProximityToKnownTargets {};
         }
 
         class unitPlacement
