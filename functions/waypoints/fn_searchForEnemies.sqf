@@ -36,5 +36,5 @@ private _netId = _group call BIS_fnc_netId;
 private _waypointStatements = format ["%1 _group = '%2' call BIS_fnc_groupFromNetId; [_group] call Rimsiakas_fnc_searchForEnemies;", _additionalWaypointStatements, _netId];
 
 private _finalWaypoint = _group addWayPoint [_destination, 5];
-_finalWaypoint setWaypointType "SAD";
+_finalWaypoint setWaypointType "MOVE";
 _finalWaypoint setWaypointStatements [_waypointCondition, _waypointStatements];
