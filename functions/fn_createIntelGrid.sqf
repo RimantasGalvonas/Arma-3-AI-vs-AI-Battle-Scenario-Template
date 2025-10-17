@@ -1,6 +1,5 @@
 private _gridSize = patrolCenter getVariable ["intelGridSize", 0];
 
-if (_gridSize == 0) exitWith {};
 
 
 // Delete old grid if it exists
@@ -12,7 +11,18 @@ if (!isNil "intelGridTriggers") then {
 } else {
     intelGridTriggers = [];
 };
+deleteMarkerLocal "missionAreaBorderMarker";
 
+
+private _missionAreaBorderMarker = createMarkerLocal ["missionAreaBorderMarker", getPos patrolCenter];
+_missionAreaBorderMarker setMarkerSizeLocal [patrolCenter getVariable "patrolRadius", patrolCenter getVariable "patrolRadius"];
+_missionAreaBorderMarker setMarkerDirLocal (patrolCenter getVariable ["rotation", 0]);
+_missionAreaBorderMarker setMarkerShapeLocal "RECTANGLE";
+_missionAreaBorderMarker setMarkerBrushLocal "Border";
+
+
+
+if (_gridSize == 0) exitWith {};
 
 
 private _rotateRelativePosition = {
@@ -63,9 +73,9 @@ for "_i" from _leftmostGrid to _rightmostGrid step _gridSize do {
     private _yPos = _x select 1;
     private _rotation = patrolCenter getVariable ["rotation", 0];
 
-    _markerName = "MarkerX" + str _xPos + "Y" + str _yPos + str player;
+    private _markerName = "MarkerX" + str _xPos + "Y" + str _yPos + str player;
     _marker = createMarkerLocal [_markerName, [_xPos, _yPos]];
-    _marker setMarkerAlphaLocal 0.5;
+    _marker setMarkerAlphaLocal 0;
 
     _trg = createTrigger ["EmptyDetector", [_xPos, _yPos], false];
     _trg setVariable ["attachedMarker", _marker];
@@ -84,9 +94,11 @@ for "_i" from _leftmostGrid to _rightmostGrid step _gridSize do {
         if (_isEnemy == true) exitWith {
             _color = [side _x, true] call BIS_fnc_sideColor;
             (thisTrigger getVariable ""attachedMarker"") setMarkerColorLocal _color;
+            (thisTrigger getVariable ""attachedMarker"") setMarkerAlphaLocal 0.5;
         };
     } forEach thisList;";
-    _trg setTriggerStatements [_triggerCondition, _triggerActivation, "(thisTrigger getVariable ""attachedMarker"") setMarkerColorLocal ""ColorBLACK"""];
+    _trg setTriggerStatements [_triggerCondition, _triggerActivation, "(thisTrigger getVariable ""attachedMarker"") setMarkerAlphaLocal 0"];
 
     intelGridTriggers append [_trg];
 } forEach _positions;
+
