@@ -13,7 +13,8 @@ class Rimsiakas_AiConfigurationDialog
         Rimsiakas_AiConfigurationDialog_AttackFormationLabel,
         Rimsiakas_AiConfigurationDialog_MovementSpeedModeLabel,
         Rimsiakas_AiConfigurationDialog_AttackSpeedOverrideLabel,
-        Rimsiakas_AiConfigurationDialog_AllowGroupJoiningLabel
+        Rimsiakas_AiConfigurationDialog_AllowGroupJoiningLabel,
+        Rimsiakas_AiConfigurationDialog_MaxAttackRatioLabel
     };
 
     controls[]=
@@ -23,6 +24,7 @@ class Rimsiakas_AiConfigurationDialog
         Rimsiakas_AiConfigurationDialog_MovementSpeedMode,
         Rimsiakas_AiConfigurationDialog_AttackSpeedOverride,
         Rimsiakas_AiConfigurationDialog_AllowGroupJoining,
+        Rimsiakas_AiConfigurationDialog_MaxAttackRatio,
         Rimsiakas_AiConfigurationDialog_ConfirmButton
     };
 
@@ -32,7 +34,7 @@ class Rimsiakas_AiConfigurationDialog
         x = 9.5 * GUI_GRID_W + GUI_GRID_X;
         y = 0.5 * GUI_GRID_H + GUI_GRID_Y;
         w = 19.5 * GUI_GRID_W;
-        h = 16.5 * GUI_GRID_H;
+        h = 18.5 * GUI_GRID_H;
         colorBackground[] = {-1,-1,-1,0.5};
     };
 
@@ -276,6 +278,27 @@ class Rimsiakas_AiConfigurationDialog
         checked = 0;
     };
 
+    class Rimsiakas_AiConfigurationDialog_MaxAttackRatioLabel: RscText
+    {
+        idc = 1011;
+        text = "Max attack ratio:"; //--- ToDo: Localize;
+        x = 10 * GUI_GRID_W + GUI_GRID_X;
+        y = 14 * GUI_GRID_H + GUI_GRID_Y;
+        w = 12 * GUI_GRID_W;
+        h = 1 * GUI_GRID_H;
+    };
+
+    class Rimsiakas_AiConfigurationDialog_MaxAttackRatio: RscEdit
+    {
+        idc = 1012;
+        x = 16.5 * GUI_GRID_W + GUI_GRID_X;
+        y = 14 * GUI_GRID_H + GUI_GRID_Y;
+        w = 1.5 * GUI_GRID_W;
+        h = 1 * GUI_GRID_H;
+        maxChars = 2;
+        tooltip = "Maximum number of groups that can attack the same target. Helps keep the battle from bunching up in one spot.";
+    };
+
     class Rimsiakas_AiConfigurationDialog_ConfirmButton: RscButton
     {
         idc = 1600;
@@ -283,7 +306,7 @@ class Rimsiakas_AiConfigurationDialog
         action = "call Rimsiakas_fnc_confirmAiConfig";
 
         x = 10.5 * GUI_GRID_W + GUI_GRID_X;
-        y = 14.5 * GUI_GRID_H + GUI_GRID_Y;
+        y = 16.5 * GUI_GRID_H + GUI_GRID_Y;
         w = 5 * GUI_GRID_W;
         h = 1.5 * GUI_GRID_H;
     };

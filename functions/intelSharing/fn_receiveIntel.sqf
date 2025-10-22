@@ -13,14 +13,11 @@ if (_attackCapabilities get "shouldAbandonCurrentTarget") then {
     [_group] call Rimsiakas_fnc_unsetGroupTarget;
 };
 
+private _maxAttackRatio = patrolCenter getVariable ["aiConfigMaxAttackRatio", 3];
 private _groupPos = getPos (leader _group);
-
 private _currentTarget = _group getVariable ["currentTarget", nil];
-
 private _maxResponseDistance = _attackCapabilities get "maxResponseDistance";
-
 private _alreadyRespondingPriority = _attackCapabilities get "alreadyRespondingPriority";
-
 private _selectedNewTarget = nil;
 private _selectedNewTargetPriority = 0;
 
@@ -75,11 +72,11 @@ _targets = [_targets, [leader _group], { _input0 distance _x }, "DESCEND"] call 
 
     // TODO: should add a GUI config for this number? Make sure the number is also updated in fn_afterTargetChange.sqf if I update this.
     // The second part of the condition is there to allow the current target to reach the "_lastReportedTargetPosition" part.
-    if (count _targetAlreadyAttackedBy > 2 && {!(group _target isEqualTo (_group getVariable ["currentTargetGroup", false]))}) then {
+    if (count _targetAlreadyAttackedBy > (_maxAttackRatio - 1) && {!(group _target isEqualTo (_group getVariable ["currentTargetGroup", false]))}) then {
         continue;
     };
 
-    _targetPriority = _targetPriority - (0.33 * (count _targetAlreadyAttackedBy));
+    _targetPriority = _targetPriority - linearConversion [0, _maxAttackRatio, count _targetAlreadyAttackedBy, 0, 0.99];
 
 
 
