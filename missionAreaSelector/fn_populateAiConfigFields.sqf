@@ -34,4 +34,7 @@
 
     private _allowJoinGroup = patrolCenter getVariable ["aiConfigAllowLastManToJoinNewGroup", false];
     (displayCtrl 1010) cbSetChecked _allowJoinGroup;
+
+    private _maxAttackRatio = patrolCenter getVariable ["aiConfigMaxAttackRatio", 3];
+    ctrlSetText [1012, str _maxAttackRatio];
 };

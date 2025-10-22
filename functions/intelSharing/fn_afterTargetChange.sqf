@@ -1,5 +1,7 @@
 params ["_group", ["_previousTargetGroup", false], ["_newTargetGroup", false]];
 
+private _maxAttackRatio = patrolCenter getVariable ["aiConfigMaxAttackRatio", 3];
+private _priorityAdjustmentStep = linearConversion [0, _maxAttackRatio, 1, 0, 0.99];
 
 if (_previousTargetGroup isEqualTo _newTargetGroup) exitWith {};
 
@@ -15,7 +17,7 @@ if (!(_previousTargetGroup isEqualTo false)) then {
         private _otherGroupAttackPriority = _attackingGroup getVariable ["respondingToIntelPriority", nil];
 
         if (!isNil "_otherGroupAttackPriority") then {
-            _attackingGroup setVariable ["respondingToIntelPriority", _otherGroupAttackPriority + 0.33]; // TODO: make sure this matches the constant in fn_receiveIntel.sqf if I make any changes
+            _attackingGroup setVariable ["respondingToIntelPriority", _otherGroupAttackPriority + _priorityAdjustmentStep];
         };
     } forEach _groupsAttackingThisTargetGroup;
 };
@@ -32,7 +34,7 @@ if (!(_newTargetGroup isEqualTo false)) then {
         private _otherGroupAttackPriority = _attackingGroup getVariable ["respondingToIntelPriority", nil];
         
         if (!isNil "_otherGroupAttackPriority") then {
-            _attackingGroup setVariable ["respondingToIntelPriority", _otherGroupAttackPriority - 0.33]; // TODO: make sure this matches the constant in fn_receiveIntel.sqf if I make any changes
+            _attackingGroup setVariable ["respondingToIntelPriority", _otherGroupAttackPriority - _priorityAdjustmentStep];
         };
     } forEach _groupsAttackingThisTargetGroup;
 
