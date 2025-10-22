@@ -15,7 +15,7 @@ This is a customizeable mission template to be used in the Eden editor. It allow
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. On the top menu: <b>Scenario > Open Scenario Folder</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.3.0/AI-vs-AI-Battle-Scenario-Template-1.3.0.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.3.1/AI-vs-AI-Battle-Scenario-Template-1.3.1.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -393,11 +393,11 @@ These missions may not use the latest version of the scripts so I do not recomme
 <summary>Take part in a NATO assault against an area controlled by AAF and CSAT [SP/MP/COOP]</summary>
 <br>
 
-[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.3.0/PartakeInAnAssaultAgainstEnemySector.Altis.zip)
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Template/releases/download/1.3.1/PartakeInAnAssaultAgainstEnemySector.Altis.zip)
 
 This is the main example mission, showing off most of the available functionality and includes an explanation on how it was made in the mission diary.
 
-Made on v1.2.1
+Made on v1.3.1
 </details>
 </li>
 <li>
@@ -464,6 +464,20 @@ If you publish a scenario based on this template, please mention me in the credi
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+1.3.1 (2025-10-22)
+<ul>
+<li>Target selection improvements:</li>
+<ul>
+<li>Find best target on the first run, reducing annoying target switching.</li>
+<li>Make groups prioritize targets that have fewer units already attacking them.</li>
+<li>Configurable limit on how many groups can be targeting the same group. This helps keep the battle a bit more spread out rather than condensing into a single spot.</li>
+<li>Allow unengaged units that are closest to possible targets choose their targets first, resulting in less random looking target selections.</li>
+</ul>
+<li>Change the patrol endpoint to MOVE instead of SEARCH AND DESTROY, removing the pointless wandering around at the end of the patrol route.</li>
+<li>Fix intel grid appearance - remove grey blocks, add border instead.</li>
+</ul>
+</li>
 <li>
 1.3.0 (2025-10-05)
 <ul>
