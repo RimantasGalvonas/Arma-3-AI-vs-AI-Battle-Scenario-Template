@@ -11,14 +11,19 @@ if (!isNil "intelGridTriggers") then {
 } else {
     intelGridTriggers = [];
 };
-deleteMarkerLocal "missionAreaBorderMarker";
+deleteMarkerLocal "missionAreaBorderMarker0";
+deleteMarkerLocal "missionAreaBorderMarker1";
+deleteMarkerLocal "missionAreaBorderMarker2";
 
 
-private _missionAreaBorderMarker = createMarkerLocal ["missionAreaBorderMarker", getPos patrolCenter];
-_missionAreaBorderMarker setMarkerSizeLocal [patrolCenter getVariable "patrolRadius", patrolCenter getVariable "patrolRadius"];
-_missionAreaBorderMarker setMarkerDirLocal (patrolCenter getVariable ["rotation", 0]);
-_missionAreaBorderMarker setMarkerShapeLocal "RECTANGLE";
-_missionAreaBorderMarker setMarkerBrushLocal "Border";
+for "_i" from 0 to 2 do {
+    private _missionAreaBorderMarker = createMarkerLocal [("missionAreaBorderMarker" + str _i), getPos patrolCenter];
+    private _patrolRadius = (patrolCenter getVariable "patrolRadius") + _i;
+    _missionAreaBorderMarker setMarkerSizeLocal [_patrolRadius, _patrolRadius];
+    _missionAreaBorderMarker setMarkerDirLocal (patrolCenter getVariable ["rotation", 0]);
+    _missionAreaBorderMarker setMarkerShapeLocal "RECTANGLE";
+    _missionAreaBorderMarker setMarkerBrushLocal "Border";
+};
 
 
 
