@@ -22,6 +22,7 @@ class CfgFunctions
             };
             class reenableAI {};
             class createIntelGrid {};
+            class displayFriendlyGroupTargets {};
             class getAveragePosition {};
             class revealFriendlyGroupsOnMap {};
             class controlGroupSpeed {};
