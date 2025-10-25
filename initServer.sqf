@@ -71,6 +71,10 @@ remoteExec ["Rimsiakas_fnc_reenableAI"];
     call Rimsiakas_fnc_controlGroupJoining;
 };
 
+[] spawn {
+    call Rimsiakas_fnc_controlGroupKeepingFormation;
+};
+
 
 addMissionEventHandler ["HandleDisconnect", {
     params ["_unit", "_id", "_uid", "_name"];

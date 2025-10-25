@@ -17,4 +17,8 @@ private _maxAttackRatio = parseNumber (ctrlText 1012);
 if (_maxAttackRatio == 0) then {_maxAttackRatio = 99;};
 patrolCenter setVariable ["aiConfigMaxAttackRatio", _maxAttackRatio, true];
 
+
+private _forceFormation = cbChecked (displayCtrl 1014);
+patrolCenter setVariable ["aiConfigForceFormation", _forceFormation, true];
+
 closeDialog 1;
