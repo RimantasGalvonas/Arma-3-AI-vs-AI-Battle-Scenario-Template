@@ -37,8 +37,8 @@ waitUntil {(!isNil "Rimsiakas_missionInitialized" && {Rimsiakas_missionInitializ
 player setVariable ["CHVD_initialized", true];
 
 
-// Create intel grid
 [] call Rimsiakas_fnc_createIntelGrid;
+[] call Rimsiakas_fnc_displayFriendlyGroupTargets;
 
 
 
