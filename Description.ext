@@ -26,6 +26,7 @@ class CfgFunctions
             class revealFriendlyGroupsOnMap {};
             class controlGroupSpeed {};
             class controlGroupJoining {};
+            class controlGroupKeepingFormation {};
         };
 
         class intelSharing

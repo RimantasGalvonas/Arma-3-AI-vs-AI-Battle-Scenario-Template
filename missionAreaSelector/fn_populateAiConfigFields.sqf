@@ -37,4 +37,7 @@
 
     private _maxAttackRatio = patrolCenter getVariable ["aiConfigMaxAttackRatio", 3];
     ctrlSetText [1012, str _maxAttackRatio];
+
+    private _forceFormation = patrolCenter getVariable ["aiConfigForceFormation", false];
+    (displayCtrl 1014) cbSetChecked _forceFormation;
 };
