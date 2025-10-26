@@ -13,12 +13,7 @@ patrolCenter setVariable ["aiConfigAttackSpeedOverride", _attackSpeedOverride, t
 private _allowJoinGroup = cbChecked (displayCtrl 1010);
 patrolCenter setVariable ["aiConfigAllowLastManToJoinNewGroup", _allowJoinGroup, true];
 
-private _maxAttackRatio = parseNumber (ctrlText 1012);
-if (_maxAttackRatio == 0) then {_maxAttackRatio = 99;};
-patrolCenter setVariable ["aiConfigMaxAttackRatio", _maxAttackRatio, true];
-
-
-private _forceFormation = cbChecked (displayCtrl 1014);
+private _forceFormation = cbChecked (displayCtrl 1012);
 patrolCenter setVariable ["aiConfigForceFormation", _forceFormation, true];
 
 closeDialog 1;
