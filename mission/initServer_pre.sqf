@@ -1,0 +1,1 @@
+[] call ForceThrough_fnc_missionAreaPrepare;

@@ -1,0 +1,22 @@
+class Header
+{
+    gameType = "Coop";
+    minPlayers =  1;
+    maxPlayers = 16;
+};
+
+disabledAI = 1;
+
+reviveMode = 1;
+reviveUnconsciousStateMode = 1;
+
+corpseManagerMode = 1;
+corpseLimit = 100;
+corpseRemovalMinTime = 60;
+minPlayerDistance = 50;
+enableDebugConsole = 1;
+
+respawn = "BASE";
+respawnOnStart = -1;
+respawnTemplates[] = { "MenuInventory", "MenuPosition" };
+respawnDelay = 5;
