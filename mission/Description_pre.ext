@@ -11,9 +11,9 @@ reviveMode = 1;
 reviveUnconsciousStateMode = 1;
 
 corpseManagerMode = 1;
-corpseLimit = 100;
+corpseLimit = 50;
 corpseRemovalMinTime = 60;
-minPlayerDistance = 50;
+minPlayerDistance = 25;
 enableDebugConsole = 1;
 
 respawn = "BASE";
