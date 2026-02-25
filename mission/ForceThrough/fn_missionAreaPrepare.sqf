@@ -12,7 +12,7 @@
 
     Rimsiakas_fnc_showMissionSelectorHints = {
         waitUntil {!isNull findDisplay 46421};
-        "Select a mission location" hintC [parseText "If you want to select a mission area near a coast or the edge of the map, use <t font=""PuristaBold"">Advanced Config</t> to make sure all the required mission entities fit on land.", parsetext "Use <t font=""PuristaBold"">Advanced Config</t> to resize and rotate the mission area. Choose a large (~1000m radius) area for slower, more tactical gameplay, smaller (~400m radius) for quick-paced, intense gameplay.", parseText "When hosting a server, wait for the loading screen to go away before using the <t font=""PuristaBold"">Preview</t> button."];
+        hint parseText "<t align=""left""><t font=""PuristaBold"">Welcome to Force Through!</t><br/><br/>Use the <t font=""PuristaBold"">Toggle entities</t> button and look for <t font=""PuristaBold"">win_trigger</t> and <t font=""PuristaBold"">lose_trigger</t> markers to see which direction the battle will go.<br/><br/>Choose a large (~2000m width) area for slower, more tactical gameplay, smaller (~800m width) for quick-paced, intense gameplay.</t>";
     };
 
     if (hasInterface) then {
