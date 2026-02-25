@@ -13,7 +13,7 @@ if (!isMultiplayer) then {
 
     hint "Use Team Switch (U button) to switch to any friendly unit.";
 } else {
-    private _factionConfig = (selectRandom [spawner_friendly_1, spawner_friendly_2]) call ForceThrough_fnc_getRandomSpawnerFactionConfig;
+    private _factionConfig = (selectRandom [spawner_01_friendly, spawner_02_friendly]) call ForceThrough_fnc_getRandomSpawnerFactionConfig;
 
     if (_factionConfig != configNull) then {
         private _side = [getNumber (_factionConfig >> "side")] call BIS_fnc_sideType;

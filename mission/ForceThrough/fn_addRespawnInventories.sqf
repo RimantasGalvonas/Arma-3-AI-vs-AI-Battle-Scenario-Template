@@ -1,5 +1,5 @@
-private _friendlyUnitTypes = [spawner_friendly_1] call ForceThrough_fnc_getSpawnerUnitTypes;
-_friendlyUnitTypes append ([spawner_friendly_2] call ForceThrough_fnc_getSpawnerUnitTypes);
+private _friendlyUnitTypes = [spawner_01_friendly] call ForceThrough_fnc_getSpawnerUnitTypes;
+_friendlyUnitTypes append ([spawner_02_friendly] call ForceThrough_fnc_getSpawnerUnitTypes);
 _friendlyUnitTypes = _friendlyUnitTypes arrayIntersect _friendlyUnitTypes; // filter out duplicates
 
 {

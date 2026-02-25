@@ -1,7 +1,7 @@
-private _factionFriendly1 = spawner_friendly_1 call ForceThrough_fnc_getRandomSpawnerFactionConfig;
-private _factionFriendly2 = spawner_friendly_2 call ForceThrough_fnc_getRandomSpawnerFactionConfig;
-private _factionEnemy1 = spawner_enemy_1 call ForceThrough_fnc_getRandomSpawnerFactionConfig;
-private _factionEnemy2 = spawner_enemy_2 call ForceThrough_fnc_getRandomSpawnerFactionConfig;
+private _factionFriendly1 = spawner_01_friendly call ForceThrough_fnc_getRandomSpawnerFactionConfig;
+private _factionFriendly2 = spawner_02_friendly call ForceThrough_fnc_getRandomSpawnerFactionConfig;
+private _factionEnemy1 = spawner_03_enemy call ForceThrough_fnc_getRandomSpawnerFactionConfig;
+private _factionEnemy2 = spawner_04_enemy call ForceThrough_fnc_getRandomSpawnerFactionConfig;
 
 {
     private _factionConfig = _x select 0;

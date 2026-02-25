@@ -1,6 +1,6 @@
 params ["_newUnit", "_oldUnit", "_respawn", "_respawnDelay"];
 
 
-waitUntil {count (spawner_friendly_1 getVariable "spawnedunits") > 0 || {count (spawner_friendly_2 getVariable "spawnedunits")}};
-private _unit = selectRandom ((spawner_friendly_1 getVariable "spawnedUnits") + (spawner_friendly_2 getVariable "spawnedUnits"));
+waitUntil {count (spawner_01_friendly getVariable "spawnedunits") > 0 || {count (spawner_02_friendly getVariable "spawnedunits")}};
+private _unit = selectRandom ((spawner_01_friendly getVariable "spawnedUnits") + (spawner_02_friendly getVariable "spawnedUnits"));
 player setSpeaker (speaker _unit);

@@ -24,10 +24,10 @@ private _reversedPreset = createHashMapFromArray [
                 "spawners",
                 createHashMapFromArray
                 [
-                    ["spawner_friendly_1", (_defaultSpawners get "spawner_enemy_1")],
-                    ["spawner_friendly_2", (_defaultSpawners get "spawner_enemy_2")],
-                    ["spawner_enemy_1", (_defaultSpawners get "spawner_friendly_1")],
-                    ["spawner_enemy_2", (_defaultSpawners get "spawner_friendly_2")]
+                    ["spawner_01_friendly", (_defaultSpawners get "spawner_03_enemy")],
+                    ["spawner_02_friendly", (_defaultSpawners get "spawner_04_enemy")],
+                    ["spawner_03_enemy", (_defaultSpawners get "spawner_01_friendly")],
+                    ["spawner_04_enemy", (_defaultSpawners get "spawner_02_friendly")]
                 ]
             ]
         ]
