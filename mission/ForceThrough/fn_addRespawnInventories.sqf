@@ -4,4 +4,4 @@ _friendlyUnitTypes = _friendlyUnitTypes arrayIntersect _friendlyUnitTypes; // fi
 
 {
     [missionNamespace, _x] call BIS_fnc_addRespawnInventory
-} foreach _friendlyUnitTypes;
+} foreach (_friendlyUnitTypes select {_x isKindOf "man"});
