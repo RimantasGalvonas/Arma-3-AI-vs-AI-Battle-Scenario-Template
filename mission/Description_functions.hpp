@@ -8,6 +8,7 @@ class ForceThrough
         class customAISpawnerModuleControl {};
         class afterSpawnEnemyCallback {};
         class afterSpawnFriendlyCallback {};
+        class afterSpawnAirfieldCallback {};
         class getSpawnerUnitTypes {};
         class addRespawnInventories {};
         class getRandomSpawnerFactionConfig {};
