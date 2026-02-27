@@ -2,7 +2,7 @@ params ["_group", "_spawner", "_placer"];
 
 
 
-private _dir = _placer getVariable "direction";
+private _dir = _placer getVariable "taxiDirection";
 
 if (!isNil "_dir") then {
     {

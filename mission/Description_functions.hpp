@@ -14,5 +14,6 @@ class ForceThrough
         class getRandomSpawnerFactionConfig {};
         class setFactionCosmetics {};
         class generateReversedDefaultPreset {};
+        class airfieldUnitsManagementProcess {};
     };
 };
