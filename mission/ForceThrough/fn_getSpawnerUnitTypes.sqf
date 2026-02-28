@@ -5,10 +5,6 @@ private _unitTypes = [];
 {
     private _pool = _x;
 
-    if (typeName _pool != "ARRAY") then {
-        continue;
-    };
-
     {
         private _groupUnits = _x;
 
@@ -17,7 +13,7 @@ private _unitTypes = [];
         };
 
         _unitTypes append _groupUnits;
-    } forEach _pool;
-} forEach (_spawner getVariable ["groupPools", []]);
+    } forEach (_pool get "groups");
+} forEach (_spawner getVariable ["pools", []]);
 
 _unitTypes;

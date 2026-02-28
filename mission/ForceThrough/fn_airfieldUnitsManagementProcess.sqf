@@ -2,7 +2,7 @@ params ["_airfieldPlacer"];
 
 while {true} do {
     private _spawner = (_airfieldPlacer getVariable "spawners") select 0;
-    private _groups = (_spawner getVariable "spawnedUnits") apply {group _x};
+    private _groups = (flatten (_spawner getVariable "spawnedUnitsAndCrewArrays")) apply {group _x};
 
     if (isNil "_groups") then {
         sleep 10;
