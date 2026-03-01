@@ -9,9 +9,14 @@ player createDiaryRecord ["Diary", ["Force Through", "The goal of this game mode
 
 player addRating -10000; // Otherwise reveals independents on the map before you teamswitch
 
-if (!isMultiplayer) then {
-    private _initialPlayable = synchronizedObjects initialPlayableUnitsManager;
+private _initialPlayable = synchronizedObjects initialPlayableUnitsManager;
 
+if (player in _initialPlayable) then {
+    player action ["WeaponOnBack", player];
+    player allowDamage false;
+};
+
+if (!isMultiplayer) then {
     {
         deleteVehicle _x; // Doesn't delete the player
     } forEach (_initialPlayable);

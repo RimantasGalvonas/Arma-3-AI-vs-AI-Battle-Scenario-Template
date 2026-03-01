@@ -7,6 +7,8 @@
 "team2_start_marker" setMarkerAlpha 1;
 "team1_start_marker" setMarkerAlpha 1;
 
+player allowDamage true;
+
 if (!isMultiplayer) then {
     teamSwitch;
     setAccTime 1;
