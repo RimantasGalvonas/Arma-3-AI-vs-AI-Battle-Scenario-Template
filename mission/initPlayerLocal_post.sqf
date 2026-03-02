@@ -10,10 +10,13 @@
 player allowDamage true;
 
 if (!isMultiplayer) then {
-    teamSwitch;
-    setAccTime 1;
+    hint "Use Team Switch (U button) to switch to a friendly unit at any point in the mission.";
 
-    hint "Use Team Switch (U button) to switch to any friendly unit.";
+    [] spawn {
+        waitUntil {count switchableUnits > 1};
+        teamSwitch;
+        setAccTime 1;
+    };
 } else {
     private _factionConfig = (selectRandom [spawner_01_friendly, spawner_02_friendly]) call ForceThrough_fnc_getRandomSpawnerFactionConfig;
 
