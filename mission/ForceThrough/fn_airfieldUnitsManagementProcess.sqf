@@ -2,7 +2,8 @@ params ["_airfieldPlacer"];
 
 while {true} do {
     private _spawner = (_airfieldPlacer getVariable "spawners") select 0;
-    private _groups = (flatten (_spawner getVariable "spawnedUnitsAndCrewArrays")) apply {group _x};
+    private _spawnerUnits = flatten (_spawner getVariable ["spawnedUnitsAndCrewArrays", []]);
+    private _groups = _spawnerUnits apply {group _x};
 
     if (isNil "_groups") then {
         sleep 10;
@@ -15,9 +16,14 @@ while {true} do {
         private _group = _x;
 
         _groupVehicles = ([_group, true] call BIS_fnc_groupVehicles) select { canMove _x; };
+        _hasGroupPlayer = count ((units _group) select { isPlayer _x }) > 0;
 
-        if (count _groupVehicles == 0) then {
-            { if (!isPlayer _x) then { deleteVehicle _x; } } forEach (units _group); // Player will be deleted next check after teamswitch
+        if (count _groupVehicles == 0 && !_hasGroupPlayer) then {
+            {
+                if (_x in _spawnerUnits) then { // It's possible that a player crewman has joined a different group after ejecting. Don't delete the other units.
+                    deleteVehicle _x;
+                };
+            } forEach (units _group);
 
             continue;
         };
