@@ -1,12 +1,3 @@
-"supplies_marker_1" setMarkerPos (getPos supplies_1);
-"supplies_marker_2" setMarkerPos (getPos supplies_2);
-"supplies_marker_1" setMarkerAlpha 1;
-"supplies_marker_2" setMarkerAlpha 1;
-["team2_start_marker", win_trigger] call BIS_fnc_markerToTrigger; 
-["team1_start_marker", lose_trigger] call BIS_fnc_markerToTrigger;
-"team2_start_marker" setMarkerAlpha 1;
-"team1_start_marker" setMarkerAlpha 1;
-
 player allowDamage true;
 
 if (!isMultiplayer) then {
