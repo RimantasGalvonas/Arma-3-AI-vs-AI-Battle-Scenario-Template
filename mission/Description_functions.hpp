@@ -15,5 +15,6 @@ class ForceThrough
         class setFactionCosmetics {};
         class generateReversedDefaultPreset {};
         class airfieldUnitsManagementProcess {};
+        class addDiaryEntries {};
     };
 };

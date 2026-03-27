@@ -8,7 +8,7 @@ class EditorData
 	toggles=73;
 	class ItemIDProvider
 	{
-		nextID=275;
+		nextID=277;
 	};
 	class MarkerIDProvider
 	{
@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=446;
+		nextID=516;
 	};
 	class Camera
 	{
@@ -690,7 +690,7 @@ class Mission
 								angles[]={6.2352238,0,0.051958453};
 							};
 							name="spawner_01_friendly";
-							init="this setVariable [""logicType"", ""spawner""]; " \n "this setVariable [""maxUnitsPerGroup"", 8]; " \n "this setVariable [""spawnRate"", 5]; " \n "this setVariable [""maxUnits"", 20]; " \n " " \n "private _pool1 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfAssault"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfSquad"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfSquad_Weapons"" " \n "    ]], " \n "    [""weight"", 10], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "private _pool2 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_ReconSquad"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_ReconTeam"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_SniperTeam"" " \n "    ]], " \n "    [""weight"", 2], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "this setVariable [""pools"", [_pool1, _pool2]]; " \n " " \n "this setVariable [ " \n "    ""callback"", " \n "    { " \n "        _this call afterSpawnWrapperFriendlyFunction; " \n "    } " \n "];";
+							init="this setVariable [""logicType"", ""spawner""]; " \n "this setVariable [""maxUnitsPerGroup"", 8]; " \n "this setVariable [""spawnRate"", 5]; " \n "this setVariable [""maxUnits"", 20]; " \n " " \n "private _pool1 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfAssault"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfSquad"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfSquad_Weapons"" " \n "    ]], " \n "    [""weight"", 10], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "private _pool2 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_ReconSquad"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_ReconTeam"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_SniperTeam"" " \n "    ]], " \n "    [""weight"", 2], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "this setVariable [""pools"", [_pool1, _pool2]]; " \n " " \n "this setVariable [ " \n "    ""callback"", " \n "    { " \n "        _this call afterSpawnWrapperFriendlyFunction; " \n "    } " \n "];" \n " " \n "this setVariable [ " \n "    ""inventoryAdjustments"", " \n "    createHashMapFromArray [ " \n "        [""maxUnitLoad"", 82], " \n "        [""maxExtraMags"", 10] " \n "    ] " \n "];";
 							id=18;
 							type="Logic";
 							atlOffset=-7.6293945e-06;
@@ -839,7 +839,7 @@ class Mission
 								angles[]={0.0040142573,0,6.1822004};
 							};
 							name="spawner_02_friendly";
-							init="this setVariable [""logicType"", ""spawner""]; " \n "this setVariable [""maxUnitsPerGroup"", 8]; " \n "this setVariable [""spawnRate"", 5]; " \n "this setVariable [""maxUnits"", 20]; " \n " " \n "private _pool1 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfAssault"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfSquad"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfSquad_Weapons"" " \n "    ]], " \n "    [""weight"", 10], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "private _pool2 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_ReconSquad"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_ReconTeam"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_SniperTeam"" " \n "    ]], " \n "    [""weight"", 2], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "this setVariable [""pools"", [_pool1, _pool2]]; " \n " " \n "this setVariable [ " \n "    ""callback"", " \n "    { " \n "        _this call afterSpawnWrapperFriendlyFunction; " \n "    } " \n "];";
+							init="this setVariable [""logicType"", ""spawner""]; " \n "this setVariable [""maxUnitsPerGroup"", 8]; " \n "this setVariable [""spawnRate"", 5]; " \n "this setVariable [""maxUnits"", 20]; " \n " " \n "private _pool1 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfAssault"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfSquad"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_InfSquad_Weapons"" " \n "    ]], " \n "    [""weight"", 10], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "private _pool2 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_ReconSquad"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_ReconTeam"", " \n "        configfile >> ""CfgGroups"" >> ""West"" >> ""BLU_F"" >> ""Infantry"" >> ""BUS_SniperTeam"" " \n "    ]], " \n "    [""weight"", 2], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "this setVariable [""pools"", [_pool1, _pool2]]; " \n " " \n "this setVariable [ " \n "    ""callback"", " \n "    { " \n "        _this call afterSpawnWrapperFriendlyFunction; " \n "    } " \n "];" \n " " \n "this setVariable [ " \n "    ""inventoryAdjustments"", " \n "    createHashMapFromArray [ " \n "        [""maxUnitLoad"", 82], " \n "        [""maxExtraMags"", 10] " \n "    ] " \n "];";
 							id=28;
 							type="Logic";
 						};
@@ -1165,7 +1165,7 @@ class Mission
 								angles[]={6.2139654,0,6.2392201};
 							};
 							name="spawner_03_enemy";
-							init="this setVariable [""logicType"", ""spawner""]; " \n "this setVariable [""maxUnitsPerGroup"", 8]; " \n "this setVariable [""spawnRate"", 5]; " \n "this setVariable [""maxUnits"", 20]; " \n " " \n "private _pool1 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_InfSquad"", " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_InfSquad_Weapons"" " \n "    ]], " \n "    [""weight"", 15], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "private _pool2 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_SniperTeam"" " \n "    ]], " \n "    [""weight"", 1], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "this setVariable [""pools"", [_pool1, _pool2]]; " \n " " \n "this setVariable [ " \n "    ""callback"", " \n "    { " \n "        _this call afterSpawnWrapperEnemyFunction; " \n "    } " \n "];";
+							init="this setVariable [""logicType"", ""spawner""]; " \n "this setVariable [""maxUnitsPerGroup"", 8]; " \n "this setVariable [""spawnRate"", 5]; " \n "this setVariable [""maxUnits"", 20]; " \n " " \n "private _pool1 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_InfSquad"", " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_InfSquad_Weapons"" " \n "    ]], " \n "    [""weight"", 15], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "private _pool2 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_SniperTeam"" " \n "    ]], " \n "    [""weight"", 1], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "this setVariable [""pools"", [_pool1, _pool2]]; " \n " " \n "this setVariable [ " \n "    ""callback"", " \n "    { " \n "        _this call afterSpawnWrapperEnemyFunction; " \n "    } " \n "];" \n " " \n "this setVariable [ " \n "    ""inventoryAdjustments"", " \n "    createHashMapFromArray [ " \n "        [""maxUnitLoad"", 82], " \n "        [""maxExtraMags"", 10] " \n "    ] " \n "];";
 							id=34;
 							type="Logic";
 						};
@@ -1217,7 +1217,7 @@ class Mission
 								angles[]={0.19867083,0,0.0026529003};
 							};
 							name="spawner_04_enemy";
-							init="this setVariable [""logicType"", ""spawner""]; " \n "this setVariable [""maxUnitsPerGroup"", 8]; " \n "this setVariable [""spawnRate"", 5]; " \n "this setVariable [""maxUnits"", 20]; " \n " " \n "private _pool1 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_InfSquad"", " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_InfSquad_Weapons"" " \n "    ]], " \n "    [""weight"", 15], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "private _pool2 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_SniperTeam"" " \n "    ]], " \n "    [""weight"", 1], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "this setVariable [""pools"", [_pool1, _pool2]]; " \n " " \n "this setVariable [ " \n "    ""callback"", " \n "    { " \n "        _this call afterSpawnWrapperEnemyFunction; " \n "    } " \n "];";
+							init="this setVariable [""logicType"", ""spawner""]; " \n "this setVariable [""maxUnitsPerGroup"", 8]; " \n "this setVariable [""spawnRate"", 5]; " \n "this setVariable [""maxUnits"", 20]; " \n " " \n "private _pool1 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_InfSquad"", " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_InfSquad_Weapons"" " \n "    ]], " \n "    [""weight"", 15], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "private _pool2 = createHashMapFromArray [ " \n "    [""groups"", [ " \n "        configfile >> ""CfgGroups"" >> ""Indep"" >> ""IND_F"" >> ""Infantry"" >> ""HAF_SniperTeam"" " \n "    ]], " \n "    [""weight"", 1], " \n "    [""vehicleCrewGrouping"", false] " \n "]; " \n " " \n "this setVariable [""pools"", [_pool1, _pool2]]; " \n " " \n "this setVariable [ " \n "    ""callback"", " \n "    { " \n "        _this call afterSpawnWrapperEnemyFunction; " \n "    } " \n "];" \n " " \n "this setVariable [ " \n "    ""inventoryAdjustments"", " \n "    createHashMapFromArray [ " \n "        [""maxUnitLoad"", 82], " \n "        [""maxExtraMags"", 10] " \n "    ] " \n "];";
 							id=38;
 							type="Logic";
 						};
@@ -1539,19 +1539,6 @@ class Mission
 		};
 		class Item26
 		{
-			dataType="Comment";
-			class PositionInfo
-			{
-				position[]={6979.52,125.494,13018.316};
-				angles[]={6.1558781,0,0.050622065};
-			};
-			title="Airfield spawners creation script";
-			description="private _airfields = []; " \n " " \n "private _addAirfieldData = { " \n "    params [""_airfieldConfig""]; " \n " " \n "    private _ilsTaxiIn = getArray (_airfieldConfig >> ""ilsTaxiIn""); " \n " " \n "    if (count _ilsTaxiIn < 4) exitWith {}; // Less than two waypoints - not enough to get direction " \n " " \n "    private _taxiInWaypoint1 = [_ilsTaxiIn select 0, _ilsTaxiIn select 1, 0]; // Must start at the first waypoints. If you try to put them closer to the runway, they turn around " \n "    private _taxiInWaypoint2 = [_ilsTaxiIn select 2, _ilsTaxiIn select 3, 0]; " \n " " \n "    private _airfieldData = createHashMapFromArray [ " \n "        [""taxiStartPos"", _taxiInWaypoint1], " \n "        [""taxiDirection"", _taxiInWaypoint1 getDir _taxiInWaypoint2], " \n "        [""ilsPos"", getArray (_airfieldConfig >> ""ilsPosition"")] " \n "    ]; " \n " " \n "    _airfields append [_airfieldData]; " \n "}; " \n " " \n " " \n "[configfile >> ""CfgWorlds"" >> worldName] call _addAirfieldData; " \n " " \n " " \n "{ " \n "    [_x] call _addAirfieldData; " \n "} forEach (""true"" configClasses (configFile >> ""cfgWorlds"" >> worldName >> ""secondaryAirports"")); " \n " " \n " " \n " " \n "private _airfieldPlacerInitFormat = ""this setVariable [""""logicType"""", """"placer""""]; " \n "this setVariable [""""spawners"""", [%1]]; " \n "this setVariable [""""dynamic"""", false]; " \n "this setVariable [""""scalable"""", false]; " \n "this setVariable [""""minSpawnRadius"""", 0]; " \n "this setVariable [""""maxSpawnRadius"""", 1]; " \n "this setVariable [""""taxiDirection"""", %2]; " \n "this setVariable [""""ilsPos"""", %3]; " \n "if (isNil """"ForceThrough_fnc_airfieldUnitsManagementProcesses"""") then { " \n "    ForceThrough_fnc_airfieldUnitsManagementProcesses = createHashMap; " \n "}; " \n " " \n "ForceThrough_fnc_airfieldUnitsManagementProcesses set [ " \n "    str this, " \n "    [this] spawn ForceThrough_fnc_airfieldUnitsManagementProcess " \n "];""; " \n " " \n "private _airfieldSpawnerInit = ""this setVariable [""""logicType"""", """"spawner""""]; " \n "this setVariable [""""maxUnitsPerGroup"""", 8]; " \n "this setVariable [""""spawnRate"""", 60]; " \n "this setVariable [""""maxUnits"""", 1]; " \n " " \n "private _pool1 = createHashMapFromArray [ " \n "    [""""groups"""", [ " \n " " \n "    ]], " \n "    [""""weight"""", 10], " \n "    [""""vehicleCrewGrouping"""", true] " \n "]; " \n " " \n " " \n "this setVariable [""""pools"""", [_pool1]]; " \n " " \n "this setVariable [ " \n "    """"callback"""", " \n "    { " \n "        _this call afterSpawnWrapperAirfieldFunction; " \n "    } " \n "];""; " \n " " \n " " \n " " \n "private _allLogics = all3DENEntities select 3; " \n " " \n "private _patrolCenter = _allLogics select {((_x get3DENAttribute ""name"") select 0) == ""patrolCenter""} select 0; " \n " " \n "private _spawnerSearchString = ""this setVariable [""""logicType"""", """"spawner""""]""; " \n " " \n "private _allSpawners = _allLogics select {_spawnerSearchString in ((_x get3DENAttribute ""init"") select 0)}; " \n " " \n "private _airfieldsLayer = -1 add3DENLayer ""Airfields""; " \n " " \n " " \n " " \n "{ " \n "    private _airfieldData = _x; " \n "    private _taxiStartPos = _airfieldData get ""taxiStartPos""; " \n "    private _taxiDir = _airfieldData get ""taxiDirection""; " \n "    private _ilsPos = _airfieldData get ""ilsPos""; " \n "    _taxiStartPos set [2, 0]; " \n " " \n "    private _placerName = ""placer_airfield_"" + str (_forEachIndex + 1); " \n " " \n "    private _spawnerIndex = count _allSpawners + _forEachIndex + 1; " \n "    if (_spawnerIndex < 10) then { " \n "        _spawnerIndex = ""0"" + str _spawnerIndex; " \n "    } else { " \n "        _spawnerIndex = str _spawnerIndex; " \n "    }; " \n " " \n "    private _spawnerName = format [""spawner_%1_airfield"", _spawnerIndex]; " \n " " \n "    private _thisLayer = _airfieldsLayer add3DENLayer (""Airfield_"" + str (_forEachIndex + 1)); " \n " " \n "    private _placer = create3DENEntity [""Logic"", ""Logic"", _taxiStartPos getPos [5, _taxiDir + 180]]; " \n "    _placer set3DENAttribute [""Name"", _placerName]; " \n "    _placer set3DENAttribute [""init"", format [_airfieldPlacerInitFormat, _spawnerName, _taxiDir, _ilsPos]]; " \n "    _placer set3DENLayer _thisLayer; " \n " " \n "    add3DENConnection [""Sync"", [_placer], _patrolCenter]; " \n " " \n "    private _spawner = create3DENEntity [""Logic"", ""Logic"", _taxiStartPos]; " \n "    _spawner set3DENAttribute [""Name"", _spawnerName]; " \n "    _spawner set3DENAttribute [""init"", _airfieldSpawnerInit]; " \n "    _spawner set3DENLayer _thisLayer; " \n " " \n " " \n "} forEach _airfields;";
-			id=165;
-			atlOffset=0.00035858154;
-		};
-		class Item27
-		{
 			dataType="Logic";
 			class PositionInfo
 			{
@@ -1630,7 +1617,7 @@ class Mission
 				nAttributes=5;
 			};
 		};
-		class Item28
+		class Item27
 		{
 			dataType="Layer";
 			name="Airfields";
@@ -1852,7 +1839,7 @@ class Mission
 			id=186;
 			atlOffset=-3.2096233;
 		};
-		class Item29
+		class Item28
 		{
 			dataType="Group";
 			side="Civilian";
@@ -1916,7 +1903,7 @@ class Mission
 			id=239;
 			atlOffset=1.5258789e-05;
 		};
-		class Item30
+		class Item29
 		{
 			dataType="Group";
 			side="Civilian";
@@ -1979,7 +1966,7 @@ class Mission
 			id=243;
 			atlOffset=1.5258789e-05;
 		};
-		class Item31
+		class Item30
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2042,7 +2029,7 @@ class Mission
 			id=245;
 			atlOffset=1.5258789e-05;
 		};
-		class Item32
+		class Item31
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2105,7 +2092,7 @@ class Mission
 			id=247;
 			atlOffset=1.5258789e-05;
 		};
-		class Item33
+		class Item32
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2168,7 +2155,7 @@ class Mission
 			id=249;
 			atlOffset=1.5258789e-05;
 		};
-		class Item34
+		class Item33
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2231,7 +2218,7 @@ class Mission
 			id=251;
 			atlOffset=1.5258789e-05;
 		};
-		class Item35
+		class Item34
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2294,7 +2281,7 @@ class Mission
 			id=253;
 			atlOffset=1.5258789e-05;
 		};
-		class Item36
+		class Item35
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2357,7 +2344,7 @@ class Mission
 			id=255;
 			atlOffset=1.5258789e-05;
 		};
-		class Item37
+		class Item36
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2420,7 +2407,7 @@ class Mission
 			id=257;
 			atlOffset=1.5258789e-05;
 		};
-		class Item38
+		class Item37
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2483,7 +2470,7 @@ class Mission
 			id=259;
 			atlOffset=1.5258789e-05;
 		};
-		class Item39
+		class Item38
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2546,7 +2533,7 @@ class Mission
 			id=261;
 			atlOffset=1.5258789e-05;
 		};
-		class Item40
+		class Item39
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2609,7 +2596,7 @@ class Mission
 			id=263;
 			atlOffset=1.5258789e-05;
 		};
-		class Item41
+		class Item40
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2672,7 +2659,7 @@ class Mission
 			id=265;
 			atlOffset=1.5258789e-05;
 		};
-		class Item42
+		class Item41
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2735,7 +2722,7 @@ class Mission
 			id=267;
 			atlOffset=1.5258789e-05;
 		};
-		class Item43
+		class Item42
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2798,7 +2785,7 @@ class Mission
 			id=269;
 			atlOffset=1.5258789e-05;
 		};
-		class Item44
+		class Item43
 		{
 			dataType="Group";
 			side="Civilian";
@@ -2860,6 +2847,43 @@ class Mission
 			};
 			id=271;
 			atlOffset=1.5258789e-05;
+		};
+		class Item44
+		{
+			dataType="Layer";
+			name="Mission setup scripts (run in Debug console in Eden)";
+			class Entities
+			{
+				items=2;
+				class Item0
+				{
+					dataType="Comment";
+					class PositionInfo
+					{
+						position[]={6979.52,125.494,13018.316};
+						angles[]={6.1558781,0,0.050622065};
+					};
+					title="Airfield spawners creation script";
+					description="collect3DENHistory " \n "{ " \n "    private _airfields = []; " \n " " \n "    private _addAirfieldData = { " \n "        params [""_airfieldConfig""]; " \n " " \n "        private _ilsTaxiIn = getArray (_airfieldConfig >> ""ilsTaxiIn""); " \n " " \n "        if (count _ilsTaxiIn < 4) exitWith {}; // Less than two waypoints - not enough to get direction " \n " " \n "        private _taxiInWaypoint1 = [_ilsTaxiIn select 0, _ilsTaxiIn select 1, 0]; // Must start at the first waypoints. If you try to put them closer to the runway, they turn around " \n "        private _taxiInWaypoint2 = [_ilsTaxiIn select 2, _ilsTaxiIn select 3, 0]; " \n " " \n "        private _airfieldData = createHashMapFromArray [ " \n "            [""taxiStartPos"", _taxiInWaypoint1], " \n "            [""taxiDirection"", _taxiInWaypoint1 getDir _taxiInWaypoint2], " \n "            [""ilsPos"", getArray (_airfieldConfig >> ""ilsPosition"")] " \n "        ]; " \n " " \n "        _airfields append [_airfieldData]; " \n "    }; " \n " " \n " " \n "    [configfile >> ""CfgWorlds"" >> worldName] call _addAirfieldData; " \n " " \n " " \n "    { " \n "        [_x] call _addAirfieldData; " \n "    } forEach (""true"" configClasses (configFile >> ""cfgWorlds"" >> worldName >> ""secondaryAirports"")); " \n " " \n " " \n " " \n "    private _airfieldPlacerInitFormat = ""this setVariable [""""logicType"""", """"placer""""]; " \n "    this setVariable [""""spawners"""", [%1]]; " \n "    this setVariable [""""dynamic"""", false]; " \n "    this setVariable [""""scalable"""", false]; " \n "    this setVariable [""""minSpawnRadius"""", 0]; " \n "    this setVariable [""""maxSpawnRadius"""", 1]; " \n "    this setVariable [""""taxiDirection"""", %2]; " \n "    this setVariable [""""ilsPos"""", %3]; " \n "    if (isNil """"ForceThrough_fnc_airfieldUnitsManagementProcesses"""") then { " \n "        ForceThrough_fnc_airfieldUnitsManagementProcesses = createHashMap; " \n "    }; " \n " " \n "    ForceThrough_fnc_airfieldUnitsManagementProcesses set [ " \n "        str this, " \n "        [this] spawn ForceThrough_fnc_airfieldUnitsManagementProcess " \n "    ];""; " \n " " \n "    private _airfieldSpawnerInit = ""this setVariable [""""logicType"""", """"spawner""""]; " \n "    this setVariable [""""maxUnitsPerGroup"""", 8]; " \n "    this setVariable [""""spawnRate"""", 60]; " \n "    this setVariable [""""maxUnits"""", 1]; " \n " " \n "    private _pool1 = createHashMapFromArray [ " \n "        [""""groups"""", [ " \n " " \n "        ]], " \n "        [""""weight"""", 10], " \n "        [""""vehicleCrewGrouping"""", true] " \n "    ]; " \n " " \n " " \n "    this setVariable [""""pools"""", [_pool1]]; " \n " " \n "    this setVariable [ " \n "        """"callback"""", " \n "        { " \n "            _this call afterSpawnWrapperAirfieldFunction; " \n "        } " \n "    ];""; " \n " " \n " " \n " " \n "    private _allLogics = all3DENEntities select 3; " \n " " \n "    private _patrolCenter = _allLogics select {((_x get3DENAttribute ""name"") select 0) == ""patrolCenter""} select 0; " \n " " \n "    private _spawnerSearchString = ""this setVariable [""""logicType"""", """"spawner""""]""; " \n " " \n "    private _allSpawners = _allLogics select {_spawnerSearchString in ((_x get3DENAttribute ""init"") select 0)}; " \n " " \n "    private _airfieldsLayer = -1 add3DENLayer ""Airfields""; " \n " " \n " " \n " " \n "    { " \n "        private _airfieldData = _x; " \n "        private _taxiStartPos = _airfieldData get ""taxiStartPos""; " \n "        private _taxiDir = _airfieldData get ""taxiDirection""; " \n "        private _ilsPos = _airfieldData get ""ilsPos""; " \n "        _taxiStartPos set [2, 0]; " \n " " \n "        private _placerName = ""placer_airfield_"" + str (_forEachIndex + 1); " \n " " \n "        private _spawnerIndex = count _allSpawners + _forEachIndex + 1; " \n "        if (_spawnerIndex < 10) then { " \n "            _spawnerIndex = ""0"" + str _spawnerIndex; " \n "        } else { " \n "            _spawnerIndex = str _spawnerIndex; " \n "        }; " \n " " \n "        private _spawnerName = format [""spawner_%1_airfield"", _spawnerIndex]; " \n " " \n "        private _thisLayer = _airfieldsLayer add3DENLayer (""Airfield_"" + str (_forEachIndex + 1)); " \n " " \n "        private _placer = create3DENEntity [""Logic"", ""Logic"", _taxiStartPos getPos [5, _taxiDir + 180]]; " \n "        _placer set3DENAttribute [""Name"", _placerName]; " \n "        _placer set3DENAttribute [""init"", format [_airfieldPlacerInitFormat, _spawnerName, _taxiDir, _ilsPos]]; " \n "        _placer set3DENLayer _thisLayer; " \n " " \n "        add3DENConnection [""Sync"", [_placer], _patrolCenter]; " \n " " \n "        private _spawner = create3DENEntity [""Logic"", ""Logic"", _taxiStartPos]; " \n "        _spawner set3DENAttribute [""Name"", _spawnerName]; " \n "        _spawner set3DENAttribute [""init"", _airfieldSpawnerInit]; " \n "        _spawner set3DENLayer _thisLayer; " \n " " \n "    } forEach _airfields; " \n "};";
+					id=165;
+					atlOffset=0.00035858154;
+				};
+				class Item1
+				{
+					dataType="Comment";
+					class PositionInfo
+					{
+						position[]={6978.3672,125.527,13019.037};
+						angles[]={6.1558781,0,0.050622065};
+					};
+					title="Drongo's AI Fire Support integration";
+					description="collect3DENHistory " \n "{ " \n "    private _layer = -1 add3DENLayer (""Artillery""); " \n " " \n "    private _allLogics = all3DENEntities select 3; " \n " " \n "    private _patrolCenter = _allLogics select {((_x get3DENAttribute ""name"") select 0) == ""patrolCenter""} select 0; " \n " " \n "    private _allTriggers = all3DENEntities select 2; " \n "    private _team1_spawn1_area = _allTriggers select {((_x get3DENAttribute ""name"") select 0) == ""team1_spawn1_area""} select 0; " \n "    private _team1_spawn2_area = _allTriggers select {((_x get3DENAttribute ""name"") select 0) == ""team1_spawn2_area""} select 0; " \n "    private _team2_spawn1_area = _allTriggers select {((_x get3DENAttribute ""name"") select 0) == ""team2_spawn1_area""} select 0; " \n "    private _team2_spawn2_area = _allTriggers select {((_x get3DENAttribute ""name"") select 0) == ""team2_spawn2_area""} select 0; " \n " " \n " " \n "    private _drongos_west = create3DENEntity [""Logic"", ""dafs_Core"", (getPos _patrolCenter) getPos [5, 350]]; " \n "    _drongos_west set3DENAttribute [""Name"", ""drongos_west""]; " \n "    _drongos_west set3DENAttribute [""dafs_Core_dafsSide"", ""WEST""]; " \n "    _drongos_west set3DENAttribute [""dafs_Core_dafsDisplaceRadius"", -1]; " \n "    _drongos_west set3DENAttribute [""dafs_Core_dafsDebugMode"", ""FALSE""]; " \n "    _drongos_west set3DENLayer _layer; " \n " " \n "    private _drongos_east = create3DENEntity [""Logic"", ""dafs_Core"", (getPos _patrolCenter) getPos [5, 360]]; " \n "    _drongos_east set3DENAttribute [""Name"", ""drongos_east""]; " \n "    _drongos_east set3DENAttribute [""dafs_Core_dafsSide"", ""EAST""]; " \n "    _drongos_east set3DENAttribute [""dafs_Core_dafsDisplaceRadius"", -1]; " \n "    _drongos_east set3DENAttribute [""dafs_Core_dafsDebugMode"", ""FALSE""]; " \n "    _drongos_east set3DENLayer _layer; " \n " " \n "    private _drongos_independent = create3DENEntity [""Logic"", ""dafs_Core"", (getPos _patrolCenter) getPos [5, 10]]; " \n "    _drongos_independent set3DENAttribute [""Name"", ""drongos_independent""]; " \n "    _drongos_independent set3DENAttribute [""dafs_Core_dafsSide"",""RESISTANCE""]; " \n "    _drongos_independent set3DENAttribute [""dafs_Core_dafsDisplaceRadius"", -1]; " \n "    _drongos_independent set3DENAttribute [""dafs_Core_dafsDebugMode"", ""FALSE""]; " \n "    _drongos_independent set3DENLayer _layer; " \n " " \n " " \n "    private _placerInitFormat = "" " \n "        this setVariable [""""logicType"""", """"placer""""]; " \n "        this setVariable [""""areaTriggers"""", [%1]]; " \n "        this setVariable [""""spawners"""", [%2]]; " \n "    ""; " \n " " \n "    private _spawnerInit = "" " \n "        this setVariable [""""logicType"""", """"spawner""""]; " \n "        this setVariable [""""maxUnitsPerGroup"""", 8]; " \n "        this setVariable [""""spawnRate"""", 5]; " \n "        this setVariable [""""maxUnits"""", 1]; " \n " " \n "        private _pool1 = createHashMapFromArray [ " \n "            [""""groups"""", [ " \n "            ]], " \n "            [""""weight"""", 10], " \n "            [""""vehicleCrewGrouping"""", true] " \n "        ]; " \n " " \n " " \n "        this setVariable [""""pools"""", [_pool1]]; " \n " " \n "        this setVariable [ " \n "            """"callback"""", " \n "            { " \n "                params [""""_group"""", """"_spawner"""", """"_placer""""]; " \n " " \n "                _group setVariable [""""ignoreIntel"""", true]; " \n " " \n "                private _vehicles = [_group, true] call BIS_fnc_groupVehicles; " \n " " \n "                _placer synchronizeObjectsAdd _vehicles; " \n " " \n "                if ([side _group, blufor] call BIS_fnc_sideIsFriendly) then { " \n "                    drongos_west synchronizeObjectsAdd _vehicles; " \n "                }; " \n " " \n "                if ([side _group, opfor] call BIS_fnc_sideIsFriendly) then { " \n "                    drongos_east synchronizeObjectsAdd _vehicles; " \n "                }; " \n " " \n "                if ([side _group, independent] call BIS_fnc_sideIsFriendly) then { " \n "                    drongos_independent synchronizeObjectsAdd _vehicles; " \n "                }; " \n " " \n "                { " \n "                    _x addEventHandler [""""Fired"""", {(_this select 0) setVehicleAmmo 1;}]; " \n "                    doStop _x; " \n "                } forEach (units _group); " \n "            } " \n "        ]; " \n "    ""; " \n " " \n "    private _spawnerSearchString = ""this setVariable [""""logicType"""", """"spawner""""]""; " \n "    private _allSpawners = _allLogics select {_spawnerSearchString in ((_x get3DENAttribute ""init"") select 0)}; " \n " " \n "    { " \n "        private _pos = _x select 0; " \n "        private _sideSuffix = _x select 1; " \n "        private _areaTriggerNames = _x select 2; " \n " " \n "        private _spawnerIndex = count _allSpawners + _forEachIndex + 1; " \n "        if (_spawnerIndex < 10) then { " \n "            _spawnerIndex = ""0"" + str _spawnerIndex; " \n "        } else { " \n "            _spawnerIndex = str _spawnerIndex; " \n "        }; " \n " " \n "        private _spawnerName = ""spawner_"" + _spawnerIndex + ""_artillery_"" + _sideSuffix; " \n " " \n "        private _spawner = create3DENEntity [""Logic"", ""Logic"", _pos getPos [10, 170]]; " \n "        _spawner set3DENAttribute [""Name"", _spawnerName]; " \n "        _spawner set3DENAttribute [""init"", _spawnerInit]; " \n "        _spawner set3DENLayer _layer; " \n " " \n "        private _placer = create3DENEntity [""Logic"", ""Logic"", _pos getPos [10, 190]]; " \n "        _placer set3DENAttribute [""Name"", ""placer_artillery_"" + _sideSuffix + ""_"" + str _forEachIndex]; " \n "        _placer set3DENAttribute [""init"", format [_placerInitFormat, _areaTriggerNames, _spawnerName]]; " \n "        _placer set3DENLayer _layer; " \n " " \n "        add3DENConnection [""Sync"", [_placer], _patrolCenter]; " \n "    } forEach [ " \n "        [getPos _team1_spawn1_area, ""friendly"", ""team1_spawn1_area""], " \n "        [getPos _team1_spawn2_area, ""friendly"", ""team1_spawn2_area""], " \n "        [getPos _team2_spawn1_area, ""enemy"", ""team2_spawn1_area""], " \n "        [getPos _team2_spawn2_area, ""enemy"", ""team2_spawn2_area""] " \n "    ]; " \n " " \n " " \n "    private _artilleryMover = create3DENEntity [""Logic"", ""Logic"", (getPos _patrolCenter) getPos [10, 0]]; " \n "    _artilleryMover set3DENAttribute [""Name"", ""artilleryMoverLogic""]; " \n "    _artilleryMover set3DENAttribute [ " \n "        ""init"", " \n "        "" " \n "            [] spawn { " \n "                waitUntil {(!isNil """"Rimsiakas_missionInitialized"""" && {Rimsiakas_missionInitialized == true})}; " \n " " \n "                while {true} do { " \n "                    { " \n "                        [_x, false] call Rimsiakas_fnc_placer; " \n " " \n "                        { " \n "                            doStop _x; " \n "                        } forEach (synchronizedObjects _x); " \n "                    } forEach [placer_artillery_friendly_0, placer_artillery_friendly_1, placer_artillery_enemy_2, placer_artillery_enemy_3]; " \n " " \n "                    sleep 120; " \n "                }; " \n "            }; " \n "        "" " \n "    ]; " \n " " \n "    _artilleryMover set3DENLayer _layer; " \n "};";
+					id=276;
+					atlOffset=-0.00047302246;
+				};
+			};
+			id=275;
+			atlOffset=2.2888184e-05;
 		};
 	};
 	class Connections

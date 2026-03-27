@@ -12,7 +12,7 @@
 
     Rimsiakas_fnc_showMissionSelectorHints = {
         waitUntil {!isNull findDisplay 46421};
-        hint parseText "<t align=""left""><t font=""PuristaBold"">Welcome to Force Through!</t><br/><br/>Use the <t font=""PuristaBold"">Toggle entities</t> button and look for <t font=""PuristaBold"">win_trigger</t> and <t font=""PuristaBold"">lose_trigger</t> markers to see which direction the battle will go.<br/><br/>If you're going to be setting up airfield units, add them as custom groups with a single aircraft each. Default groups with multiple aircraft may get stuck.<br/><br/>Choose a large (~2000m width) area for slower, more tactical gameplay, smaller (~800m width) for quick-paced, intense gameplay.</t>";
+        hint parseText "<t align=""left""><t font=""PuristaBold"">Welcome to Force Through!</t><br/><br/>Please read the <t font=""PuristaBold"">briefing</t> for introduction and mission configuration tips.</t>";
     };
 
     if (hasInterface) then {
