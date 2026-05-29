@@ -106,6 +106,9 @@ if (_groupHasVehicles == true) then {
         private _attackPositionWP = _group addWayPoint [_attackPosition, 1];
         _attackPositionWP setWaypointType "MOVE";
         _attackPositionWP setWaypointStatements [_attackPositionWPCondition, _attackPositionWPStatement];
+        if (!isPlayer leader _group) then {
+            _attackPositionWP setWaypointFormation (patrolCenter getVariable ["aiConfigAttackFormation", "WEDGE"]);
+        };
 
 
 
@@ -129,5 +132,7 @@ if (_groupHasVehicles == true) then {
     private _finalWaypoint = _group addWayPoint [getPos _target, 5];
     _finalWaypoint setWaypointType "SAD";
     _finalWaypoint setWaypointStatements [_waypointCondition, _waypointStatements];
-    _finalWaypoint setWaypointFormation (patrolCenter getVariable ["aiConfigAttackFormation", "WEDGE"]);
+    if (!isPlayer leader _group) then {
+        _finalWaypoint setWaypointFormation (patrolCenter getVariable ["aiConfigAttackFormation", "WEDGE"]);
+    };
 };
