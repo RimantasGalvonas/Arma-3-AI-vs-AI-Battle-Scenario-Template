@@ -481,7 +481,7 @@ class Rimsiakas_MainConfigDialog
 
             class Rimsiakas_FactionsConfigDialog_FactionPresetsButton: Rimsiakas_Button
             {
-                idc = FACTIONS_CONFIG_BUTTONS_FACTIONPRESETS_IDC;
+                idc = MAIN_CONFIG_BUTTONS_FACTIONPRESETS_IDC;
                 action = "[] spawn {createDialog 'Rimsiakas_ConfigurationPresetsDialog';};";
                 text = "Presets";
                 x = 25 * GUI_GRID_W + GUI_GRID_X;

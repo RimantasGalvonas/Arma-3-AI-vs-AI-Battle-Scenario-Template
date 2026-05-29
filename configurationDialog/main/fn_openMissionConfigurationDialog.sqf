@@ -53,3 +53,18 @@ if (isNil "Rimsiakas_defaultPresetGenerated") then {
 
    [] call Rimsiakas_fnc_generateDefaultConfigurationPreset;
 };
+
+
+
+private _spawners = entities "LOGIC" select {_x getVariable ["logicType", ""] == "spawner"};
+
+if (count _spawners == 0) then {
+    private _factionConfigButton = displayCtrl MAIN_CONFIG_BUTTONS_FACTIONCONFIG_IDC;
+    private _presetsButton = displayCtrl MAIN_CONFIG_BUTTONS_FACTIONPRESETS_IDC;
+
+    _factionConfigButton ctrlShow false;
+    _factionButtonPos = ctrlPosition _factionConfigButton;
+    _factionButtonPos resize 2;
+    _presetsButton ctrlSetPosition _factionButtonPos;
+    _presetsButton ctrlCommit 0;
+};
