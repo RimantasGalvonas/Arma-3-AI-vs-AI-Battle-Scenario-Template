@@ -18,7 +18,7 @@ This is a customizeable mission framework to be used in the Eden editor. It allo
 1. Open up Arma, open up the editor, select a map and open it.
 2. Place a player unit, save the mission.
 3. On the top menu: <b>Scenario > Open Scenario Folder</b>
-4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Framework/releases/download/1.5.3/AI-vs-AI-Battle-Scenario-Framework-1.5.3.zip)
+4. [Download this mission's .zip archive.](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Framework/releases/download/1.5.4/AI-vs-AI-Battle-Scenario-Framework-1.5.4.zip)
 5. Extract its contents to your mission's folder.
 6. Go back to Arma, save and reopen the mission (**Scenario > Open...**), press PLAY SCENARIO.
 7. If done correctly, you should see a hint confirming that the installation was successful.
@@ -593,11 +593,11 @@ Made on v1.4.1
 <summary>Force Through Gamemode [SP/COOP]</summary>
 <br>
 
-[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Framework/releases/download/1.5.3/ForceThroughMissions.zip)
+[Download](https://github.com/RimantasGalvonas/Arma-3-AI-vs-AI-Battle-Scenario-Framework/releases/download/1.5.4/ForceThroughMissions.zip)
 
 This is the source for these missions: https://steamcommunity.com/workshop/filedetails/?id=2427506774
 
-Made on v1.5.3
+Made on v1.5.4
 
 </details>
 </li>
@@ -637,6 +637,13 @@ If you have any questions, suggestions, feedback, etc. you can contact me here:
 <details>
 <summary>Open changelog</summary>
 <ul>
+<li>
+1.5.4 (2026-05-29)
+<ul>
+<li>Fix groups sometimes not switching into attack formation when they should.</li>
+<li>Hide the factions config button when there are no spawners.</li>
+</ul>
+</li>
 <li>
 1.5.3 (2026-03-25)
 <ul>
