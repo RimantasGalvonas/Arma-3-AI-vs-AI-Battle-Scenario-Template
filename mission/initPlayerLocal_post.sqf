@@ -4,7 +4,8 @@ if (!isMultiplayer) then {
     hint "Use Team Switch (U button) to switch to a friendly unit at any point in the mission.";
 
     [] spawn {
-        waitUntil {count switchableUnits > 1};
+        removeSwitchableUnit player;
+        waitUntil {count switchableUnits > 0};
         teamSwitch;
         setAccTime 1;
     };
