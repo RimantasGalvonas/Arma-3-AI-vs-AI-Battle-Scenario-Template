@@ -638,6 +638,12 @@ If you have any questions, suggestions, feedback, etc. you can contact me here:
 <summary>Open changelog</summary>
 <ul>
 <li>
+1.5.5 (YYYY-MM-DD)
+<ul>
+<li>Reduce errors when trying to find a spawn zone in watery areas.</li>
+</ul>
+</li>
+<li>
 1.5.4 (2026-05-29)
 <ul>
 <li>Fix groups sometimes not switching into attack formation when they should.</li>

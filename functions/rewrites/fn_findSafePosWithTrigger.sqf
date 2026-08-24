@@ -20,6 +20,10 @@ for "_i" from 1 to 4000 do
 {
     private _checkPos = [_areaTriggers, ["water"]] call BIS_fnc_randomPos;
 
+    if (count _checkPos == 2) then {
+        continue;
+    };
+
     // position is roughly suitable
     if ((_checkPos isFlatEmpty [-1, -1, _maxGradient, _gradientRadius, _waterMode, _shoreMode]) isEqualTo []) then {
         continue;
